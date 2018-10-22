@@ -156,6 +156,11 @@ public class TelaVendas extends javax.swing.JInternalFrame {
 
         btoAdicionarItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/basket_add.png"))); // NOI18N
         btoAdicionarItem.setText("Adicionar");
+        btoAdicionarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btoAdicionarItemActionPerformed(evt);
+            }
+        });
 
         btoExcluirItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/basket_delete.png"))); // NOI18N
         btoExcluirItem.setText("Excluir Item");
@@ -194,6 +199,11 @@ public class TelaVendas extends javax.swing.JInternalFrame {
 
         jTextField7.setEditable(false);
         jTextField7.setText("R$ 0,00");
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -384,6 +394,14 @@ public class TelaVendas extends javax.swing.JInternalFrame {
     private void btoCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btoCancelarVendaActionPerformed
     this.dispose();
     }//GEN-LAST:event_btoCancelarVendaActionPerformed
+
+    private void btoAdicionarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btoAdicionarItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btoAdicionarItemActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

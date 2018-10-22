@@ -27,6 +27,7 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollBar1 = new javax.swing.JScrollBar();
         jPanel1 = new javax.swing.JPanel();
         painelFoto = new javax.swing.JPanel();
         lblFoto = new javax.swing.JLabel();
@@ -111,6 +112,11 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
         lblAutor.setText("Autor:");
 
         cboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Fantasia", "Ficção Científica", "Horror", "Autobiografia", "Biografia", "Apocalipse Zumbi", "Romance", "Infanto-Juvenil", "Suspense", "Literatura", "Aventura" }));
+        cboGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboGeneroActionPerformed(evt);
+            }
+        });
 
         cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Capa Padrão", "Capa Dura", "Edição de Anirvesário", "Edição de Luxo", "Capa Alternativa" }));
 
@@ -321,6 +327,10 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
     this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void cboGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboGeneroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboGeneroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -338,6 +348,7 @@ public class TelaCadastroProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblAutor;
