@@ -2,41 +2,161 @@ package Model;
 
 public class Produto {
 
-    private String descriProduto;
-    private double valorUnitario;
-    private int idProduto;
-
-    public int getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
-    }
-
+    private String titulo;
+    private String genero;
+    private String editora;
+    private String autor;
+    private String tipo;
+    private String descricao;
+    private int quantidade;
+    private double valorUni;
+    private byte[] imagem;
+    
+    
+    
+    
     public Produto() {
     }
 
-    public Produto(int idProduto, String dscProduto, double vlrUnitario) {
-        this.descriProduto = dscProduto;
-        this.valorUnitario = vlrUnitario;
-        this.idProduto = idProduto;
+    public Produto(String titulo, String genero,String editora,String autor,String tipo,
+            String descricao,int quantidade,double valorUni,byte[] imagem  ) {
+       
+        this.titulo = titulo;
+        this.genero = genero;
+        this.editora = editora;
+        this.autor = autor;
+        this.tipo = tipo;
+        this.descricao = descricao;
+        this.quantidade = quantidade;
+        this.valorUni = valorUni;
+        this.imagem = imagem;
+        
     }
 
-    public String getDescriProduto() {
-        return descriProduto;
+    /**
+     * @return the titulo
+     */
+    public String gettitulo() {
+        return titulo;
     }
 
-    public void setDescriProduto(String descriProduto) {
-        this.descriProduto = descriProduto;
+    /**
+     * @param titulo the titulo to set
+     */
+    public void settitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public double getValorUnitario() {
-        return valorUnitario;
+    /**
+     * @return the genero
+     */
+    public String getgenero() {
+        return genero;
     }
 
-    public void setValorUnitario(double valorUnitario) {
-        this.valorUnitario = valorUnitario;
+    /**
+     * @param genero the genero to set
+     */
+    public void setgenero(String genero) {
+        this.genero = genero;
+    }
+
+    /**
+     * @return the editora
+     */
+    public String geteditora() {
+        return editora;
+    }
+
+    /**
+     * @param editora the editora to set
+     */
+    public void seteditora(String editora) {
+        this.editora = editora;
+    }
+
+    /**
+     * @return the autor
+     */
+    public String getautor() {
+        return autor;
+    }
+
+    /**
+     * @param autor the autor to set
+     */
+    public void setautor(String autor) {
+        this.autor = autor;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String gettipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void settipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @return the descricao
+     */
+    public String getdescricao() {
+        return descricao;
+    }
+
+    /**
+     * @param descricao the descricao to set
+     */
+    public void setdescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    /**
+     * @return the quantidade
+     */
+    public int getquantidade() {
+        return quantidade;
+    }
+
+    /**
+     * @param quantidade the quantidade to set
+     */
+    public void setquantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    /**
+     * @return the valorUni
+     */
+    public double getvalorUni() {
+        return valorUni;
+    }
+
+    /**
+     * @param valorUni the valorUni to set
+     */
+    public void setvalorUni(double valorUni) {
+        this.valorUni = valorUni;
+    }
+
+    /**
+     * @return the imagem
+     */
+    public byte[] getimagem() {
+        return imagem;
+    }
+
+    /**
+     * @param imagem the imagem to set
+     */
+    public void setimagem(byte[] imagem) {
+        this.imagem = imagem;
     }
 
 }

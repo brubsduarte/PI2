@@ -369,6 +369,12 @@ public class ClienteView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Cadastrar Cliente", pnlAbaCadastroCliente);
 
+        txtDscProduto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDscProduto1ActionPerformed(evt);
+            }
+        });
+
         lblVlrUnitario1.setText("Valor Unitario:");
 
         txtVlrUnitario1.addActionListener(new java.awt.event.ActionListener() {
@@ -738,7 +744,10 @@ public class ClienteView extends javax.swing.JFrame {
     private void btnSalvarProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProduto1ActionPerformed
         if (ValidarFormulario2()) {
             if (modoTela.equals("Criar")) {
-                if (ProdutoController.Salvar(Integer.parseInt(txtIDproduto1.getText()), txtDscProduto1.getText(), Long.parseLong(txtVlrUnitario1.getText()))) {
+                if (ProdutoController.Salvar(
+                        Integer.parseInt(txtIDproduto1.getText()),
+                        txtDscProduto1.getText(), 
+                        Long.parseLong(txtVlrUnitario1.getText()))) {
                     this.LoadTable2();
                     JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
                     LimparFormulario2();
@@ -748,7 +757,9 @@ public class ClienteView extends javax.swing.JFrame {
 
             } else {
 
-                if (ProdutoController.Atualizar(Integer.parseInt(txtIDproduto1.getText()), txtDscProduto1.getText(), Long.parseLong(txtVlrUnitario1.getText()))) {
+                if (ProdutoController.Atualizar(
+                        Integer.parseInt(txtIDproduto1.getText()), 
+                        txtDscProduto1.getText(), Long.parseLong(txtVlrUnitario1.getText()))) {
                     this.LoadTable2();
                     JOptionPane.showMessageDialog(this, "Produto Atualizado com sucesso!");
                 } else {
@@ -772,6 +783,10 @@ public class ClienteView extends javax.swing.JFrame {
     private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCPFActionPerformed
+
+    private void txtDscProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDscProduto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDscProduto1ActionPerformed
 
     /**
      * @param args the command line arguments

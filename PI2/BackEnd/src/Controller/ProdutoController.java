@@ -8,9 +8,10 @@ import java.util.ArrayList;
 
 public class ProdutoController {
 
-    public static boolean Salvar(int idProduto, String dscProduto, double vlrUnitario) {
+    public static boolean Salvar(String titulo, String genero,String editora,String autor,String tipo,
+            String descricao,int quantidade,double valorUni,byte[] imagem  ) {
         //Salvo na memória
-        Produto p = new Produto(idProduto, dscProduto, vlrUnitario);
+        Produto p = new Produto(titulo,genero,editora,autor,tipo,descricao,quantidade,valorUni,imagem  );
         return ProdutoDAO.Salvar(p);
     }
 
@@ -18,8 +19,9 @@ public class ProdutoController {
         return ProdutoDAO.Excluir(indice);
     }
 
-    public static boolean Atualizar(int idProduto, String dscProduto, double vlrUnitario) {
-        Produto p = new Produto(idProduto, dscProduto, vlrUnitario);
+    public static boolean Atualizar(String titulo, String genero,String editora,String autor,String tipo,
+            String descricao,int quantidade,double valorUni,byte[] imagem) {
+        Produto p = new Produto(titulo,genero,editora,autor,tipo,descricao,quantidade,valorUni,imagem);
         return ProdutoDAO.Atualizar(p);
 
     }
@@ -30,7 +32,19 @@ public class ProdutoController {
         ArrayList<String[]> listaProdutos = new ArrayList<>();
 
         for (int i = 0; i < produtos.size(); i++) {
-            listaProdutos.add(new String[]{String.valueOf(produtos.get(i).getIdProduto()), produtos.get(i).getDescriProduto(), String.valueOf(produtos.get(i).getValorUnitario())});
+            listaProdutos.add(new String[]{
+                
+                 
+                produtos.get(i).gettitulo(), 
+                produtos.get(i).getgenero(), 
+                produtos.get(i).geteditora(),
+                produtos.get(i).getautor(),
+                produtos.get(i).gettipo(), 
+                String.valueOf(produtos.get(i).getquantidade()),
+                String.valueOf(produtos.get(i).getvalorUni()),
+                String.valueOf(produtos.get(i).getimagem()),
+            
+            });
 
         }
 

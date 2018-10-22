@@ -64,9 +64,15 @@ public class SimulaDB {
 
     public boolean AtualizarProduto(Produto p) {
         for (Produto item : listaProdutos) {
-            if (item.getIdProduto() == p.getIdProduto()) {
-                item.setDescriProduto(p.getDescriProduto());
-                item.setValorUnitario(p.getValorUnitario());
+            if (item.gettitulo() == p.gettitulo()) {
+                item.setgenero(p.getgenero());
+                item.seteditora(p.geteditora());
+                item.setautor(p.getautor());
+                item.settipo(p.gettipo());
+                item.setquantidade(p.getquantidade());
+                item.setvalorUni(p.getvalorUni());
+                item.setdescricao(p.getdescricao());
+                item.setimagem(p.getimagem());
             }
         }
 
