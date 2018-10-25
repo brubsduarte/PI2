@@ -11,7 +11,7 @@ public class Produto {
     private String descricao;
     private int quantidade;
     private double valorUni;
-    private byte[] imagem;
+    
     
     
     
@@ -20,7 +20,7 @@ public class Produto {
     }
 
     public Produto(String titulo, String genero,String editora,String autor,String tipo,
-            String descricao,int quantidade,double valorUni,byte[] imagem ,int idProduto  ) {
+            String descricao,int quantidade,double valorUni,int idProduto  ) {
        
         this.titulo = titulo;
         this.genero = genero;
@@ -30,7 +30,6 @@ public class Produto {
         this.descricao = descricao;
         this.quantidade = quantidade;
         this.valorUni = valorUni;
-        this.imagem = imagem;
         this.idProduto = idProduto;
         
     }
@@ -153,20 +152,6 @@ public class Produto {
      */
     public void setvalorUni(double valorUni) {
         this.valorUni = valorUni;
-    }
-
-    /**
-     * @return the imagem
-     */
-    public byte[] getimagem() {
-        return imagem;
-    }
-
-    /**
-     * @param imagem the imagem to set
-     */
-    public void setimagem(byte[] imagem) {
-        this.imagem = imagem;
     }
 
 }

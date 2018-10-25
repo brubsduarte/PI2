@@ -73,7 +73,6 @@ public class SimulaDB {
                 item.setquantidade(p.getquantidade());
                 item.setvalorUni(p.getvalorUni());
                 item.setdescricao(p.getdescricao());
-                item.setimagem(p.getimagem());
             }
         }
 

@@ -310,7 +310,7 @@ public class ClienteView extends javax.swing.JFrame {
             pnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabelaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -406,6 +406,9 @@ public class ClienteView extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Cadastrar Cliente", pnlAbaCadastroCliente);
+
+        jPanel1.setMaximumSize(new java.awt.Dimension(1000, 1000));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 1000));
 
         txtTituloProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -514,9 +517,9 @@ public class ClienteView extends javax.swing.JFrame {
         pnlTabela1Layout.setHorizontalGroup(
             pnlTabela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabela1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnlBotoes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -524,10 +527,10 @@ public class ClienteView extends javax.swing.JFrame {
             pnlTabela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabela1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlTabela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlBotoes1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(0, 114, Short.MAX_VALUE))
+                .addGroup(pnlTabela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlBotoes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         btnSalvarProduto1.setText("Salvar");
@@ -589,7 +592,7 @@ public class ClienteView extends javax.swing.JFrame {
             pnlFormulario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFormulario1Layout.createSequentialGroup()
                 .addGroup(pnlFormulario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pnlTabela1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlTabela1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFormulario1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlFormulario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -629,7 +632,7 @@ public class ClienteView extends javax.swing.JFrame {
                                                 .addComponent(lblDescricaoProduto)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(txtDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 44, Short.MAX_VALUE)))))))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
                 .addContainerGap())
         );
         pnlFormulario1Layout.setVerticalGroup(
@@ -659,7 +662,7 @@ public class ClienteView extends javax.swing.JFrame {
                     .addComponent(cboEditoraProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTipoProduto)
                     .addComponent(cboTipoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlFormulario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblQuantidadeProduto)
                     .addComponent(spnQuantidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -701,8 +704,8 @@ public class ClienteView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlAbaCadastroProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addComponent(pnlAbaCadastroProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cadastrar Produto", jPanel1);
@@ -713,7 +716,7 @@ public class ClienteView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -821,11 +824,16 @@ public class ClienteView extends javax.swing.JFrame {
                 HabilitarFormulario2();
                 modoTela = "Editar";
 
-                txtIDproduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 0).toString());
-                txtTituloProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 1).toString());
-                txtVlrUnitario.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 2).toString());
+                txtTituloProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 0).toString());
+                cboGeneroProduto.setSelectedItem(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 1).toString());
+                cboEditoraProduto.setSelectedItem(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 2).toString());
                 txtAutorProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 3).toString());
-                txtDescricaoProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 4).toString());
+                cboTipoProduto.setSelectedItem(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 4).toString());
+                txtDescricaoProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 5).toString());
+                spnQuantidadeProduto.setValue(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 6).toString());             
+                txtVlrUnitario.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 7).toString());
+                txtIDproduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 8).toString());
+                
                 
                 
                 
@@ -855,16 +863,19 @@ public class ClienteView extends javax.swing.JFrame {
 
     private void btnSalvarProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProduto1ActionPerformed
         if (ValidarFormulario2()) {
-            if (modoTela.equals("Criar")) {
-                if (ProdutoController.Salvar(
-                        Integer.parseInt(txtIDproduto.getText()),
-                        txtTituloProduto.getText(), 
-                        txtAutorProduto.getText(), 
-                        txtDescricaoProduto.getText(), 
-                        Long.parseLong(txtVlrUnitario.getText()),
-                        
-                        
-                        )) {
+            if (modoTela.equals("Criar")) 
+            
+            {
+                if (ProdutoController.Salvar(txtTituloProduto.getText()
+                        ,cboGeneroProduto.getSelectedItem().toString()
+                        ,cboEditoraProduto.getSelectedItem().toString()
+                        , txtAutorProduto.getText()
+                        ,cboTipoProduto.getSelectedItem().toString()
+                        ,txtDescricaoProduto.getText()
+                        ,Integer.parseInt(spnQuantidadeProduto.getValue().toString())
+                        ,Double.parseDouble(txtVlrUnitario.getText())
+                        ,Integer.parseInt(txtIDproduto.getText())))
+                {
                     this.LoadTable2();
                     JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
                     LimparFormulario2();
@@ -874,13 +885,16 @@ public class ClienteView extends javax.swing.JFrame {
 
             } else {
 
-                if (ProdutoController.Atualizar(
-                        Integer.parseInt(txtIDproduto.getText()),
-                        txtTituloProduto.getText(), 
-                        txtAutorProduto.getText(), 
-                        txtDescricaoProduto.getText(), 
-                        Long.parseLong(txtVlrUnitario.getText())
-                        )) {
+                if (ProdutoController.Atualizar(txtTituloProduto.getText()
+                        ,cboGeneroProduto.getSelectedItem().toString()
+                        ,cboEditoraProduto.getSelectedItem().toString()
+                        , txtAutorProduto.getText()
+                        ,cboTipoProduto.getSelectedItem().toString()
+                        ,txtDescricaoProduto.getText()
+                        ,Integer.parseInt(spnQuantidadeProduto.getValue().toString())
+                        ,Double.parseDouble(txtVlrUnitario.getText())
+                        ,Integer.parseInt(txtIDproduto.getText())))
+                {
                     this.LoadTable2();
                     JOptionPane.showMessageDialog(this, "Produto Atualizado com sucesso!");
                 } else {

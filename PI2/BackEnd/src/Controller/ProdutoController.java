@@ -7,11 +7,13 @@ import java.util.ArrayList;
 
 
 public class ProdutoController {
-
+    
+    
+    
     public static boolean Salvar(String titulo, String genero,String editora,String autor,String tipo,
-            String descricao,int quantidade,double valorUni,byte[] imagem, int idProduto  ) {
+            String descricao,int quantidade,double valorUni, int idProduto  ) {
         //Salvo na memória
-        Produto p = new Produto(titulo,genero,editora,autor,tipo,descricao,quantidade,valorUni,imagem,idProduto  );
+        Produto p = new Produto(titulo,genero,editora,autor,tipo,descricao,quantidade,valorUni,idProduto);
         return ProdutoDAO.Salvar(p);
     }
 
@@ -20,8 +22,8 @@ public class ProdutoController {
     }
 
     public static boolean Atualizar(String titulo, String genero,String editora,String autor,String tipo,
-            String descricao,int quantidade,double valorUni,byte[] imagem,int idProduto) {
-        Produto p = new Produto(titulo,genero,editora,autor,tipo,descricao,quantidade,valorUni,imagem,idProduto);
+            String descricao,int quantidade,double valorUni,int idProduto) {
+        Produto p = new Produto(titulo,genero,editora,autor,tipo,descricao,quantidade,valorUni,idProduto);
         return ProdutoDAO.Atualizar(p);
 
     }
@@ -42,7 +44,6 @@ public class ProdutoController {
                 produtos.get(i).gettipo(), 
                 String.valueOf(produtos.get(i).getquantidade()),
                 String.valueOf(produtos.get(i).getvalorUni()),
-                String.valueOf(produtos.get(i).getimagem()),
                 String.valueOf(produtos.get(i).getIdProduto()),
             
             });
