@@ -19,9 +19,10 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(String titulo, String genero,String editora,String autor,String tipo,
-            String descricao,int quantidade,double valorUni,int idProduto  ) {
+    public Produto(int idProduto, String titulo, String genero,String editora,String autor,String tipo,
+            String descricao,int quantidade,double valorUni  ) {
        
+        this.idProduto = idProduto;
         this.titulo = titulo;
         this.genero = genero;
         this.editora = editora;
@@ -30,7 +31,7 @@ public class Produto {
         this.descricao = descricao;
         this.quantidade = quantidade;
         this.valorUni = valorUni;
-        this.idProduto = idProduto;
+        
         
     }
 

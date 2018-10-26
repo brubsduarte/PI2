@@ -48,12 +48,13 @@ public class ClienteView extends javax.swing.JFrame {
         DefaultTableModel tmProdutos = new DefaultTableModel();
         tmProdutos.addColumn("ID");
         tmProdutos.addColumn("Titulo");
-        tmProdutos.addColumn("Valor por Unidade");
-        tmProdutos.addColumn("Autor");
         tmProdutos.addColumn("Genero");
         tmProdutos.addColumn("Editora");
+        tmProdutos.addColumn("Autor");
         tmProdutos.addColumn("Tipo");
+        tmProdutos.addColumn("Descrição");
         tmProdutos.addColumn("Quantidade");
+        tmProdutos.addColumn("Valor Unitario");
         
 
         for (String[] c : linhasProdutos) {
@@ -70,6 +71,7 @@ public class ClienteView extends javax.swing.JFrame {
         tblProdutos1.getColumnModel().getColumn(5).setPreferredWidth(150);
         tblProdutos1.getColumnModel().getColumn(6).setPreferredWidth(150);
         tblProdutos1.getColumnModel().getColumn(7).setPreferredWidth(50);
+        tblProdutos1.getColumnModel().getColumn(8).setPreferredWidth(50);
 
     }
 
@@ -83,9 +85,14 @@ public class ClienteView extends javax.swing.JFrame {
     public void LimparFormulario2() {
         txtIDproduto.setText("");
         txtTituloProduto.setText("");
-        txtVlrUnitario.setText("");
+        cboGeneroProduto.setSelectedIndex(0);
+        cboEditoraProduto.setSelectedIndex(0);
         txtAutorProduto.setText("");
+        cboTipoProduto.setSelectedIndex(0);
         txtDescricaoProduto.setText("");
+        spnQuantidadeProduto.setValue(0);
+        txtVlrUnitario.setText("");
+        
         
     }
 
@@ -100,15 +107,17 @@ public class ClienteView extends javax.swing.JFrame {
     }
 
     public void DesabilitarFormulario2() {
+        
         txtIDproduto.setEditable(false);
         txtTituloProduto.setEditable(false);
-        txtVlrUnitario.setEditable(false);
-        txtAutorProduto.setEditable(false);
-        txtDescricaoProduto.setEditable(false);
-        cboEditoraProduto.setEditable(false);
         cboGeneroProduto.setEditable(false);
+        cboEditoraProduto.setEditable(false);
+        txtAutorProduto.setEditable(false);
         cboTipoProduto.setEditable(false);
+        txtDescricaoProduto.setEditable(false);
         ((DefaultEditor)spnQuantidadeProduto.getEditor()).getTextField().setEditable(false);
+        txtVlrUnitario.setEditable(false);
+        
         
         btnSalvarProduto1.setEnabled(false);
         btnCancelar1.setEnabled(false);
@@ -124,15 +133,17 @@ public class ClienteView extends javax.swing.JFrame {
     }
 
     public void HabilitarFormulario2() {
+        
         txtIDproduto.setEditable(true);
         txtTituloProduto.setEditable(true);
-        txtVlrUnitario.setEditable(true);
-        txtAutorProduto.setEditable(true);
-        txtDescricaoProduto.setEditable(true);
-        cboEditoraProduto.setEditable(true);
         cboGeneroProduto.setEditable(true);
+        cboEditoraProduto.setEditable(true);
+        txtAutorProduto.setEditable(true);
         cboTipoProduto.setEditable(true);
+        txtDescricaoProduto.setEditable(true);
         ((DefaultEditor)spnQuantidadeProduto.getEditor()).getTextField().setEditable(true);
+        txtVlrUnitario.setEditable(true);
+        
         
         btnSalvarProduto1.setEnabled(true);
         btnCancelar1.setEnabled(true);
@@ -299,7 +310,7 @@ public class ClienteView extends javax.swing.JFrame {
                 .addComponent(btnEditarCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExcluirCliente)
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(427, Short.MAX_VALUE))
         );
 
         pnlBotoesLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditarCliente, btnExcluirCliente, btnNovo});
@@ -310,7 +321,7 @@ public class ClienteView extends javax.swing.JFrame {
             pnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabelaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -433,14 +444,14 @@ public class ClienteView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Título ", "Valor Unitario", "Autor", "Genero", "Editora", "Tipo", "Descrição do Produto"
+                "ID", "Título ", "Genero", "Editora", "Autor", "Tipo", "descricao", "Quantidade", "Valor Unitario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -823,16 +834,18 @@ public class ClienteView extends javax.swing.JFrame {
             if (tblProdutos1.getSelectedRow() >= 0) {
                 HabilitarFormulario2();
                 modoTela = "Editar";
-
-                txtTituloProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 0).toString());
-                cboGeneroProduto.setSelectedItem(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 1).toString());
-                cboEditoraProduto.setSelectedItem(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 2).toString());
-                txtAutorProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 3).toString());
-                cboTipoProduto.setSelectedItem(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 4).toString());
-                txtDescricaoProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 5).toString());
-                spnQuantidadeProduto.setValue(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 6).toString());             
-                txtVlrUnitario.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 7).toString());
-                txtIDproduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 8).toString());
+                
+                
+                txtIDproduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 0).toString());
+                txtTituloProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 1).toString());
+                cboGeneroProduto.setSelectedItem(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 2).toString());
+                cboEditoraProduto.setSelectedItem(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 3).toString());
+                txtAutorProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 4).toString());
+                cboTipoProduto.setSelectedItem(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 5).toString());
+                txtDescricaoProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 6).toString());
+                spnQuantidadeProduto.setValue(Integer.valueOf(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 7).toString()));             
+                txtVlrUnitario.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 8).toString());
+                
                 
                 
                 
@@ -866,15 +879,17 @@ public class ClienteView extends javax.swing.JFrame {
             if (modoTela.equals("Criar")) 
             
             {
-                if (ProdutoController.Salvar(txtTituloProduto.getText()
+                if (ProdutoController.Salvar(Integer.parseInt(txtIDproduto.getText().toString())
+                        ,txtTituloProduto.getText().toString()
                         ,cboGeneroProduto.getSelectedItem().toString()
                         ,cboEditoraProduto.getSelectedItem().toString()
-                        , txtAutorProduto.getText()
+                        ,txtAutorProduto.getText().toString()
                         ,cboTipoProduto.getSelectedItem().toString()
-                        ,txtDescricaoProduto.getText()
+                        ,txtDescricaoProduto.getText().toString()
                         ,Integer.parseInt(spnQuantidadeProduto.getValue().toString())
-                        ,Double.parseDouble(txtVlrUnitario.getText())
-                        ,Integer.parseInt(txtIDproduto.getText())))
+                        ,Double.parseDouble(txtVlrUnitario.getText().toString())
+                ))
+                        
                 {
                     this.LoadTable2();
                     JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
@@ -885,15 +900,16 @@ public class ClienteView extends javax.swing.JFrame {
 
             } else {
 
-                if (ProdutoController.Atualizar(txtTituloProduto.getText()
+                if (ProdutoController.Atualizar(Integer.parseInt(txtIDproduto.getText().toString())
+                        ,txtTituloProduto.getText().toString()
                         ,cboGeneroProduto.getSelectedItem().toString()
                         ,cboEditoraProduto.getSelectedItem().toString()
-                        , txtAutorProduto.getText()
+                        ,txtAutorProduto.getText().toString()
                         ,cboTipoProduto.getSelectedItem().toString()
-                        ,txtDescricaoProduto.getText()
+                        ,txtDescricaoProduto.getText().toString()
                         ,Integer.parseInt(spnQuantidadeProduto.getValue().toString())
-                        ,Double.parseDouble(txtVlrUnitario.getText())
-                        ,Integer.parseInt(txtIDproduto.getText())))
+                        ,Double.parseDouble(txtVlrUnitario.getText().toString())
+                ))
                 {
                     this.LoadTable2();
                     JOptionPane.showMessageDialog(this, "Produto Atualizado com sucesso!");

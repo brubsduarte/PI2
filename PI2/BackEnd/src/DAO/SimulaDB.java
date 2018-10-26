@@ -70,9 +70,10 @@ public class SimulaDB {
                 item.seteditora(p.geteditora());
                 item.setautor(p.getautor());
                 item.settipo(p.gettipo());
+                item.setdescricao(p.getdescricao());
                 item.setquantidade(p.getquantidade());
                 item.setvalorUni(p.getvalorUni());
-                item.setdescricao(p.getdescricao());
+                
             }
         }
 
