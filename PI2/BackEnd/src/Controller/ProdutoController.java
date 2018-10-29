@@ -37,7 +37,7 @@ public class ProdutoController {
             listaProdutos.add(new String[]{
                 
                 String.valueOf(produtos.get(i).getIdProduto()),
-                produtos.get(i).gettitulo(), 
+                produtos.get(i).gettitulo(),
                 produtos.get(i).getgenero(), 
                 produtos.get(i).geteditora(),
                 produtos.get(i).getautor(),

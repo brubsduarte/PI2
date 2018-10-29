@@ -864,11 +864,6 @@ public class ClienteView extends javax.swing.JFrame {
                 txtDescricaoProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 6).toString());
                 spnQuantidadeProduto.setValue(Integer.valueOf(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 7).toString()));             
                 txtVlrUnitario.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 8).toString());
-                
-                
-                
-                
-                
 
             } else {
                 JOptionPane.showMessageDialog(this, "Selecione um produto para editar!");
