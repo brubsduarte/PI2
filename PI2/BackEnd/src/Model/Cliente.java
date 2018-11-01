@@ -5,20 +5,20 @@ public class Cliente {
 
     private int id;
     private String nome;
-    private long cpf;
+    private String cpf;
 
-    public long getCPF() {
+    public String getCPF() {
         return cpf;
     }
 
-    public void setCPF(long pCPF) {
+    public void setCPF(String pCPF) {
         this.cpf = pCPF;
     }
     
      public Cliente() {
     }
 
-    public Cliente(int id, String pNome, long pCPF) {
+    public Cliente(int id, String pNome, String pCPF) {
         this.id = id;
         this.nome = pNome;
         this.cpf = pCPF;

@@ -10,11 +10,13 @@ public class SimulaDB {
 
     private ArrayList<Cliente> listaClientes; //Simulo a tabela clientes
     private ArrayList<Produto> listaProdutos; //Simulo a tabela Produtos
+    private ArrayList<Venda> listaVendas; //Simulo a tabela Produtos
 
     private SimulaDB() {
 
         listaClientes = new ArrayList<Cliente>();
         listaProdutos = new ArrayList<Produto>();
+        listaVendas = new ArrayList<Venda>();
     }
 
     public static synchronized SimulaDB getInstance() {
