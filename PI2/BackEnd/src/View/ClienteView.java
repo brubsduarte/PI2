@@ -72,6 +72,18 @@ public class ClienteView extends javax.swing.JFrame {
         tblProdutos1.getColumnModel().getColumn(6).setPreferredWidth(150);
         tblProdutos1.getColumnModel().getColumn(7).setPreferredWidth(50);
         tblProdutos1.getColumnModel().getColumn(8).setPreferredWidth(50);
+        
+        tblProdutos2.setModel(tmProdutos);
+
+        tblProdutos2.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblProdutos2.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tblProdutos2.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tblProdutos2.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tblProdutos2.getColumnModel().getColumn(4).setPreferredWidth(150);
+        tblProdutos2.getColumnModel().getColumn(5).setPreferredWidth(150);
+        tblProdutos2.getColumnModel().getColumn(6).setPreferredWidth(150);
+        tblProdutos2.getColumnModel().getColumn(7).setPreferredWidth(50);
+        tblProdutos2.getColumnModel().getColumn(8).setPreferredWidth(50);
 
     }
 
@@ -215,12 +227,12 @@ public class ClienteView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblProdutos2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Clientes");
@@ -338,7 +350,7 @@ public class ClienteView extends javax.swing.JFrame {
             pnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabelaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -774,22 +786,27 @@ public class ClienteView extends javax.swing.JFrame {
 
         jLabel10.setText("Valor Unit.:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel11.setText("Valor Total:");
+
+        jLabel12.setText("Desconto:");
+
+        jLabel13.setText("Valor Final");
+
+        jLabel14.setText("Forma de Pagamento:");
+
+        tblProdutos2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Produto", "Qntd.", "Preço Unit.", "SubTotal"
+                "ID", "Título ", "Genero", "Editora", "Autor", "Tipo", "descricao", "Quantidade", "Valor Unitario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -800,15 +817,36 @@ public class ClienteView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
-
-        jLabel11.setText("Valor Total:");
-
-        jLabel12.setText("Desconto:");
-
-        jLabel13.setText("Valor Final");
-
-        jLabel14.setText("Forma de Pagamento:");
+        jScrollPane4.setViewportView(tblProdutos2);
+        if (tblProdutos2.getColumnModel().getColumnCount() > 0) {
+            tblProdutos2.getColumnModel().getColumn(0).setMinWidth(60);
+            tblProdutos2.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tblProdutos2.getColumnModel().getColumn(0).setMaxWidth(60);
+            tblProdutos2.getColumnModel().getColumn(1).setMinWidth(90);
+            tblProdutos2.getColumnModel().getColumn(1).setPreferredWidth(90);
+            tblProdutos2.getColumnModel().getColumn(1).setMaxWidth(90);
+            tblProdutos2.getColumnModel().getColumn(2).setMinWidth(80);
+            tblProdutos2.getColumnModel().getColumn(2).setPreferredWidth(80);
+            tblProdutos2.getColumnModel().getColumn(2).setMaxWidth(80);
+            tblProdutos2.getColumnModel().getColumn(3).setMinWidth(80);
+            tblProdutos2.getColumnModel().getColumn(3).setPreferredWidth(80);
+            tblProdutos2.getColumnModel().getColumn(3).setMaxWidth(80);
+            tblProdutos2.getColumnModel().getColumn(4).setMinWidth(80);
+            tblProdutos2.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tblProdutos2.getColumnModel().getColumn(4).setMaxWidth(80);
+            tblProdutos2.getColumnModel().getColumn(5).setMinWidth(80);
+            tblProdutos2.getColumnModel().getColumn(5).setPreferredWidth(80);
+            tblProdutos2.getColumnModel().getColumn(5).setMaxWidth(80);
+            tblProdutos2.getColumnModel().getColumn(6).setMinWidth(60);
+            tblProdutos2.getColumnModel().getColumn(6).setPreferredWidth(60);
+            tblProdutos2.getColumnModel().getColumn(6).setMaxWidth(60);
+            tblProdutos2.getColumnModel().getColumn(7).setMinWidth(60);
+            tblProdutos2.getColumnModel().getColumn(7).setPreferredWidth(60);
+            tblProdutos2.getColumnModel().getColumn(7).setMaxWidth(60);
+            tblProdutos2.getColumnModel().getColumn(8).setMinWidth(70);
+            tblProdutos2.getColumnModel().getColumn(8).setPreferredWidth(70);
+            tblProdutos2.getColumnModel().getColumn(8).setMaxWidth(70);
+        }
 
         javax.swing.GroupLayout pnlAbaVendasLayout = new javax.swing.GroupLayout(pnlAbaVendas);
         pnlAbaVendas.setLayout(pnlAbaVendasLayout);
@@ -844,8 +882,10 @@ public class ClienteView extends javax.swing.JFrame {
                             .addGroup(pnlAbaVendasLayout.createSequentialGroup()
                                 .addGap(154, 154, 154)
                                 .addComponent(jLabel10))))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addGroup(pnlAbaVendasLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
         pnlAbaVendasLayout.setVerticalGroup(
             pnlAbaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -871,18 +911,18 @@ public class ClienteView extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
                 .addGroup(pnlAbaVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13))
                 .addGap(36, 36, 36)
                 .addComponent(jLabel14)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Vendas", pnlAbaVendas);
+        jTabbedPane1.addTab("Cadastrar Venda", pnlAbaVendas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -890,14 +930,14 @@ public class ClienteView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
         );
 
@@ -913,7 +953,7 @@ public class ClienteView extends javax.swing.JFrame {
 
         if (ValidarFormulario()) {
             if (modoTela.equals("Criar")) {
-                if (ClienteController.Salvar(Integer.parseInt(txtIDCliente.getText()), txtNome.getText(), Long.parseLong(txtCPF.getText()))) {
+                if (ClienteController.Salvar(Integer.parseInt(txtIDCliente.getText()), txtNome.getText(), txtCPF.getText())) {
                     this.LoadTable();
                     JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
                     LimparFormulario();
@@ -923,7 +963,7 @@ public class ClienteView extends javax.swing.JFrame {
 
             } else {
 
-                if (ClienteController.Atualizar(Integer.parseInt(txtIDCliente.getText()), txtNome.getText(), Long.parseLong(txtCPF.getText()))) {
+                if (ClienteController.Atualizar(Integer.parseInt(txtIDCliente.getText()), txtNome.getText(), txtCPF.getText())) {
                     this.LoadTable();
                     JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
                 } else {
@@ -996,8 +1036,7 @@ public class ClienteView extends javax.swing.JFrame {
         if (tblProdutos1.getRowCount() > 0) {
             if (tblProdutos1.getSelectedRow() >= 0) {
                 HabilitarFormulario2();
-                modoTela = "Editar";
-                
+                modoTela = "Editar";               
                 
                 txtIDproduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 0).toString());
                 txtTituloProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 1).toString());
@@ -1007,7 +1046,29 @@ public class ClienteView extends javax.swing.JFrame {
                 cboTipoProduto.setSelectedItem(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 5).toString());
                 txtDescricaoProduto.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 6).toString());
                 spnQuantidadeProduto.setValue(Integer.valueOf(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 7).toString()));             
-                txtVlrUnitario.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 8).toString());
+                txtVlrUnitario.setText(tblProdutos1.getModel().getValueAt(tblProdutos1.getSelectedRow(), 8).toString());                                
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Selecione um produto para editar!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há produtos para editar!");
+        }
+        
+        if (tblProdutos2.getRowCount() > 0) {
+            if (tblProdutos2.getSelectedRow() >= 0) {
+                HabilitarFormulario2();
+                modoTela = "Editar";               
+                
+                txtIDproduto.setText(tblProdutos2.getModel().getValueAt(tblProdutos2.getSelectedRow(), 0).toString());
+                txtTituloProduto.setText(tblProdutos2.getModel().getValueAt(tblProdutos2.getSelectedRow(), 1).toString());
+                cboGeneroProduto.setSelectedItem(tblProdutos2.getModel().getValueAt(tblProdutos2.getSelectedRow(), 2).toString());
+                cboEditoraProduto.setSelectedItem(tblProdutos2.getModel().getValueAt(tblProdutos2.getSelectedRow(), 3).toString());
+                txtAutorProduto.setText(tblProdutos2.getModel().getValueAt(tblProdutos2.getSelectedRow(), 4).toString());
+                cboTipoProduto.setSelectedItem(tblProdutos2.getModel().getValueAt(tblProdutos2.getSelectedRow(), 5).toString());
+                txtDescricaoProduto.setText(tblProdutos2.getModel().getValueAt(tblProdutos2.getSelectedRow(), 6).toString());
+                spnQuantidadeProduto.setValue(Integer.valueOf(tblProdutos2.getModel().getValueAt(tblProdutos2.getSelectedRow(), 7).toString()));             
+                txtVlrUnitario.setText(tblProdutos2.getModel().getValueAt(tblProdutos2.getSelectedRow(), 8).toString());                               
 
             } else {
                 JOptionPane.showMessageDialog(this, "Selecione um produto para editar!");
@@ -1021,6 +1082,17 @@ public class ClienteView extends javax.swing.JFrame {
 
         if (tblProdutos1.getRowCount() > 0) {
             if (ProdutoController.Excluir(tblProdutos1.getSelectedRow())) {
+                this.LoadTable2();
+                JOptionPane.showMessageDialog(this, "Produto excluído da base de dados");
+            } else {
+                JOptionPane.showMessageDialog(this, "Falha ao excluir o produto!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há produtos para excluir!");
+        }
+        
+        if (tblProdutos2.getRowCount() > 0) {
+            if (ProdutoController.Excluir(tblProdutos2.getSelectedRow())) {
                 this.LoadTable2();
                 JOptionPane.showMessageDialog(this, "Produto excluído da base de dados");
             } else {
@@ -1176,9 +1248,8 @@ public class ClienteView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAutorProduto;
     private javax.swing.JLabel lblDescricaoProduto;
     private javax.swing.JLabel lblEditoraProduto;
@@ -1206,6 +1277,7 @@ public class ClienteView extends javax.swing.JFrame {
     private javax.swing.JSpinner spnQuantidadeProduto;
     private javax.swing.JTable tblClientes;
     private javax.swing.JTable tblProdutos1;
+    private javax.swing.JTable tblProdutos2;
     private javax.swing.JTextField txtAutorProduto;
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtDescricaoProduto;

@@ -87,5 +87,33 @@ public class SimulaDB {
 
         return true;
     }
+    
+    public boolean SalvarVenda(Venda c) {
+        listaVendas.add(c);
+
+        return true;
+    }
+
+    public ArrayList<Venda> getVendas() {
+        return this.listaVendas;
+    }
+
+    public boolean AtualizarVenda(Venda p) {
+        for (Venda item : listaVendas) {
+            if (item.getIdVenda()== p.getIdVenda()) {
+                item.setIdCliente(p.getIdCliente());
+                item.setProdutos(p.getProdutos());
+                
+            }
+        }
+
+        return true;
+    }
+
+    public boolean ExcluirVenda(int i) {
+        listaVendas.remove(i);
+
+        return true;
+    }
 
 }

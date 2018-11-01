@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class ClienteController {
     
    
-    public static boolean Salvar(int pId,String pNome, long pCPF)
+    public static boolean Salvar(int pId,String pNome, String pCPF)
     {
         //Salvo na memória
         Cliente p =  new Cliente(pId,pNome,pCPF);
@@ -20,7 +20,7 @@ public class ClienteController {
         return ClienteDAO.Excluir(indice);
     }
     
-    public static boolean Atualizar(int pId, String pNome, long pCPF)
+    public static boolean Atualizar(int pId, String pNome, String pCPF)
     {
         Cliente p =  new Cliente(pId,pNome,pCPF);
         return ClienteDAO.Atualizar(p);
@@ -37,7 +37,7 @@ public class ClienteController {
             listaClientes.add(new String[]{
             String.valueOf(clientes.get(i).getId()),
             clientes.get(i).getNome(),
-            String.valueOf(clientes.get(i).getCPF()) 
+            clientes.get(i).getCPF()
             
             });
         
