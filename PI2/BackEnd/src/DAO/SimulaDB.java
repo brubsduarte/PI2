@@ -11,6 +11,7 @@ public class SimulaDB {
     private ArrayList<Cliente> listaClientes; //Simulo a tabela clientes
     private ArrayList<Produto> listaProdutos; //Simulo a tabela Produtos
     private ArrayList<Venda> listaVendas; //Simulo a tabela Produtos
+    
 
     private SimulaDB() {
 
@@ -42,6 +43,22 @@ public class SimulaDB {
             if (item.getId() == p.getId()) {
                 item.setNome(p.getNome());
                 item.setCPF(p.getCPF());
+                item.setSexo(p.getSexo());
+                item.setRg(p.getRg());
+                item.setOrgaoEmissor(p.getOrgaoEmissor());
+                item.setUf(p.getUf());
+                item.setEstadoCivil(p.getEstadoCivil());
+                item.setEmail(p.getEmail());
+                item.setTelefone(p.getTelefone());
+                item.setCelular(p.getCelular());
+                item.setEndereco(p.getEndereco());
+                item.setNumeroCasa(p.getNumeroCasa());
+                item.setComplemento(p.getComplemento());
+                item.setCep(p.getCep());
+                item.setEstado(p.getEstado());
+                item.setCidade(p.getCidade());
+                item.setBairro(p.getBairro());
+                //item.setDataDeNascimento(p.getDataDeNascimento());
             }
         }
 
@@ -88,7 +105,7 @@ public class SimulaDB {
         return true;
     }
     
-    public boolean SalvarVenda(Venda c) {
+        public boolean SalvarVenda(Venda c) {
         listaVendas.add(c);
 
         return true;

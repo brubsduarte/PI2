@@ -5,7 +5,7 @@
  */
 package lojamvc;
 
-import View.ClienteView;
+import View.ProdutoView;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -28,7 +28,7 @@ public class Main {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        ClienteView p = new ClienteView();
+        ProdutoView p = new ProdutoView();
         p.setVisible(true);
     }
     
