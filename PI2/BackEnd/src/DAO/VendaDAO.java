@@ -34,8 +34,8 @@ public class VendaDAO {
         return SimulaDB.getInstance().ExcluirVenda(indice);
     }
     
-    public static ArrayList<Venda> getVendas()
+    public static ArrayList<Venda> getVenda()
     {
-        return SimulaDB.getInstance().getVendas();
+        return SimulaDB.getInstance().getVenda();
     }
 }

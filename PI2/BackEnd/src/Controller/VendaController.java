@@ -38,7 +38,7 @@ public class VendaController {
     }
   
     public static ArrayList<String[]> getVendas(){
-        ArrayList<Venda> Vendas = VendaDAO.getVendas();
+        ArrayList<Venda> Vendas = VendaDAO.getVenda();
         ArrayList<String[]> listaVendas = new ArrayList<>();
         
         for(int i=0;i<Vendas.size();i++){

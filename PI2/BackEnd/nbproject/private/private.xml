@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gusta/Documents/GitHub/PI2/PI2/BackEnd/src/View/ClienteView.java</file>
-            <file>file:/C:/Users/gusta/Documents/GitHub/PI2/PI2/BackEnd/src/Model/Produto.java</file>
-            <file>file:/C:/Users/gusta/Documents/GitHub/PI2/PI2/BackEnd/src/DAO/ProdutoDAO.java</file>
-            <file>file:/C:/Users/gusta/Documents/GitHub/PI2/PI2/BackEnd/src/DAO/SimulaDB.java</file>
-            <file>file:/C:/Users/gusta/Documents/GitHub/PI2/PI2/BackEnd/src/DAO/ClienteDAO.java</file>
-            <file>file:/C:/Users/gusta/Documents/GitHub/PI2/PI2/BackEnd/src/Controller/ClienteController.java</file>
-            <file>file:/C:/Users/gusta/Documents/GitHub/PI2/PI2/BackEnd/src/Controller/ProdutoController.java</file>
+            <file>file:/C:/Users/claraujo/Documents/GitHub/PI2/PI2/BackEnd/src/View/ProdutoView.java</file>
+            <file>file:/C:/Users/claraujo/Documents/GitHub/PI2/PI2/BackEnd/src/View/VendaView.java</file>
+            <file>file:/C:/Users/claraujo/Documents/GitHub/PI2/PI2/BackEnd/src/View/TelaVendas.java</file>
+            <file>file:/C:/Users/claraujo/Documents/GitHub/PI2/PI2/BackEnd/src/View/ClienteView.java</file>
         </group>
     </open-files>
 </project-private>

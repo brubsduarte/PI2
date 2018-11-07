@@ -10,7 +10,9 @@ public class SimulaDB {
 
     private ArrayList<Cliente> listaClientes; //Simulo a tabela clientes
     private ArrayList<Produto> listaProdutos; //Simulo a tabela Produtos
-    private ArrayList<Venda> listaVendas; //Simulo a tabela Produtos
+    private ArrayList<Venda> listaVendas; //Simulo a tabela Venda
+    
+    
     
 
     private SimulaDB() {
@@ -18,6 +20,7 @@ public class SimulaDB {
         listaClientes = new ArrayList<Cliente>();
         listaProdutos = new ArrayList<Produto>();
         listaVendas = new ArrayList<Venda>();
+        
     }
 
     public static synchronized SimulaDB getInstance() {
@@ -111,7 +114,7 @@ public class SimulaDB {
         return true;
     }
 
-    public ArrayList<Venda> getVendas() {
+    public ArrayList<Venda> getVenda() {
         return this.listaVendas;
     }
 
@@ -126,11 +129,20 @@ public class SimulaDB {
 
         return true;
     }
-
+    
+ 
     public boolean ExcluirVenda(int i) {
         listaVendas.remove(i);
 
         return true;
     }
+    
+    
+    
+    
+    
+    
+    
 
 }
+
