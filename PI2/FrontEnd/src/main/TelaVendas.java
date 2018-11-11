@@ -65,6 +65,8 @@ public class TelaVendas extends javax.swing.JInternalFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         jButton3.setText("jButton3");
 
@@ -205,6 +207,10 @@ public class TelaVendas extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel19.setText("Avisar quando chegar o produto selecionado");
+
+        jCheckBox1.setFocusable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -302,9 +308,15 @@ public class TelaVendas extends javax.swing.JInternalFrame {
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btoCancelarVenda)
-                .addGap(18, 18, 18)
-                .addComponent(btoFinalizarVenda)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btoCancelarVenda)
+                        .addGap(18, 18, 18)
+                        .addComponent(btoFinalizarVenda))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jCheckBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel19)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -350,10 +362,14 @@ public class TelaVendas extends javax.swing.JInternalFrame {
                             .addComponent(jLabel10)
                             .addComponent(jLabel15)
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btoAdicionarItem, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                    .addComponent(btoAdicionarItem, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(btoExcluirItem)
@@ -413,6 +429,7 @@ public class TelaVendas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -423,6 +440,7 @@ public class TelaVendas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

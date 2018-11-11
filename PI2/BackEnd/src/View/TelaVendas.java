@@ -10,51 +10,70 @@ import Controller.ClienteController;
 import java.util.ArrayList;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
+import Model.Produto;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  *
  * @author Teste
  */
 public class TelaVendas extends javax.swing.JFrame {
+
     public ArrayList<String[]> clientes;
     public ArrayList<String[]> clientesFiltrados;
     public String[] clienteSelecionado;
-    
+
     public ArrayList<String[]> produtos;
     public ArrayList<String[]> produtosFiltrados;
     public String[] produtoSelecionado;
-    
+
     public ArrayList<String[]> vendas;
-   
+
     /**
      * Creates new form TelaVendas
      */
-
     public TelaVendas() {
         initComponents();
+        inicia();
+    }
+    
+    public void inicia(){
+        Date hoje = new Date();
+        SimpleDateFormat df;
+        df = new SimpleDateFormat("dd/MM/yyyy");
+        
+        
+        lblDate.setText(df.format(hoje));
+        lblIdCliente.setText("");
+        lblNomeCliente.setText("");
+        lblCpfCliente.setText("");
+        
         clientes = ClienteController.getClientesPronto();
         clientesFiltrados = ClienteController.getClientesPronto();
         clienteSelecionado = null;
         LoadTableCliente();
-        
+
         produtos = ProdutoController.getProdutosPronto();
         produtosFiltrados = ProdutoController.getProdutosPronto();
         produtoSelecionado = null;
         LoadTableProduto();
-        
+
         vendas = new ArrayList();
         LoadTableVendas();
     }
-    
+
     public void LoadTableCliente() {
 
         ArrayList<String[]> linhasClientes = clientesFiltrados;
-        
+
         DefaultTableModel tmClientes = new DefaultTableModel();
         tmClientes.addColumn("ID");
         tmClientes.addColumn("Nome");
         tmClientes.addColumn("CPF");
-        
+
         for (String[] c : linhasClientes) {
             tmClientes.addRow(c);
         }
@@ -66,18 +85,18 @@ public class TelaVendas extends javax.swing.JFrame {
         tblClientePesquisa.getColumnModel().getColumn(2).setPreferredWidth(150); //cpf
 
     }
-    
-        public void LoadTableProduto() {
+
+    public void LoadTableProduto() {
 
         ArrayList<String[]> linhasProdutos = produtosFiltrados;
-        
+
         DefaultTableModel tmProdutos = new DefaultTableModel();
         tmProdutos.addColumn("ID");
         tmProdutos.addColumn("TITULO");
         tmProdutos.addColumn("AUTOR");
         tmProdutos.addColumn("PREÇO UNITARIO");
-        
-        for (String[] c : linhasProdutos) {
+
+        for (String[] c : linhasProdutos) {           
             tmProdutos.addRow(c);
         }
 
@@ -89,14 +108,11 @@ public class TelaVendas extends javax.swing.JFrame {
         tblProdutoPesquisa.getColumnModel().getColumn(3).setPreferredWidth(150); //valor unitario
 
     }
-    
-        
-        
-        
-        public void LoadTableVendas() {
+
+    public void LoadTableVendas() {
 
         ArrayList<String[]> linhasProdutos = vendas;
-        
+
         DefaultTableModel tmProdutos = new DefaultTableModel();
         tmProdutos.addColumn("ID");
         tmProdutos.addColumn("TITULO");
@@ -104,9 +120,15 @@ public class TelaVendas extends javax.swing.JFrame {
         tmProdutos.addColumn("PREÇO UNITARIO");
         tmProdutos.addColumn("QUANTIDADE");
         
+
+        float valorTotal = 0f;
+
         for (String[] c : linhasProdutos) {
             tmProdutos.addRow(c);
+            valorTotal += Double.parseDouble(c[3]) * Double.parseDouble(c[4]);
         }
+
+        lblValorTotalVenda.setText(formatDecimal(valorTotal));
 
         tblVenda.setModel(tmProdutos);
 
@@ -117,8 +139,17 @@ public class TelaVendas extends javax.swing.JFrame {
         tblVenda.getColumnModel().getColumn(4).setPreferredWidth(150); //valor unitario
 
     }
-      public static void main(String args[]) {
-     /* Set the Nimbus look and feel */
+
+    public String formatDecimal(float number) {
+        Locale meuLocal = new Locale( "pt", "BR" );
+        NumberFormat format = NumberFormat.getCurrencyInstance(meuLocal);
+        return format.format(number);       
+    }
+    
+    
+
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
@@ -417,7 +448,7 @@ public class TelaVendas extends javax.swing.JFrame {
 
         btnFinalizarVenda.setText("Finalizar Venda");
 
-        jLabel8.setText("Valor Total:");
+        jLabel8.setText("Valor Total: ");
 
         lblValorTotalVenda.setText("00,00");
 
@@ -437,13 +468,12 @@ public class TelaVendas extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblValorTotalVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(lblValorTotalVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addComponent(btnRemoverCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -541,82 +571,91 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisaProdutoActionPerformed
 
     private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
-                String pesquisa = txtPesquisaProduto.getText().toLowerCase();
-        if(pesquisa.isEmpty()){
+        String pesquisa = txtPesquisaProduto.getText().toLowerCase();
+        if (pesquisa.isEmpty()) {
             produtosFiltrados = produtos;
             LoadTableProduto();
             return;
         }
-            
+
         produtosFiltrados = new ArrayList();
         for (int i = 0; i < produtos.size(); i++) {
             String[] produto = produtos.get(i);
-            if(produto[1].toLowerCase().contains(pesquisa)){
+            if (produto[1].toLowerCase().contains(pesquisa)) {
                 produtosFiltrados.add(produto);
             }
         }
-        LoadTableProduto(); 
+        LoadTableProduto();
     }//GEN-LAST:event_btnPesquisarProdutoActionPerformed
 
     private void btnSelecionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarClienteActionPerformed
         int linha = tblClientePesquisa.getSelectedRow();
         String[] cliente = clientesFiltrados.get(linha);
-        
+
         lblIdCliente.setText(cliente[0]);
         lblNomeCliente.setText(cliente[1]);
         lblCpfCliente.setText(cliente[2]);
-        
+
         clienteSelecionado = cliente;
-        
+
         showMessageDialog(null, "Cliente Adicionado Na Venda");
-        
-        
+
+
     }//GEN-LAST:event_btnSelecionarClienteActionPerformed
 
     private void btnPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarClienteActionPerformed
         String pesquisa = txtPesquisaCliente.getText().toLowerCase();
-        if(pesquisa.isEmpty()){
+        if (pesquisa.isEmpty()) {
             clientesFiltrados = clientes;
             LoadTableCliente();
             return;
         }
-            
+
         clientesFiltrados = new ArrayList();
         for (int i = 0; i < clientes.size(); i++) {
             String[] cliente = clientes.get(i);
-            if(cliente[1].toLowerCase().contains(pesquisa)){
+            if (cliente[1].toLowerCase().contains(pesquisa)) {
                 clientesFiltrados.add(cliente);
             }
         }
-        LoadTableCliente();         
+        LoadTableCliente();
     }//GEN-LAST:event_btnPesquisarClienteActionPerformed
 
     private void btnAdicionarCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarCarrinhoActionPerformed
-        
+
         int quantidade = Integer.parseInt(spnQuantidadeProduto.getValue().toString());
-        
+
         int linha = tblProdutoPesquisa.getSelectedRow();
         String[] produto = produtosFiltrados.get(linha);
-        
-        String [] venda = {produto[0],produto[1],produto[2],produto[3],String.valueOf(quantidade)};
-        
+
+        String[] venda = {produto[0], produto[1], produto[2], produto[3], String.valueOf(quantidade)};
+
         vendas.add(venda);
-        
+
         LoadTableVendas();
-        
+
         showMessageDialog(null, "Produto Adicionado com Sucesso");
-        
-        
+
+
     }//GEN-LAST:event_btnAdicionarCarrinhoActionPerformed
 
     private void btnRemoverCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverCarrinhoActionPerformed
-        // TODO add your handling code here:
+                
+
+        int linha = tblVenda.getSelectedRow();
+        String[] produto = vendas.get(linha);                
+        
+        vendas.remove(produto);
+
+        LoadTableVendas();
+
+        showMessageDialog(null, "Produto removido com Sucesso");
     }//GEN-LAST:event_btnRemoverCarrinhoActionPerformed
 
     private void btnCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVendaActionPerformed
-        // TODO add your handling code here:
+        inicia();
     }//GEN-LAST:event_btnCancelarVendaActionPerformed
- 
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarCarrinho;
@@ -655,4 +694,3 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JTextField txtPesquisaProduto;
     // End of variables declaration//GEN-END:variables
 }
-

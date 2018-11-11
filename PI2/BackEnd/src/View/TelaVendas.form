@@ -399,14 +399,13 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel8" min="-2" pref="75" max="-2" attributes="0"/>
+                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lblValorTotalVenda" min="-2" pref="28" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="lblValorTotalVenda" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="btnCancelarVenda" min="-2" pref="209" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="8" max="32767" attributes="0"/>
                                   <Component id="btnRemoverCarrinho" min="-2" pref="209" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnFinalizarVenda" min="-2" pref="256" max="-2" attributes="0"/>
@@ -507,7 +506,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Valor Total:"/>
+                    <Property name="text" type="java.lang.String" value="Valor Total: "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblValorTotalVenda">

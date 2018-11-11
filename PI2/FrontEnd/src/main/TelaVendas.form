@@ -159,9 +159,18 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btoCancelarVenda" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btoFinalizarVenda" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="btoCancelarVenda" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btoFinalizarVenda" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -220,11 +229,16 @@
                               <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="btoAdicionarItem" pref="40" max="32767" attributes="0"/>
+                      <Component id="btoAdicionarItem" pref="39" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="180" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="148" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jCheckBox1" max="32767" attributes="0"/>
+                      <Component id="jLabel19" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btoExcluirItem" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -517,6 +531,16 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField7ActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel19">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Avisar quando chegar o produto selecionado"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+          <Properties>
+            <Property name="focusable" type="boolean" value="false"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
