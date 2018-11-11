@@ -5,8 +5,10 @@
  */
 package View;
 
+import Controller.ProdutoController;
 import Controller.ClienteController;
 import java.util.ArrayList;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,6 +19,13 @@ public class TelaVendas extends javax.swing.JFrame {
     public ArrayList<String[]> clientes;
     public ArrayList<String[]> clientesFiltrados;
     public String[] clienteSelecionado;
+    
+    public ArrayList<String[]> produtos;
+    public ArrayList<String[]> produtosFiltrados;
+    public String[] produtoSelecionado;
+    
+    public ArrayList<String[]> vendas;
+   
     /**
      * Creates new form TelaVendas
      */
@@ -26,10 +35,18 @@ public class TelaVendas extends javax.swing.JFrame {
         clientes = ClienteController.getClientesPronto();
         clientesFiltrados = ClienteController.getClientesPronto();
         clienteSelecionado = null;
-        LoadTable();
+        LoadTableCliente();
+        
+        produtos = ProdutoController.getProdutosPronto();
+        produtosFiltrados = ProdutoController.getProdutosPronto();
+        produtoSelecionado = null;
+        LoadTableProduto();
+        
+        vendas = new ArrayList();
+        LoadTableVendas();
     }
     
-    public void LoadTable() {
+    public void LoadTableCliente() {
 
         ArrayList<String[]> linhasClientes = clientesFiltrados;
         
@@ -50,6 +67,56 @@ public class TelaVendas extends javax.swing.JFrame {
 
     }
     
+        public void LoadTableProduto() {
+
+        ArrayList<String[]> linhasProdutos = produtosFiltrados;
+        
+        DefaultTableModel tmProdutos = new DefaultTableModel();
+        tmProdutos.addColumn("ID");
+        tmProdutos.addColumn("TITULO");
+        tmProdutos.addColumn("AUTOR");
+        tmProdutos.addColumn("PREÇO UNITARIO");
+        
+        for (String[] c : linhasProdutos) {
+            tmProdutos.addRow(c);
+        }
+
+        tblProdutoPesquisa.setModel(tmProdutos);
+
+        tblProdutoPesquisa.getColumnModel().getColumn(0).setPreferredWidth(50); //ID
+        tblProdutoPesquisa.getColumnModel().getColumn(1).setPreferredWidth(250); //titulo
+        tblProdutoPesquisa.getColumnModel().getColumn(2).setPreferredWidth(150); //autor
+        tblProdutoPesquisa.getColumnModel().getColumn(3).setPreferredWidth(150); //valor unitario
+
+    }
+    
+        
+        
+        
+        public void LoadTableVendas() {
+
+        ArrayList<String[]> linhasProdutos = vendas;
+        
+        DefaultTableModel tmProdutos = new DefaultTableModel();
+        tmProdutos.addColumn("ID");
+        tmProdutos.addColumn("TITULO");
+        tmProdutos.addColumn("AUTOR");
+        tmProdutos.addColumn("PREÇO UNITARIO");
+        tmProdutos.addColumn("QUANTIDADE");
+        
+        for (String[] c : linhasProdutos) {
+            tmProdutos.addRow(c);
+        }
+
+        tblVenda.setModel(tmProdutos);
+
+        tblVenda.getColumnModel().getColumn(0).setPreferredWidth(50); //ID
+        tblVenda.getColumnModel().getColumn(1).setPreferredWidth(250); //titulo
+        tblVenda.getColumnModel().getColumn(2).setPreferredWidth(150); //autor
+        tblVenda.getColumnModel().getColumn(3).setPreferredWidth(150); //valor unitario
+        tblVenda.getColumnModel().getColumn(4).setPreferredWidth(150); //valor unitario
+
+    }
       public static void main(String args[]) {
      /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -118,7 +185,7 @@ public class TelaVendas extends javax.swing.JFrame {
         txtPesquisaProduto = new javax.swing.JTextField();
         btnPesquisarProduto = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblPesquisarProduto = new javax.swing.JTable();
+        tblProdutoPesquisa = new javax.swing.JTable();
         btnAdicionarCarrinho = new javax.swing.JButton();
         spnQuantidadeProduto = new javax.swing.JSpinner();
         jPanel4 = new javax.swing.JPanel();
@@ -129,6 +196,8 @@ public class TelaVendas extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         lblValorTotalVenda = new javax.swing.JLabel();
         btnRemoverCarrinho = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        lblCpfCliente = new javax.swing.JLabel();
 
         jButton3.setText("jButton3");
 
@@ -138,11 +207,11 @@ public class TelaVendas extends javax.swing.JFrame {
 
         jLabel4.setText("IDCliente:");
 
-        lblIdCliente.setText("0001");
+        lblIdCliente.setText("0000");
 
         jLabel6.setText("Cliente:");
 
-        lblNomeCliente.setText("Girlaine da Silva Nogueira Braga da Silva");
+        lblNomeCliente.setText("Nome do Cliente");
 
         jLabel2.setText("Nome do Cliente");
 
@@ -237,7 +306,7 @@ public class TelaVendas extends javax.swing.JFrame {
             }
         });
 
-        tblPesquisarProduto.setModel(new javax.swing.table.DefaultTableModel(
+        tblProdutoPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -263,9 +332,14 @@ public class TelaVendas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(tblPesquisarProduto);
+        jScrollPane3.setViewportView(tblProdutoPesquisa);
 
         btnAdicionarCarrinho.setText("Adicionar ao Carrinho");
+        btnAdicionarCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarCarrinhoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -335,14 +409,24 @@ public class TelaVendas extends javax.swing.JFrame {
         jScrollPane4.setViewportView(tblVenda);
 
         btnCancelarVenda.setText("Cancelar Venda");
+        btnCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarVendaActionPerformed(evt);
+            }
+        });
 
         btnFinalizarVenda.setText("Finalizar Venda");
 
         jLabel8.setText("Valor Total:");
 
-        lblValorTotalVenda.setText("10");
+        lblValorTotalVenda.setText("00,00");
 
         btnRemoverCarrinho.setText("Remover do Carrinho");
+        btnRemoverCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverCarrinhoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -384,6 +468,10 @@ public class TelaVendas extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Venda", jPanel4);
 
+        jLabel7.setText("CPF:");
+
+        lblCpfCliente.setText("000.000.000-00");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -392,15 +480,6 @@ public class TelaVendas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblIdCliente)
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNomeCliente)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTabbedPane1)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -408,7 +487,20 @@ public class TelaVendas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblDate)
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblIdCliente)
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNomeCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCpfCliente)
+                        .addGap(165, 165, 165))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -422,7 +514,9 @@ public class TelaVendas extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(lblIdCliente)
                     .addComponent(jLabel6)
-                    .addComponent(lblNomeCliente))
+                    .addComponent(lblNomeCliente)
+                    .addComponent(jLabel7)
+                    .addComponent(lblCpfCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
@@ -447,7 +541,21 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisaProdutoActionPerformed
 
     private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
-        // TODO add your handling code here:
+                String pesquisa = txtPesquisaProduto.getText().toLowerCase();
+        if(pesquisa.isEmpty()){
+            produtosFiltrados = produtos;
+            LoadTableProduto();
+            return;
+        }
+            
+        produtosFiltrados = new ArrayList();
+        for (int i = 0; i < produtos.size(); i++) {
+            String[] produto = produtos.get(i);
+            if(produto[1].toLowerCase().contains(pesquisa)){
+                produtosFiltrados.add(produto);
+            }
+        }
+        LoadTableProduto(); 
     }//GEN-LAST:event_btnPesquisarProdutoActionPerformed
 
     private void btnSelecionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarClienteActionPerformed
@@ -456,15 +564,20 @@ public class TelaVendas extends javax.swing.JFrame {
         
         lblIdCliente.setText(cliente[0]);
         lblNomeCliente.setText(cliente[1]);
+        lblCpfCliente.setText(cliente[2]);
         
         clienteSelecionado = cliente;
+        
+        showMessageDialog(null, "Cliente Adicionado Na Venda");
+        
+        
     }//GEN-LAST:event_btnSelecionarClienteActionPerformed
 
     private void btnPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarClienteActionPerformed
         String pesquisa = txtPesquisaCliente.getText().toLowerCase();
         if(pesquisa.isEmpty()){
             clientesFiltrados = clientes;
-            LoadTable();
+            LoadTableCliente();
             return;
         }
             
@@ -475,8 +588,34 @@ public class TelaVendas extends javax.swing.JFrame {
                 clientesFiltrados.add(cliente);
             }
         }
-        LoadTable();         
+        LoadTableCliente();         
     }//GEN-LAST:event_btnPesquisarClienteActionPerformed
+
+    private void btnAdicionarCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarCarrinhoActionPerformed
+        
+        int quantidade = Integer.parseInt(spnQuantidadeProduto.getValue().toString());
+        
+        int linha = tblProdutoPesquisa.getSelectedRow();
+        String[] produto = produtosFiltrados.get(linha);
+        
+        String [] venda = {produto[0],produto[1],produto[2],produto[3],String.valueOf(quantidade)};
+        
+        vendas.add(venda);
+        
+        LoadTableVendas();
+        
+        showMessageDialog(null, "Produto Adicionado com Sucesso");
+        
+        
+    }//GEN-LAST:event_btnAdicionarCarrinhoActionPerformed
+
+    private void btnRemoverCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverCarrinhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRemoverCarrinhoActionPerformed
+
+    private void btnCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarVendaActionPerformed
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -493,6 +632,7 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -502,13 +642,14 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblCpfCliente;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblIdCliente;
     private javax.swing.JLabel lblNomeCliente;
     private javax.swing.JLabel lblValorTotalVenda;
     private javax.swing.JSpinner spnQuantidadeProduto;
     private javax.swing.JTable tblClientePesquisa;
-    private javax.swing.JTable tblPesquisarProduto;
+    private javax.swing.JTable tblProdutoPesquisa;
     private javax.swing.JTable tblVenda;
     private javax.swing.JTextField txtPesquisaCliente;
     private javax.swing.JTextField txtPesquisaProduto;
