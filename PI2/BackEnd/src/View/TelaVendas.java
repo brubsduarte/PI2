@@ -15,6 +15,8 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import javax.swing.JOptionPane;
+import utils.Validador;
 
 /**
  *
@@ -39,18 +41,17 @@ public class TelaVendas extends javax.swing.JFrame {
         initComponents();
         inicia();
     }
-    
-    public void inicia(){
+
+    public void inicia() {
         Date hoje = new Date();
         SimpleDateFormat df;
         df = new SimpleDateFormat("dd/MM/yyyy");
-        
-        
+
         lblDate.setText(df.format(hoje));
         lblIdCliente.setText("");
         lblNomeCliente.setText("");
         lblCpfCliente.setText("");
-        
+
         clientes = ClienteController.getClientesPronto();
         clientesFiltrados = ClienteController.getClientesPronto();
         clienteSelecionado = null;
@@ -61,7 +62,6 @@ public class TelaVendas extends javax.swing.JFrame {
         produtoSelecionado = null;
         LoadTableProduto();
 
-        
         spnQuantidadeProduto.setValue(1);
         vendas = new ArrayList();
         LoadTableVendas();
@@ -98,7 +98,7 @@ public class TelaVendas extends javax.swing.JFrame {
         tmProdutos.addColumn("AUTOR");
         tmProdutos.addColumn("PREÇO UNITARIO");
 
-        for (String[] c : linhasProdutos) {           
+        for (String[] c : linhasProdutos) {
             tmProdutos.addRow(c);
         }
 
@@ -121,7 +121,6 @@ public class TelaVendas extends javax.swing.JFrame {
         tmProdutos.addColumn("AUTOR");
         tmProdutos.addColumn("PREÇO UNITARIO");
         tmProdutos.addColumn("QUANTIDADE");
-        
 
         float valorTotal = 0f;
 
@@ -143,12 +142,10 @@ public class TelaVendas extends javax.swing.JFrame {
     }
 
     public String formatDecimal(float number) {
-        Locale meuLocal = new Locale( "pt", "BR" );
+        Locale meuLocal = new Locale("pt", "BR");
         NumberFormat format = NumberFormat.getCurrencyInstance(meuLocal);
-        return format.format(number);       
+        return format.format(number);
     }
-    
-    
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -573,9 +570,7 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisaProdutoActionPerformed
 
     private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
-        
-        
-        
+
         String pesquisa = txtPesquisaProduto.getText().toLowerCase();
         if (pesquisa.isEmpty()) {
             produtosFiltrados = produtos;
@@ -627,7 +622,9 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarClienteActionPerformed
 
     private void btnAdicionarCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarCarrinhoActionPerformed
-
+        
+        if(ValidarProdutoCliente()){            
+               
         int quantidade = Integer.parseInt(spnQuantidadeProduto.getValue().toString());
 
         int linha = tblProdutoPesquisa.getSelectedRow();
@@ -640,16 +637,16 @@ public class TelaVendas extends javax.swing.JFrame {
         LoadTableVendas();
 
         showMessageDialog(null, "Produto Adicionado com Sucesso");
-
+        
+        }
 
     }//GEN-LAST:event_btnAdicionarCarrinhoActionPerformed
 
     private void btnRemoverCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverCarrinhoActionPerformed
-                
-        
+
         int linha = tblVenda.getSelectedRow();
-        String[] produto = vendas.get(linha);                
-        
+        String[] produto = vendas.get(linha);
+
         vendas.remove(produto);
 
         LoadTableVendas();
@@ -698,4 +695,20 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JTextField txtPesquisaCliente;
     private javax.swing.JTextField txtPesquisaProduto;
     // End of variables declaration//GEN-END:variables
+    
+    public boolean ValidarProdutoCliente() {
+
+        if (lblIdCliente.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Defina um cliente para adicionar o produto ao carrinho!");
+            return false;
+        }
+        
+        if (this.spnQuantidadeProduto.getValue().equals(0)) {
+            JOptionPane.showMessageDialog(this, "Defina uma quantidade ao produto!");
+            return false;
+        }
+
+        return true;
+    }
+
 }
