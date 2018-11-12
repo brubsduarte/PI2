@@ -7,6 +7,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -16,15 +17,19 @@ public class Venda {
     
     private int idVenda;
     private ArrayList<Produto> produtos;
-    private int idCliente;
+    private Cliente cliente;
+    private float valorTotal;
+    private Date data;
 
     public Venda() {
     }
 
-    public Venda(int idVenda, ArrayList<Produto> produtos, int idCliente) {
+    public Venda(int idVenda, ArrayList<Produto> produtos, Cliente cliente, float valorTotal, Date data) {
         this.idVenda = idVenda;
         this.produtos = produtos;
-        this.idCliente = idCliente;
+        this.cliente = cliente;
+        this.valorTotal = valorTotal;
+        this.data = data;
     }
     
     public int getIdVenda() {
@@ -43,11 +48,27 @@ public class Venda {
         this.produtos = produtos;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setValorTotal(float valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+    
+    public float getValorTotal() {
+        return valorTotal;
+    }
+
+    public Date getData() {
+        return data;
     }
 }

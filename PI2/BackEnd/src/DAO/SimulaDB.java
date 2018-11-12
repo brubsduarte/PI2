@@ -119,13 +119,13 @@ public class SimulaDB {
     }
 
     public boolean AtualizarVenda(Venda p) {
-        for (Venda item : listaVendas) {
-            if (item.getIdVenda()== p.getIdVenda()) {
-                item.setIdCliente(p.getIdCliente());
-                item.setProdutos(p.getProdutos());
-                
-            }
-        }
+//        for (Venda item : listaVendas) {
+//            if (item.getIdVenda()== p.getIdVenda()) {
+//                item.setIdCliente(p.getIdCliente());
+//                item.setProdutos(p.getProdutos());
+//                
+//            }
+//        }
 
         return true;
     }
