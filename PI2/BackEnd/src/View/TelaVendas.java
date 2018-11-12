@@ -61,6 +61,8 @@ public class TelaVendas extends javax.swing.JFrame {
         produtoSelecionado = null;
         LoadTableProduto();
 
+        
+        spnQuantidadeProduto.setValue(1);
         vendas = new ArrayList();
         LoadTableVendas();
     }
@@ -571,6 +573,9 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisaProdutoActionPerformed
 
     private void btnPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProdutoActionPerformed
+        
+        
+        
         String pesquisa = txtPesquisaProduto.getText().toLowerCase();
         if (pesquisa.isEmpty()) {
             produtosFiltrados = produtos;
@@ -641,7 +646,7 @@ public class TelaVendas extends javax.swing.JFrame {
 
     private void btnRemoverCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverCarrinhoActionPerformed
                 
-
+        
         int linha = tblVenda.getSelectedRow();
         String[] produto = vendas.get(linha);                
         
