@@ -704,8 +704,10 @@ public class TelaVendas extends javax.swing.JFrame {
         }
         
         if (this.spnQuantidadeProduto.getValue().equals(0)) {
+            
             JOptionPane.showMessageDialog(this, "Defina uma quantidade ao produto!");
             return false;
+            
         }
 
         return true;
