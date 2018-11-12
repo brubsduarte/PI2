@@ -10,7 +10,6 @@ import Controller.ClienteController;
 import java.util.ArrayList;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
-import Model.Produto;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;

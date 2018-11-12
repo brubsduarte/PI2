@@ -1,8 +1,6 @@
 package Model;
 
-import java.util.Date;
-
-public class Cliente {
+public class Cliente implements Comparable {
 
     private int id;
     private String nome;
@@ -192,11 +190,14 @@ public class Cliente {
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
+    
+    public int compareTo(Cliente compareCliente) {
+        int compareId=((Cliente)compareCliente).getId();
+        return this.id - compareId;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
-//    public Date getDataDeNascimento() {
-//        return dataDeNascimento;
-//    }
-//
-//    public void setDataDeNascimento(Date dataDeNascimento) {
-//        this.dataDeNascimento = dataDeNascimento;
-//    }
