@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Date;
+
 public class Cliente implements Comparable {
 
     private int id;
@@ -10,6 +12,7 @@ public class Cliente implements Comparable {
     private String orgaoEmissor;
     private String uf;
     private String estadoCivil;
+    private Date dataDeNascimento;
     private String email;
     private String telefone;
     private String celular;
@@ -20,7 +23,7 @@ public class Cliente implements Comparable {
     private String estado;
     private String cidade;
     private String bairro;
-    //private Date dataDeNascimento;
+    
 
     public String getCPF() {
         return cpf;
@@ -33,7 +36,7 @@ public class Cliente implements Comparable {
     public Cliente() {
     }
 
-    public Cliente(int id, String pNome, String pCPF, String sexo, String rg, String orgaoEmissor, String uf, String estadoCivil, String email, String telefone, String celular, String endereco, String numeroCasa, String complemento, String cep, String estado, String cidade, String bairro) {
+    public Cliente(int id, String pNome, String pCPF, String sexo, String rg, String orgaoEmissor, String uf, String estadoCivil, String email, String telefone, String celular, String endereco, String numeroCasa, String complemento, String cep, String estado, String cidade, String bairro, Date dataDeNascimento) {
         this.id = id;
         this.nome = pNome;
         this.cpf = pCPF;
@@ -42,6 +45,7 @@ public class Cliente implements Comparable {
         this.orgaoEmissor = orgaoEmissor;
         this.uf = uf;
         this.estadoCivil = estadoCivil;
+        this.dataDeNascimento = dataDeNascimento;
         this.email = email;
         this.telefone = telefone;
         this.celular = celular;
@@ -52,7 +56,7 @@ public class Cliente implements Comparable {
         this.estado = estado;
         this.cidade = cidade;
         this.bairro = bairro;
-        //this.dataDeNascimento = dataDeNascimento;
+        
     }
 
     public int getId() {
@@ -189,6 +193,14 @@ public class Cliente implements Comparable {
 
     public void setBairro(String bairro) {
         this.bairro = bairro;
+    }
+    
+    public Date getDataDeNascimento() {
+        return dataDeNascimento;
+    }
+
+    public void setDataDeNascimento(Date dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
     }
     
     public int compareTo(Cliente compareCliente) {

@@ -48,9 +48,9 @@ public class VendaController {
     public static ArrayList<Venda> getVendasProntas(){
         Calendar c = Calendar.getInstance();
         
-        Cliente cliente1 = new Cliente(1, "Gustavo", "213434235", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-        Cliente cliente2 = new Cliente(2, "Felipe", "131232113", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-        Cliente cliente3 = new Cliente(3, "Caio", "213434235", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        Cliente cliente1 = new Cliente(1, "Gustavo", "213434235", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        Cliente cliente2 = new Cliente(2, "Felipe", "131232113", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        Cliente cliente3 = new Cliente(3, "Caio", "213434235", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         
         Produto produto1 = new Produto(1, "Senhor dos aneis - Sociedade do anel", "Aventura", null, "J.R.R Tolken", null, null, 0, 101.99);
         Produto produto2 = new Produto(2, "Senhor dos aneis - Duas torres", "Aventura", null, "J.R.R Tolken", null, null, 0, 150.99);
