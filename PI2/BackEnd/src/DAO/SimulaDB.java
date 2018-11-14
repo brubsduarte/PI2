@@ -1,4 +1,3 @@
-
 package DAO;
 
 import Model.*;
@@ -12,13 +11,15 @@ public class SimulaDB {
     private ArrayList<Cliente> listaClientes; //Simulo a tabela clientes
     private ArrayList<Produto> listaProdutos; //Simulo a tabela Produtos
     private ArrayList<Venda> listaVendas; //Simulo a tabela Venda
-    
+
     private SimulaDB() {
 
         listaClientes = new ArrayList<>();
+        criaListaClientes();
         listaProdutos = new ArrayList<>();
+        criaListaProdutos();
         listaVendas = new ArrayList<>();
-        criaListaVenda();
+        criaListaVendas();
     }
 
     public static synchronized SimulaDB getInstance() {
@@ -38,39 +39,40 @@ public class SimulaDB {
     public ArrayList<Cliente> getClientes() {
         return this.listaClientes;
     }
+
     public ArrayList<Cliente> filtroCliente(int id, String nome, String cpf, String rg) {
         ArrayList<Cliente> listaFiltrada = new ArrayList<Cliente>();
-        
-        if(id > 0){
-            for(Cliente c: this.listaClientes){
-                if(c.getId() == id){
+
+        if (id > 0) {
+            for (Cliente c : this.listaClientes) {
+                if (c.getId() == id) {
                     listaFiltrada.add(c);
                     return listaFiltrada;
                 }
             }
         }
-        
-        if(!cpf.equals("")){
-            for(Cliente c: this.listaClientes){
-                if(c.getCPF().contains(cpf)){
+
+        if (!cpf.equals("")) {
+            for (Cliente c : this.listaClientes) {
+                if (c.getCPF().contains(cpf)) {
                     listaFiltrada.add(c);
                     return listaFiltrada;
                 }
             }
         }
-        
-        if(!nome.equals("")){
-            for(Cliente c: this.listaClientes){
-                if(c.getNome().contains(nome)){
+
+        if (!nome.equals("")) {
+            for (Cliente c : this.listaClientes) {
+                if (c.getNome().contains(nome)) {
                     listaFiltrada.add(c);
                     return listaFiltrada;
                 }
             }
         }
-        
-        if(!rg.equals("")){
-            for(Cliente c: this.listaClientes){
-                if(c.getRg().contains(rg)){
+
+        if (!rg.equals("")) {
+            for (Cliente c : this.listaClientes) {
+                if (c.getRg().contains(rg)) {
                     listaFiltrada.add(c);
                     return listaFiltrada;
                 }
@@ -78,7 +80,7 @@ public class SimulaDB {
         }
         return listaFiltrada;
     }
-    
+
     public boolean AtualizarCliente(Cliente p) {
         for (Cliente item : listaClientes) {
             if (item.getId() == p.getId()) {
@@ -133,7 +135,7 @@ public class SimulaDB {
                 item.setdescricao(p.getdescricao());
                 item.setquantidade(p.getquantidade());
                 item.setvalorUni(p.getvalorUni());
-                
+
             }
         }
 
@@ -145,8 +147,8 @@ public class SimulaDB {
 
         return true;
     }
-    
-        public boolean SalvarVenda(Venda c) {
+
+    public boolean SalvarVenda(Venda c) {
         listaVendas.add(c);
 
         return true;
@@ -156,58 +158,84 @@ public class SimulaDB {
         return this.listaVendas;
     }
 
-    private void criaListaVenda() {
+    private void criaListaVendas() {
         Calendar c = Calendar.getInstance();
-        
+
         Cliente cliente1 = new Cliente(1, "Gustavo", "213434235", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         Cliente cliente2 = new Cliente(2, "Felipe", "131232113", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         Cliente cliente3 = new Cliente(3, "Caio", "213434235", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-        
+
         Produto produto1 = new Produto(1, "Senhor dos aneis - Sociedade do anel", "Aventura", null, "J.R.R Tolken", null, null, 0, 10.00);
         Produto produto2 = new Produto(2, "Senhor dos aneis - Duas torres", "Aventura", null, "J.R.R Tolken", null, null, 0, 20.00);
         Produto produto3 = new Produto(3, "Senhor dos aneis - Retorno do rei", "Aventura", null, "J.R.R Tolken", null, null, 0, 30.00);
-        
+
         ArrayList<Produto> produtos = new ArrayList();
         produtos.add(produto1);
         produtos.add(produto1);
         produtos.add(produto1);
         produtos.add(produto2);
         produtos.add(produto3);
-        
+
         c.set(2018, Calendar.NOVEMBER, 10);
         Venda venda1 = new Venda(1, produtos, cliente1, 80.00f, c.getTime());
-        
+
         produtos.add(produto1);
         produtos.add(produto2);
-        
+
         c.set(2018, Calendar.AUGUST, 11);
         Venda venda2 = new Venda(2, produtos, cliente2, 110.00f, c.getTime());
-        
+
         produtos.add(produto1);
         produtos.add(produto1);
-        
+
         c.set(2018, Calendar.AUGUST, 12);
         Venda venda3 = new Venda(3, produtos, cliente3, 130.00f, c.getTime());
-        
+
         produtos.add(produto1);
         produtos.add(produto2);
         produtos.add(produto3);
-        
+
         c.set(2018, Calendar.NOVEMBER, 10);
         Venda venda4 = new Venda(1, produtos, cliente1, 190.00f, c.getTime());
-        
+
         ArrayList<Venda> vendas = new ArrayList();
         vendas.add(venda1);
         vendas.add(venda2);
         vendas.add(venda3);
         vendas.add(venda4);
-        
+
         this.listaVendas = vendas;
     }
-    
+
+    private void criaListaClientes() {
+        Cliente cliente1 = new Cliente(1, "Gustavo", "213434235", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        Cliente cliente2 = new Cliente(2, "Felipe", "131232113", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        Cliente cliente3 = new Cliente(3, "Caio", "213434235", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+        ArrayList<Cliente> clientes = new ArrayList();
+        clientes.add(cliente1);
+        clientes.add(cliente2);
+        clientes.add(cliente3);
+
+        this.listaClientes = clientes;
+    }
+
+    private void criaListaProdutos() {
+        Produto produto1 = new Produto(1, "Senhor dos aneis - Sociedade do anel", "Aventura", null, "J.R.R Tolken", null, null, 0, 101.99);
+        Produto produto2 = new Produto(2, "Senhor dos aneis - Duas torres", "Aventura", null, "J.R.R Tolken", null, null, 0, 150.99);
+        Produto produto3 = new Produto(3, "Senhor dos aneis - Retorno do rei", "Aventura", null, "J.R.R Tolken", null, null, 0, 75.99);
+
+        ArrayList<Produto> produtos = new ArrayList();
+        produtos.add(produto1);
+        produtos.add(produto2);
+        produtos.add(produto3);
+
+        this.listaProdutos = produtos;
+    }
+
     public boolean AtualizarVenda(Venda p) {
         for (Venda item : listaVendas) {
-            if (item.getIdVenda()== p.getIdVenda()) {
+            if (item.getIdVenda() == p.getIdVenda()) {
                 item.setCliente(p.getCliente());
                 item.setProdutos(p.getProdutos());
             }
@@ -215,20 +243,11 @@ public class SimulaDB {
 
         return true;
     }
-    
- 
+
     public boolean ExcluirVenda(int i) {
         listaVendas.remove(i);
 
         return true;
     }
-    
-    
-    
-    
-    
-    
-    
 
 }
-

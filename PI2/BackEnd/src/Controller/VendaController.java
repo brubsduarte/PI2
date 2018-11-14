@@ -8,13 +8,8 @@ package Controller;
 
 import DAO.VendaDAO;
 import Model.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -98,11 +93,7 @@ public class VendaController {
             }
         }
         
-        if(vendasFiltradas.isEmpty()) {
-            return false;
-        }
-         
-        return true;
+        return !vendasFiltradas.isEmpty();
     }
     
     public void limparFiltros() {
