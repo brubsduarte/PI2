@@ -136,7 +136,7 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtNomePesquisa" min="-2" pref="430" max="-2" attributes="0"/>
+                                          <Component id="txtPesquisaProduto" min="-2" pref="430" max="-2" attributes="0"/>
                                           <Component id="lblNome" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
@@ -172,7 +172,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtNomePesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtPesquisaProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtIDPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -193,7 +193,7 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="txtNomePesquisa">
+                    <Component class="javax.swing.JTextField" name="txtPesquisaProduto">
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblNome">
                       <Properties>
@@ -344,6 +344,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Pesquisar"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnEditar">
                       <Properties>

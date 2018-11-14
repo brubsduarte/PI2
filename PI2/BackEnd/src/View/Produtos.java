@@ -18,13 +18,15 @@ import static utils.Validador.limparMensagesErro;
 public class Produtos extends javax.swing.JInternalFrame {
 
     private String modoTela; //"Criar/Editar"
-
+    
     public Produtos() {
         initComponents();
 
         DesabilitarFormulario2();
     }
 
+    
+    
     public void LoadTable2() {
 
         ArrayList<String[]> linhasProdutos = ProdutoController.getProdutos();
@@ -130,7 +132,7 @@ public class Produtos extends javax.swing.JInternalFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        txtNomePesquisa = new javax.swing.JTextField();
+        txtPesquisaProduto = new javax.swing.JTextField();
         lblNome = new javax.swing.JLabel();
         lblEditora1 = new javax.swing.JLabel();
         txtAutorPesquisa = new javax.swing.JTextField();
@@ -224,7 +226,7 @@ public class Produtos extends javax.swing.JInternalFrame {
                             .addComponent(txtIDPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNomePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNome))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -250,7 +252,7 @@ public class Produtos extends javax.swing.JInternalFrame {
                     .addComponent(lblNome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNomePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIDPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -292,6 +294,11 @@ public class Produtos extends javax.swing.JInternalFrame {
 
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/search-32.png"))); // NOI18N
         btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/Edit-32x32.png"))); // NOI18N
         btnEditar.setText("Editar");
@@ -796,6 +803,10 @@ public class Produtos extends javax.swing.JInternalFrame {
     private void txtIDprodutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDprodutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDprodutoActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        
+    }//GEN-LAST:event_btnPesquisarActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -888,7 +899,7 @@ public class Produtos extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea txtDescricaoProduto;
     private javax.swing.JFormattedTextField txtIDPesquisa;
     private javax.swing.JTextField txtIDproduto;
-    private javax.swing.JTextField txtNomePesquisa;
+    private javax.swing.JTextField txtPesquisaProduto;
     private javax.swing.JTextField txtTituloProduto;
     private javax.swing.JTextField txtVlrUnitario;
     // End of variables declaration//GEN-END:variables

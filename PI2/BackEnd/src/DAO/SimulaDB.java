@@ -52,7 +52,7 @@ public class SimulaDB {
         
         if(!cpf.equals("")){
             for(Cliente c: this.listaClientes){
-                if(c.getCPF().equals(cpf)){
+                if(c.getCPF().contains(cpf)){
                     listaFiltrada.add(c);
                     return listaFiltrada;
                 }
