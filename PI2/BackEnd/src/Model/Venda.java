@@ -6,8 +6,14 @@
 
 package Model;
 
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 
 /**
  *
@@ -70,5 +76,141 @@ public class Venda {
 
     public Date getData() {
         return data;
+    }
+    
+    public static ArrayList<String[]> getCompradores(ArrayList<Venda> vendas) {
+        ArrayList<Cliente> clientes = new ArrayList();
+
+        for (Venda venda : vendas) {
+            clientes.add(venda.getCliente());
+        }
+
+        ArrayList<String[]> clientesOrndenados = new ArrayList();
+
+        Set<Cliente> unique = new HashSet<>(clientes);
+        for (Cliente key : unique) {
+            String[] clienteArray = new String[]{
+                key.getNome(),
+                key.getCPF(),
+                String.valueOf(Collections.frequency(clientes, key))
+            };
+            clientesOrndenados.add(clienteArray);
+        }
+
+        clientesOrndenados = ordenaMelhoresCompradores(clientesOrndenados);
+        
+        return clientesOrndenados;
+    }
+    
+    public static ArrayList<String[]> getVendasOrdenadas(ArrayList<Venda> vendas) {
+        String pattern = "dd/MM/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        
+        ArrayList<String[]> vendasOrndenadas = new ArrayList();
+        
+        for (Venda venda : vendas) {
+            vendasOrndenadas.add(new String[]{
+                String.valueOf(venda.getIdVenda()),
+                venda.getCliente().getNome(),
+                simpleDateFormat.format(venda.getData()),
+                Util.formatarDinheiro(venda.getValorTotal()),
+                String.valueOf(venda.getValorTotal())
+            });
+        }
+
+        vendasOrndenadas = sortVendas(vendasOrndenadas);
+        
+        return vendasOrndenadas;
+    }
+    
+    public static float getTotalVendas(ArrayList<Venda> vendas) {
+        
+        float valorTotal = 0f;
+        
+        for (Venda venda : vendas) {
+            valorTotal += venda.getValorTotal();
+        }
+
+        return valorTotal;
+    }
+    
+    public static ArrayList<String[]> getProdutosOrdenados(ArrayList<Venda> vendas) {
+        ArrayList<Produto> produtos = new ArrayList();
+
+        for (Venda venda : vendas) {
+            produtos.addAll(venda.getProdutos());
+        }
+
+        ArrayList<String[]> produtosOrndenados = new ArrayList();
+
+        Set<Produto> unique = new HashSet<>(produtos);
+        for (Produto key : unique) {
+            int quantidade = Collections.frequency(produtos, key);
+            String[] produtoArray = new String[]{
+                key.gettitulo(),
+                Util.formatarDinheiro((float)key.getvalorUni()),
+                String.valueOf(quantidade),
+                Util.formatarDinheiro((float)(quantidade * key.getvalorUni()))
+            };
+            produtosOrndenados.add(produtoArray);
+        }
+
+        produtosOrndenados = sortProdutos(produtosOrndenados);
+        
+        return produtosOrndenados;
+    }
+    
+    private static ArrayList<String[]> ordenaMelhoresCompradores(ArrayList<String[]> arr) {
+        int n = arr.size();
+        String[] temp;
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+                if (Integer.valueOf(arr.get(j - 1)[2]) < Integer.valueOf(arr.get(j)[2])) {
+                    
+                    temp = arr.get(j - 1);
+                    arr.set(j - 1, arr.get(j));
+                    arr.set(j, temp);
+                }
+
+            }
+        }
+
+        return arr;
+    }
+    
+    private static ArrayList<String[]> sortVendas(ArrayList<String[]> arr) {
+        int n = arr.size();
+        String[] temp;
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+                if (Float.valueOf(arr.get(j - 1)[4]) < Float.valueOf(arr.get(j)[4])) {
+                    
+                    temp = arr.get(j - 1);
+                    arr.set(j - 1, arr.get(j));
+                    arr.set(j, temp);
+                }
+
+            }
+        }
+
+        return arr;
+    }
+    
+    static ArrayList<String[]> sortProdutos(ArrayList<String[]> arr) {
+        int n = arr.size();
+        String[] temp;
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+                if (Integer.valueOf(arr.get(j - 1)[2]) < Integer.valueOf(arr.get(j)[2])) {
+                    
+                    temp = arr.get(j - 1);
+                    arr.set(j - 1, arr.get(j));
+                    arr.set(j, temp);
+                }
+
+            }
+        }
+
+        return arr;
     }
 }

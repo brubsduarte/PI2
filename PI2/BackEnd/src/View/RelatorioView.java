@@ -6,18 +6,11 @@
 package View;
 
 import Controller.VendaController;
-import Model.Cliente;
-import Model.Produto;
-import Model.Venda;
-import java.text.NumberFormat;
+import Model.Util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JFormattedTextField;
@@ -32,8 +25,7 @@ import javax.swing.text.MaskFormatter;
  */
 public final class RelatorioView extends javax.swing.JFrame {
 
-    public ArrayList<Venda> vendas;
-    public ArrayList<Venda> vendasFiltradas;
+    private final VendaController vendaController;
 
     /**
      * Creates new form Relatorio
@@ -41,8 +33,7 @@ public final class RelatorioView extends javax.swing.JFrame {
     public RelatorioView() {
         initComponents();
 
-        vendas = VendaController.getVendasProntas();
-        vendasFiltradas = VendaController.getVendasProntas();
+        vendaController = new VendaController();
         loadTables();
     }
     
@@ -293,32 +284,14 @@ public final class RelatorioView extends javax.swing.JFrame {
 
     public void LoadTableCliente() {
 
-        ArrayList<Cliente> clientes = new ArrayList();
-
-        for (Venda venda : vendasFiltradas) {
-            clientes.add(venda.getCliente());
-        }
-
-        ArrayList<String[]> clientesOrndenados = new ArrayList();
-
-        Set<Cliente> unique = new HashSet<>(clientes);
-        for (Cliente key : unique) {
-            String[] clienteArray = new String[]{
-                key.getNome(),
-                key.getCPF(),
-                String.valueOf(Collections.frequency(clientes, key))
-            };
-            clientesOrndenados.add(clienteArray);
-        }
-
-        clientesOrndenados = sortClients(clientesOrndenados);
+        ArrayList<String[]> compradores = vendaController.getCompradores();
 
         DefaultTableModel tmClientes = new DefaultTableModel();
         tmClientes.addColumn("Nome");
         tmClientes.addColumn("CPF");
         tmClientes.addColumn("Qtde. Compras");
 
-        for (String[] cliente : clientesOrndenados) {
+        for(String[] cliente : compradores) {
             tmClientes.addRow(cliente);
         }
 
@@ -328,169 +301,51 @@ public final class RelatorioView extends javax.swing.JFrame {
         tblCliente.getColumnModel().getColumn(1).setPreferredWidth(150); //cpf
         tblCliente.getColumnModel().getColumn(2).setPreferredWidth(100); //ID
     }
-
-    static ArrayList<String[]> sortClients(ArrayList<String[]> arr) {
-        int n = arr.size();
-        String[] temp;
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j < (n - i); j++) {
-                if (Integer.valueOf(arr.get(j - 1)[2]) < Integer.valueOf(arr.get(j)[2])) {
-                    
-                    temp = arr.get(j - 1);
-                    arr.set(j - 1, arr.get(j));
-                    arr.set(j, temp);
-                }
-
-            }
-        }
-
-        return arr;
-    }
     
     public void LoadTableVenda() {
-
-        ArrayList<Cliente> clientes = new ArrayList();
-
-        for (Venda venda : vendasFiltradas) {
-            clientes.add(venda.getCliente());
-        }
-
-        ArrayList<String[]> clientesOrndenados = new ArrayList();
-
-        Set<Cliente> unique = new HashSet<>(clientes);
-        for (Cliente key : unique) {
-            String[] clienteArray = new String[]{
-                key.getNome(),
-                key.getCPF(),
-                String.valueOf(Collections.frequency(clientes, key))
-            };
-            clientesOrndenados.add(clienteArray);
-        }
-
-        clientesOrndenados = sortClients(clientesOrndenados);
-
-        DefaultTableModel tmClientes = new DefaultTableModel();
-        tmClientes.addColumn("ID");
-        tmClientes.addColumn("Cliente");
-        tmClientes.addColumn("Data");
-        tmClientes.addColumn("Total");
-
-        String pattern = "dd/MM/yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         
-        float valorTotal = 0f;
+        ArrayList<String[]> vendasOrndenadas = vendaController.getVendasOrdenadas();
         
-        ArrayList<String[]> vendasOrndenadas = new ArrayList();
-        
-        for (Venda venda : vendasFiltradas) {
-            vendasOrndenadas.add(new String[]{
-                String.valueOf(venda.getIdVenda()),
-                venda.getCliente().getNome(),
-                simpleDateFormat.format(venda.getData()),
-                formatDecimal(venda.getValorTotal()),
-                String.valueOf(venda.getValorTotal())
-            });
-            valorTotal += venda.getValorTotal();
-        }
-
-        vendasOrndenadas = sortVendas(vendasOrndenadas);
+        DefaultTableModel tmVendas = new DefaultTableModel();
+        tmVendas.addColumn("ID");
+        tmVendas.addColumn("Cliente");
+        tmVendas.addColumn("Data");
+        tmVendas.addColumn("Total");
         
         for (String[] venda : vendasOrndenadas) {
-            tmClientes.addRow(venda);
+            tmVendas.addRow(venda);
         }
         
-        lblValorTotal.setText(formatDecimal(valorTotal));
+        lblValorTotal.setText(Util.formatarDinheiro(vendaController.getTotalVendas()));
         
-        tblVendas.setModel(tmClientes);
+        tblVendas.setModel(tmVendas);
 
         tblVendas.getColumnModel().getColumn(0).setPreferredWidth(100); 
         tblVendas.getColumnModel().getColumn(1).setPreferredWidth(150); 
         tblVendas.getColumnModel().getColumn(2).setPreferredWidth(250); 
         tblVendas.getColumnModel().getColumn(3).setPreferredWidth(100); 
     }
-
-    static ArrayList<String[]> sortVendas(ArrayList<String[]> arr) {
-        int n = arr.size();
-        String[] temp;
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j < (n - i); j++) {
-                if (Float.valueOf(arr.get(j - 1)[4]) < Float.valueOf(arr.get(j)[4])) {
-                    
-                    temp = arr.get(j - 1);
-                    arr.set(j - 1, arr.get(j));
-                    arr.set(j, temp);
-                }
-
-            }
-        }
-
-        return arr;
-    }
-    
-    public String formatDecimal(float number) {
-        Locale meuLocal = new Locale( "pt", "BR" );
-        NumberFormat format = NumberFormat.getCurrencyInstance(meuLocal);
-        return format.format(number);       
-    }
     
     public void LoadTableProduto() {
 
-        ArrayList<Produto> produtos = new ArrayList();
+        ArrayList<String[]> produtosOrndenados = vendaController.getProdutos();
 
-        for (Venda venda : vendasFiltradas) {
-            produtos.addAll(venda.getProdutos());
+        DefaultTableModel tmProdutos = new DefaultTableModel();
+        tmProdutos.addColumn("Titulo");
+        tmProdutos.addColumn("Valor unitário");
+        tmProdutos.addColumn("Qtde. vendas");
+        tmProdutos.addColumn("Total vendas");
+
+        for(String[] produto : produtosOrndenados) {
+            tmProdutos.addRow(produto);
         }
 
-        ArrayList<String[]> produtosOrndenados = new ArrayList();
-
-        Set<Produto> unique = new HashSet<>(produtos);
-        for (Produto key : unique) {
-            int quantidade = Collections.frequency(produtos, key);
-            String[] produtoArray = new String[]{
-                key.gettitulo(),
-                formatDecimal((float)key.getvalorUni()),
-                String.valueOf(quantidade),
-                formatDecimal((float)(quantidade * key.getvalorUni()))
-            };
-            produtosOrndenados.add(produtoArray);
-        }
-
-        produtosOrndenados = sortProdutos(produtosOrndenados);
-
-        DefaultTableModel tmClientes = new DefaultTableModel();
-        tmClientes.addColumn("Titulo");
-        tmClientes.addColumn("Valor unitário");
-        tmClientes.addColumn("Qtde. vendas");
-        tmClientes.addColumn("Total vendas");
-
-        for (String[] produto : produtosOrndenados) {
-            tmClientes.addRow(produto);
-        }
-
-        tblProduto.setModel(tmClientes);
+        tblProduto.setModel(tmProdutos);
 
         tblProduto.getColumnModel().getColumn(0).setPreferredWidth(250); 
         tblProduto.getColumnModel().getColumn(1).setPreferredWidth(150); 
         tblProduto.getColumnModel().getColumn(2).setPreferredWidth(100); 
         tblProduto.getColumnModel().getColumn(3).setPreferredWidth(100); 
-    }
-    
-    static ArrayList<String[]> sortProdutos(ArrayList<String[]> arr) {
-        int n = arr.size();
-        String[] temp;
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j < (n - i); j++) {
-                if (Integer.valueOf(arr.get(j - 1)[2]) < Integer.valueOf(arr.get(j)[2])) {
-                    
-                    temp = arr.get(j - 1);
-                    arr.set(j - 1, arr.get(j));
-                    arr.set(j, temp);
-                }
-
-            }
-        }
-
-        return arr;
     }
     
     private void txtDataInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataInicioActionPerformed
@@ -521,19 +376,12 @@ public final class RelatorioView extends javax.swing.JFrame {
                 throw new ExecutionException("A diferença de dias entre uma data e outra é maior que 30 dias.", null);
             }
             
-            vendasFiltradas = new ArrayList();
-            
-            for(Venda venda : vendas) {
-                if(venda.getData().compareTo(dataInicial) >= 0 && venda.getData().compareTo(dataFinal) <= 0) {
-                    vendasFiltradas.add(venda);
-                }
+            if(!vendaController.filtraVendas(dataInicial, dataFinal)) {
+                loadTables();
+                throw new ExecutionException("Nenhum resultado encontrado", null);
             }
             
             loadTables();
-            
-            if(vendasFiltradas.isEmpty()) {
-                throw new ExecutionException("Nenhum resultado encontrado", null);
-            }
             
         } catch (ParseException e) {
             showMessageDialog(null, "Data inválida");
@@ -545,7 +393,7 @@ public final class RelatorioView extends javax.swing.JFrame {
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         txtDataInicio.setText("");
         txtDataFinal.setText("");
-        vendasFiltradas = vendas;
+        vendaController.limparFiltros();
         loadTables();
     }//GEN-LAST:event_btnLimparActionPerformed
 

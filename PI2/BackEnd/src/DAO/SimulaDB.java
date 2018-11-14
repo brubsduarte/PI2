@@ -3,6 +3,7 @@ package DAO;
 
 import Model.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class SimulaDB {
 
@@ -12,15 +13,12 @@ public class SimulaDB {
     private ArrayList<Produto> listaProdutos; //Simulo a tabela Produtos
     private ArrayList<Venda> listaVendas; //Simulo a tabela Venda
     
-    
-    
-
     private SimulaDB() {
 
-        listaClientes = new ArrayList<Cliente>();
-        listaProdutos = new ArrayList<Produto>();
-        listaVendas = new ArrayList<Venda>();
-        
+        listaClientes = new ArrayList<>();
+        listaProdutos = new ArrayList<>();
+        listaVendas = new ArrayList<>();
+        criaListaVenda();
     }
 
     public static synchronized SimulaDB getInstance() {
@@ -118,14 +116,62 @@ public class SimulaDB {
         return this.listaVendas;
     }
 
+    private void criaListaVenda() {
+        Calendar c = Calendar.getInstance();
+        
+        Cliente cliente1 = new Cliente(1, "Gustavo", "213434235", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        Cliente cliente2 = new Cliente(2, "Felipe", "131232113", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        Cliente cliente3 = new Cliente(3, "Caio", "213434235", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        
+        Produto produto1 = new Produto(1, "Senhor dos aneis - Sociedade do anel", "Aventura", null, "J.R.R Tolken", null, null, 0, 10.00);
+        Produto produto2 = new Produto(2, "Senhor dos aneis - Duas torres", "Aventura", null, "J.R.R Tolken", null, null, 0, 20.00);
+        Produto produto3 = new Produto(3, "Senhor dos aneis - Retorno do rei", "Aventura", null, "J.R.R Tolken", null, null, 0, 30.00);
+        
+        ArrayList<Produto> produtos = new ArrayList();
+        produtos.add(produto1);
+        produtos.add(produto1);
+        produtos.add(produto1);
+        produtos.add(produto2);
+        produtos.add(produto3);
+        
+        c.set(2018, Calendar.NOVEMBER, 10);
+        Venda venda1 = new Venda(1, produtos, cliente1, 80.00f, c.getTime());
+        
+        produtos.add(produto1);
+        produtos.add(produto2);
+        
+        c.set(2018, Calendar.AUGUST, 11);
+        Venda venda2 = new Venda(2, produtos, cliente2, 110.00f, c.getTime());
+        
+        produtos.add(produto1);
+        produtos.add(produto1);
+        
+        c.set(2018, Calendar.AUGUST, 12);
+        Venda venda3 = new Venda(3, produtos, cliente3, 130.00f, c.getTime());
+        
+        produtos.add(produto1);
+        produtos.add(produto2);
+        produtos.add(produto3);
+        
+        c.set(2018, Calendar.NOVEMBER, 10);
+        Venda venda4 = new Venda(1, produtos, cliente1, 190.00f, c.getTime());
+        
+        ArrayList<Venda> vendas = new ArrayList();
+        vendas.add(venda1);
+        vendas.add(venda2);
+        vendas.add(venda3);
+        vendas.add(venda4);
+        
+        this.listaVendas = vendas;
+    }
+    
     public boolean AtualizarVenda(Venda p) {
-//        for (Venda item : listaVendas) {
-//            if (item.getIdVenda()== p.getIdVenda()) {
-//                item.setIdCliente(p.getIdCliente());
-//                item.setProdutos(p.getProdutos());
-//                
-//            }
-//        }
+        for (Venda item : listaVendas) {
+            if (item.getIdVenda()== p.getIdVenda()) {
+                item.setCliente(p.getCliente());
+                item.setProdutos(p.getProdutos());
+            }
+        }
 
         return true;
     }
