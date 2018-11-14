@@ -245,26 +245,26 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemSairActionPerformed
 
     private void menuItemCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadCliActionPerformed
-        ClienteView cadCliente = new ClienteView();
-        //paineMenu.add(cadCliente);
+        Clientes cadCliente = new Clientes();
+        paineMenu.add(cadCliente);
         cadCliente.setVisible(true);
     }//GEN-LAST:event_menuItemCadCliActionPerformed
 
     private void btnCadClienteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadClienteMenuActionPerformed
-        ClienteView cadCliente = new ClienteView();
-        //paineMenu.add(cadCliente);
+        Clientes cadCliente = new Clientes();
+        paineMenu.add(cadCliente);
         cadCliente.setVisible(true);
     }//GEN-LAST:event_btnCadClienteMenuActionPerformed
 
     private void btnPesqProdutoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqProdutoMenuActionPerformed
-        ProdutoView produto  = new ProdutoView();
-        //paineMenu.add(produto);
+        Produtos produto  = new Produtos();
+        paineMenu.add(produto);
         produto.setVisible(true);
     }//GEN-LAST:event_btnPesqProdutoMenuActionPerformed
 
     private void menuItemCadProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadProdActionPerformed
-        ProdutoView cadProduto = new ProdutoView();
-        //paineMenu.add(cadProduto);
+        Produtos cadProduto = new Produtos();
+        paineMenu.add(cadProduto);
         cadProduto.setVisible(true);
     }//GEN-LAST:event_menuItemCadProdActionPerformed
 

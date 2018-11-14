@@ -25,5 +25,8 @@ public class ClienteDAO {
     {
         return SimulaDB.getInstance().getClientes();
     }
+    public static ArrayList<Cliente> filtroCliente(int id, String nome, String cpf, String rg){
+        return SimulaDB.getInstance().filtroCliente(id, nome, cpf, rg);
+    }
     
 }

@@ -54,6 +54,36 @@ public class ClienteController {
         return listaClientes;
 
     }
+    public static ArrayList<String[]> getClientesFiltro(int id, String nome, String cpf, String rg) {
+        ArrayList<Cliente> clientes = ClienteDAO.filtroCliente(id, nome, cpf, rg);
+        ArrayList<String[]> listaClientes = new ArrayList<>();
+
+        for (int i = 0; i < clientes.size(); i++) {
+            listaClientes.add(new String[]{String.valueOf(clientes.get(i).getId()),
+                 clientes.get(i).getNome(),
+                 String.valueOf(clientes.get(i).getCPF()),
+                 clientes.get(i).getSexo(),
+                 clientes.get(i).getRg(),
+                 clientes.get(i).getOrgaoEmissor(),
+                 clientes.get(i).getUf(),
+                 clientes.get(i).getEstadoCivil(),
+                 clientes.get(i).getEmail(),
+                 clientes.get(i).getTelefone(),
+                 clientes.get(i).getCelular(),
+                 clientes.get(i).getEndereco(),
+                 clientes.get(i).getNumeroCasa(),
+                 clientes.get(i).getComplemento(),
+                 clientes.get(i).getCep(),
+                 clientes.get(i).getEstado(),
+                 clientes.get(i).getCidade(),
+                 clientes.get(i).getBairro(),
+                 String.valueOf(clientes.get(i).getDataDeNascimento())});
+
+        }
+
+        return listaClientes;
+
+    }
 
     public static ArrayList<String[]> getClientesPronto() {
 

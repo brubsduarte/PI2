@@ -38,7 +38,47 @@ public class SimulaDB {
     public ArrayList<Cliente> getClientes() {
         return this.listaClientes;
     }
-
+    public ArrayList<Cliente> filtroCliente(int id, String nome, String cpf, String rg) {
+        ArrayList<Cliente> listaFiltrada = new ArrayList<Cliente>();
+        
+        if(id > 0){
+            for(Cliente c: this.listaClientes){
+                if(c.getId() == id){
+                    listaFiltrada.add(c);
+                    return listaFiltrada;
+                }
+            }
+        }
+        
+        if(!cpf.equals("")){
+            for(Cliente c: this.listaClientes){
+                if(c.getCPF().equals(cpf)){
+                    listaFiltrada.add(c);
+                    return listaFiltrada;
+                }
+            }
+        }
+        
+        if(!nome.equals("")){
+            for(Cliente c: this.listaClientes){
+                if(c.getNome().contains(nome)){
+                    listaFiltrada.add(c);
+                    return listaFiltrada;
+                }
+            }
+        }
+        
+        if(!rg.equals("")){
+            for(Cliente c: this.listaClientes){
+                if(c.getRg().contains(rg)){
+                    listaFiltrada.add(c);
+                    return listaFiltrada;
+                }
+            }
+        }
+        return listaFiltrada;
+    }
+    
     public boolean AtualizarCliente(Cliente p) {
         for (Cliente item : listaClientes) {
             if (item.getId() == p.getId()) {
@@ -59,7 +99,7 @@ public class SimulaDB {
                 item.setEstado(p.getEstado());
                 item.setCidade(p.getCidade());
                 item.setBairro(p.getBairro());
-                //item.setDataDeNascimento(p.getDataDeNascimento());
+                item.setDataDeNascimento(p.getDataDeNascimento());
             }
         }
 
