@@ -57,25 +57,78 @@ public class ClienteView extends javax.swing.JFrame {
 
         tblClientes.setModel(tmClientes);
 
-        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(50); //ID
+        
+        tblClientes.getColumnModel().getColumn(0).setMinWidth(0); //ID
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(0); //ID
+        tblClientes.getColumnModel().getColumn(0).setMaxWidth(0);
+        
         tblClientes.getColumnModel().getColumn(1).setPreferredWidth(250); //nome
         tblClientes.getColumnModel().getColumn(2).setPreferredWidth(150); //cpf
-        tblClientes.getColumnModel().getColumn(3).setPreferredWidth(150); // rg
-        tblClientes.getColumnModel().getColumn(4).setPreferredWidth(50);  // orgao
-        tblClientes.getColumnModel().getColumn(5).setPreferredWidth(50); // uf
-        tblClientes.getColumnModel().getColumn(6).setPreferredWidth(250); // estado civil        
-        tblClientes.getColumnModel().getColumn(7).setPreferredWidth(150); //sexo
-        tblClientes.getColumnModel().getColumn(8).setPreferredWidth(250); //email
-        tblClientes.getColumnModel().getColumn(9).setPreferredWidth(250); //telefone
-        tblClientes.getColumnModel().getColumn(10).setPreferredWidth(250); //celular
-        tblClientes.getColumnModel().getColumn(11).setPreferredWidth(250);// endereço
-        tblClientes.getColumnModel().getColumn(12).setPreferredWidth(50); //numero
-        tblClientes.getColumnModel().getColumn(13).setPreferredWidth(250); //complemento
-        tblClientes.getColumnModel().getColumn(14).setPreferredWidth(150); // cep
-        tblClientes.getColumnModel().getColumn(15).setPreferredWidth(250); //estado
-        tblClientes.getColumnModel().getColumn(16).setPreferredWidth(250); //cidade
-        tblClientes.getColumnModel().getColumn(17).setPreferredWidth(250); // bairro
-        tblClientes.getColumnModel().getColumn(18).setPreferredWidth(150);// data de nascimento
+        
+        tblClientes.getColumnModel().getColumn(3).setMinWidth(0); // rg
+        tblClientes.getColumnModel().getColumn(3).setPreferredWidth(0); // rg
+        tblClientes.getColumnModel().getColumn(3).setMaxWidth(0); // rg
+        
+        tblClientes.getColumnModel().getColumn(4).setMinWidth(0);   // orgao
+        tblClientes.getColumnModel().getColumn(4).setPreferredWidth(0);  // orgao
+        tblClientes.getColumnModel().getColumn(4).setMaxWidth(0);   // orgao
+        
+        tblClientes.getColumnModel().getColumn(5).setMinWidth(0); // uf
+        tblClientes.getColumnModel().getColumn(5).setPreferredWidth(0); // uf
+        tblClientes.getColumnModel().getColumn(5).setMaxWidth(0);  // uf
+        
+        tblClientes.getColumnModel().getColumn(6).setMinWidth(0); // estado civil        
+        tblClientes.getColumnModel().getColumn(6).setPreferredWidth(0); // estado civil        
+        tblClientes.getColumnModel().getColumn(6).setMaxWidth(0); // estado civil 
+        
+        tblClientes.getColumnModel().getColumn(7).setMinWidth(0);  //sexo
+        tblClientes.getColumnModel().getColumn(7).setPreferredWidth(0); //sexo
+        tblClientes.getColumnModel().getColumn(7).setMaxWidth(0); //sexo
+        
+        tblClientes.getColumnModel().getColumn(8).setMinWidth(0); //email
+        tblClientes.getColumnModel().getColumn(8).setPreferredWidth(0); //email
+        tblClientes.getColumnModel().getColumn(8).setMaxWidth(0); //email
+        
+        tblClientes.getColumnModel().getColumn(9).setMinWidth(0); //telefone
+        tblClientes.getColumnModel().getColumn(9).setPreferredWidth(0); //telefone
+        tblClientes.getColumnModel().getColumn(9).setMaxWidth(0); //telefone
+        
+        tblClientes.getColumnModel().getColumn(10).setMinWidth(0); //celular
+        tblClientes.getColumnModel().getColumn(10).setPreferredWidth(0); //celular
+        tblClientes.getColumnModel().getColumn(10).setMaxWidth(0);  //celular
+        
+        tblClientes.getColumnModel().getColumn(11).setMinWidth(0); // endereço
+        tblClientes.getColumnModel().getColumn(11).setPreferredWidth(0);// endereço
+        tblClientes.getColumnModel().getColumn(11).setMaxWidth(0);// endereço
+        
+        tblClientes.getColumnModel().getColumn(12).setMinWidth(0);  //numero
+        tblClientes.getColumnModel().getColumn(12).setPreferredWidth(0); //numero
+        tblClientes.getColumnModel().getColumn(12).setMaxWidth(0); //numero
+        
+        tblClientes.getColumnModel().getColumn(13).setMinWidth(0);  //complemento
+        tblClientes.getColumnModel().getColumn(13).setPreferredWidth(0); //complemento
+        tblClientes.getColumnModel().getColumn(13).setMaxWidth(0); //complemento
+        
+        tblClientes.getColumnModel().getColumn(14).setMinWidth(0); // cep
+        tblClientes.getColumnModel().getColumn(14).setPreferredWidth(0); // cep
+        tblClientes.getColumnModel().getColumn(14).setMaxWidth(0); // cep
+        
+        tblClientes.getColumnModel().getColumn(15).setMinWidth(0); //estado
+        tblClientes.getColumnModel().getColumn(15).setPreferredWidth(0); //estado
+        tblClientes.getColumnModel().getColumn(15).setMaxWidth(0); //estado
+        
+        tblClientes.getColumnModel().getColumn(16).setMinWidth(0); //cidade
+        tblClientes.getColumnModel().getColumn(16).setPreferredWidth(0); //cidade
+        tblClientes.getColumnModel().getColumn(16).setMaxWidth(0); //cidade
+        
+        tblClientes.getColumnModel().getColumn(17).setMinWidth(0); // bairro
+        tblClientes.getColumnModel().getColumn(17).setPreferredWidth(0); // bairro
+        tblClientes.getColumnModel().getColumn(17).setMaxWidth(0); // bairro
+        
+        tblClientes.getColumnModel().getColumn(18).setMinWidth(0);// data de nascimento
+        tblClientes.getColumnModel().getColumn(18).setPreferredWidth(0);// data de nascimento
+        tblClientes.getColumnModel().getColumn(18).setMaxWidth(0);// data de nascimento
+        
         this.pack();
     }
 
