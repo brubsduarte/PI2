@@ -47,15 +47,36 @@ public class ProdutoView extends javax.swing.JFrame {
 
         tblProdutos1.setModel(tmProdutos);
 
-        tblProdutos1.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblProdutos1.getColumnModel().getColumn(1).setPreferredWidth(150);
-        tblProdutos1.getColumnModel().getColumn(2).setPreferredWidth(50);
-        tblProdutos1.getColumnModel().getColumn(3).setPreferredWidth(150);
-        tblProdutos1.getColumnModel().getColumn(4).setPreferredWidth(150);
-        tblProdutos1.getColumnModel().getColumn(5).setPreferredWidth(150);
-        tblProdutos1.getColumnModel().getColumn(6).setPreferredWidth(150);
-        tblProdutos1.getColumnModel().getColumn(7).setPreferredWidth(50);
-        tblProdutos1.getColumnModel().getColumn(8).setPreferredWidth(50);
+        tblProdutos1.getColumnModel().getColumn(0).setMinWidth(0); //ID
+        tblProdutos1.getColumnModel().getColumn(0).setPreferredWidth(0); //ID
+        tblProdutos1.getColumnModel().getColumn(0).setMaxWidth(0);//ID
+        
+        tblProdutos1.getColumnModel().getColumn(1).setPreferredWidth(250);//Titulo
+        
+        tblProdutos1.getColumnModel().getColumn(2).setMinWidth(0); //Genero
+        tblProdutos1.getColumnModel().getColumn(2).setPreferredWidth(0); //Genero
+        tblProdutos1.getColumnModel().getColumn(2).setMaxWidth(0); //Genero
+        
+        tblProdutos1.getColumnModel().getColumn(3).setMinWidth(0); // Editora
+        tblProdutos1.getColumnModel().getColumn(3).setPreferredWidth(0); // Editora
+        tblProdutos1.getColumnModel().getColumn(3).setMaxWidth(0); // Editora
+        
+        tblProdutos1.getColumnModel().getColumn(4).setMinWidth(0);   // Autor
+        tblProdutos1.getColumnModel().getColumn(4).setPreferredWidth(0);  // Autor
+        tblProdutos1.getColumnModel().getColumn(4).setMaxWidth(0);   // Autor
+        
+        tblProdutos1.getColumnModel().getColumn(5).setMinWidth(0); // Tipo
+        tblProdutos1.getColumnModel().getColumn(5).setPreferredWidth(0); // Tipo
+        tblProdutos1.getColumnModel().getColumn(5).setMaxWidth(0);  // Tipo
+        
+        tblProdutos1.getColumnModel().getColumn(6).setMinWidth(0); // Descrição       
+        tblProdutos1.getColumnModel().getColumn(6).setPreferredWidth(0); // Descrição    
+        tblProdutos1.getColumnModel().getColumn(6).setMaxWidth(0); // Descrição
+        
+        tblProdutos1.getColumnModel().getColumn(7).setPreferredWidth(150); //Quantidade     
+
+        tblProdutos1.getColumnModel().getColumn(8).setPreferredWidth(150); //Valor Unitario
+
 
     }
 
