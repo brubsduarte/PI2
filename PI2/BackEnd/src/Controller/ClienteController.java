@@ -2,8 +2,10 @@ package Controller;
 
 import DAO.ClienteDAO;
 import Model.Cliente;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import sun.java2d.pipe.SpanShapeRenderer.Simple;
 
 public class ClienteController {
 
@@ -27,7 +29,9 @@ public class ClienteController {
     public static ArrayList<String[]> getClientes() {
         ArrayList<Cliente> clientes = ClienteDAO.getClientes();
         ArrayList<String[]> listaClientes = new ArrayList<>();
-
+        
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        
         for (int i = 0; i < clientes.size(); i++) {
             listaClientes.add(new String[]{String.valueOf(clientes.get(i).getId()),
                  clientes.get(i).getNome(),
@@ -47,7 +51,8 @@ public class ClienteController {
                  clientes.get(i).getEstado(),
                  clientes.get(i).getCidade(),
                  clientes.get(i).getBairro(),
-                 String.valueOf(clientes.get(i).getDataDeNascimento())});
+                 df.format(clientes.get(i).getDataDeNascimento())
+                         });
 
         }
 

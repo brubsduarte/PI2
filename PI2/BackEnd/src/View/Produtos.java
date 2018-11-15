@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 import utils.Validador;
 import static utils.Validador.limparMensagesErro;
@@ -21,8 +22,9 @@ public class Produtos extends javax.swing.JInternalFrame {
     
     public Produtos() {
         initComponents();
-
+       
         DesabilitarFormulario2();
+        spnQuantidadeProduto.setModel(new SpinnerNumberModel(0, 0, 300, 1));
     }
 
     
@@ -791,7 +793,7 @@ public class Produtos extends javax.swing.JInternalFrame {
                 txtDescricaoProduto.setText(tblPesquisaProduto.getModel().getValueAt(tblPesquisaProduto.getSelectedRow(), 6).toString());
                 spnQuantidadeProduto.setValue(Integer.valueOf(tblPesquisaProduto.getModel().getValueAt(tblPesquisaProduto.getSelectedRow(), 7).toString()));
                 txtVlrUnitario.setText(tblPesquisaProduto.getModel().getValueAt(tblPesquisaProduto.getSelectedRow(), 8).toString());
-
+                jTabbedPane2.setSelectedIndex(1);
             } else {
                 JOptionPane.showMessageDialog(this, "Selecione um produto para editar!");
             }

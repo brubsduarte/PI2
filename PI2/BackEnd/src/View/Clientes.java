@@ -40,7 +40,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         tmClientes.addColumn("RG");
         tmClientes.addColumn("Orgão Emissor");
         tmClientes.addColumn("UF");
-        tmClientes.addColumn("Data de Nascimento");
+        
         tmClientes.addColumn("Estado Civil");          
         tmClientes.addColumn("Email");
         tmClientes.addColumn("Telefone");
@@ -52,6 +52,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         tmClientes.addColumn("Estado");
         tmClientes.addColumn("Cidade");
         tmClientes.addColumn("Bairro");
+        tmClientes.addColumn("Data de Nascimento");
         for (String[] c : linhasClientes) {
             tmClientes.addRow(c);
         }
@@ -144,7 +145,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         tmClientes.addColumn("RG");
         tmClientes.addColumn("Orgão Emissor");
         tmClientes.addColumn("UF");
-        tmClientes.addColumn("Data de Nascimento");
+        
         tmClientes.addColumn("Estado Civil");          
         tmClientes.addColumn("Email");
         tmClientes.addColumn("Telefone");
@@ -156,6 +157,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         tmClientes.addColumn("Estado");
         tmClientes.addColumn("Cidade");
         tmClientes.addColumn("Bairro");
+        tmClientes.addColumn("Data de Nascimento");
         
         for (String[] c : linhasClientes) {
             tmClientes.addRow(c);
@@ -1116,6 +1118,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                     txtCidade.setText(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 16).toString());
                     txtBairro.setText(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 17).toString());
                     txtDataNascimento.setText(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 18).toString());
+                    jTabbedPane1.setSelectedIndex(1);
                 } else {
                     JOptionPane.showMessageDialog(this, "Selecione um cliente para editar!");
                 }
