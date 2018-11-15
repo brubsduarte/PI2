@@ -7,6 +7,7 @@ package View;
 
 import Controller.ProdutoController;
 import Controller.ClienteController;
+import Controller.VendaController;
 import java.util.ArrayList;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
@@ -462,6 +463,11 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         btnFinalizarVenda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnFinalizarVenda.setText("Finalizar Venda");
+        btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarVendaActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Valor Total: ");
