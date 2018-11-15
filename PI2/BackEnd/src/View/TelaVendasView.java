@@ -7,6 +7,8 @@ package View;
 
 import Controller.ProdutoController;
 import Controller.ClienteController;
+import Controller.VendaController;
+import Model.Venda;
 import java.util.ArrayList;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JOptionPane;
-import utils.Validador;
 
 /**
  *
@@ -724,7 +725,24 @@ public class TelaVendasView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarClienteActionPerformed
 
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
-        // TODO add your handling code here:
+        try {
+            if(clienteSelecionado.length == 0) {
+                throw new Exception("Nenhum cliente selecionado.");
+            }
+            
+            if(vendas.isEmpty()) {
+                throw new Exception("Nenhum produto selecionado.");
+            }
+            
+            VendaController.Salvar(vendas, clienteSelecionado, new Date());
+            
+            showMessageDialog(null, "Venda criada com sucesso");
+            
+            inicia();
+            
+        } catch (Exception e) {
+            showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 
 

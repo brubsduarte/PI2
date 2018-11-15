@@ -1,7 +1,7 @@
 package Model;
 
 public class Produto {
-    
+
     private int idProduto;
     private String titulo;
     private String genero;
@@ -11,17 +11,13 @@ public class Produto {
     private String descricao;
     private int quantidade;
     private double valorUni;
-    
-    
-    
-    
-    
+
     public Produto() {
     }
 
-    public Produto(int idProduto, String titulo, String genero,String editora,String autor,String tipo,
-            String descricao,int quantidade,double valorUni  ) {
-       
+    public Produto(int idProduto, String titulo, String genero, String editora, String autor, String tipo,
+            String descricao, int quantidade, double valorUni) {
+
         this.idProduto = idProduto;
         this.titulo = titulo;
         this.genero = genero;
@@ -31,8 +27,15 @@ public class Produto {
         this.descricao = descricao;
         this.quantidade = quantidade;
         this.valorUni = valorUni;
-        
-        
+
+    }
+    
+    public Produto(int idProduto, String titulo, String autor, int quantidade, double valorUni) {
+
+        this.idProduto = idProduto;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.valorUni = valorUni;
     }
 
     public int getIdProduto() {
