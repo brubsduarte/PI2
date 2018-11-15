@@ -38,6 +38,42 @@ public class Venda {
         this.data = data;
     }
     
+    public Venda(ArrayList<String[]> produtos, String[] cliente, Date data) {
+        this.idVenda = 0;
+        this.produtos = converteProdutos(produtos);
+        this.cliente = converteCliente(cliente);
+        this.valorTotal = getTotal(produtos);
+        this.data = data;
+    }
+    
+    private ArrayList<Produto> converteProdutos(ArrayList<String[]> produtosLista) {
+        ArrayList<Produto> novosProdutos = new ArrayList();
+        for (String[] strings : produtosLista) {
+            novosProdutos.add(new Produto(
+                                          Integer.valueOf(strings[0]), 
+                                          strings[1], 
+                                          strings[2], 
+                                          Integer.valueOf(strings[4]), 
+                                          Double.valueOf(strings[3])
+                                          ));
+        }
+        return novosProdutos;
+    }
+    
+    private Cliente converteCliente(String[] cliente) {
+        return new Cliente(Integer.valueOf(cliente[0]), cliente[1], cliente[2]);
+    }
+    
+    private float getTotal(ArrayList<String[]> produtosLista) {
+        float valorTotal = 0f;
+
+        for (String[] produto : produtosLista) {
+            valorTotal += Float.valueOf(produto[3]) * Float.valueOf(produto[4]);
+        }
+        
+        return valorTotal;
+    }
+    
     public int getIdVenda() {
         return idVenda;
     }
