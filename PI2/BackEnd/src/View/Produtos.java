@@ -174,7 +174,6 @@ public class Produtos extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lblAviso = new javax.swing.JLabel();
         txtVlrUnitario = new javax.swing.JTextField();
         painelFoto8 = new javax.swing.JPanel();
         lblFoto8 = new javax.swing.JLabel();
@@ -435,9 +434,6 @@ public class Produtos extends javax.swing.JInternalFrame {
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
         jLabel7.setText("*");
 
-        lblAviso.setForeground(new java.awt.Color(255, 0, 0));
-        lblAviso.setText("AVISO CASO FALTE ALGUMA INFORMAÇÃO");
-
         txtVlrUnitario.setText("R$ 0,00");
 
         painelFoto8.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -548,9 +544,6 @@ public class Produtos extends javax.swing.JInternalFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel7))))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(128, 128, 128)
-                                .addComponent(lblAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblTitulo)
@@ -631,13 +624,11 @@ public class Produtos extends javax.swing.JInternalFrame {
                             .addComponent(spnQuantidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6)
-                            .addComponent(txtVlrUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addComponent(lblAviso))
+                            .addComponent(txtVlrUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(painelFoto8, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -823,7 +814,7 @@ public class Produtos extends javax.swing.JInternalFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProdutoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Produtos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -842,7 +833,7 @@ public class Produtos extends javax.swing.JInternalFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProdutoView().setVisible(true);
+                new Produtos().setVisible(true);
             }
         });
     }
@@ -880,7 +871,6 @@ public class Produtos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jtPesqProdutos;
     private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblAutor1;
-    private javax.swing.JLabel lblAviso;
     private javax.swing.JLabel lblEditora;
     private javax.swing.JLabel lblEditora1;
     private javax.swing.JLabel lblFoto8;
