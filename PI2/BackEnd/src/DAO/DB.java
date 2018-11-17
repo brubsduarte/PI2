@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import java.sql.Connection;
@@ -13,7 +8,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author brubs
+ * @author bruna.duarte
  */
 public class DB {
 
@@ -24,9 +19,10 @@ public class DB {
     private static final String SENHA = "";
     private static String url = "";
     private static Connection conexao;
-    
+
     /**
-     * Executa as alterações no banco de dados.
+     * Executa as alterações (inserir, excluir e atualizar) no banco de dados.
+     *
      * @param sql código a ser executado no banco de dados.
      * @return TRUE se executar com sucesso e FALSE se houver alguma falha.
      */
@@ -39,7 +35,7 @@ public class DB {
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement comando = conexao.createStatement();
             int linhasAfetadas = comando.executeUpdate(sql);
-            
+
             retorno = linhasAfetadas > 0;
 
         } catch (ClassNotFoundException | SQLException ex) {
@@ -53,5 +49,34 @@ public class DB {
         }
 
         return retorno;
+    }
+
+    /**
+     * Executa consultas no banco de dados.
+     *
+     * @param sql código a ser executado no banco de dados.
+     * @return ResultSet com o resultado da consulta.
+     */
+    public static ResultSet executarConsulta(String sql) {
+        ResultSet rs;
+
+        try {
+            Class.forName(DRIVER);
+            url = SERVIDOR + BASEDADOS;
+            conexao = DriverManager.getConnection(url, LOGIN, SENHA);
+            Statement comando = conexao.createStatement();
+            rs = comando.executeQuery(sql);
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            rs = null;
+        } finally {
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                rs = null;
+            }
+        }
+
+        return rs;
     }
 }
