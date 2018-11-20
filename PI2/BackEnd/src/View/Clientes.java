@@ -22,6 +22,7 @@ public class Clientes extends javax.swing.JInternalFrame {
 
     public Clientes() {
         initComponents();
+        LoadTable();
         
         
         //this.setLocationRelativeTo(null);
@@ -39,8 +40,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         tmClientes.addColumn("Sexo");
         tmClientes.addColumn("RG");
         tmClientes.addColumn("Orgão Emissor");
-        tmClientes.addColumn("UF");
-        
+        tmClientes.addColumn("UF");    
         tmClientes.addColumn("Estado Civil");          
         tmClientes.addColumn("Email");
         tmClientes.addColumn("Telefone");

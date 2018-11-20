@@ -20,13 +20,27 @@ public class DB {
     private static String url = "";
     private static Connection conexao;
 
+    public DB() {
+    }
+    
+    /**
+     * Fecha a conexão com o banco de dados.
+     */
+    public void close() {
+        try {
+            conexao.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
     /**
      * Executa as alterações (inserir, excluir e atualizar) no banco de dados.
      *
      * @param sql código a ser executado no banco de dados.
      * @return TRUE se executar com sucesso e FALSE se houver alguma falha.
      */
-    public static boolean executarAlteracao(String sql) {
+    public boolean executarAlteracao(String sql) {
         boolean retorno = false;
 
         try {
@@ -57,26 +71,17 @@ public class DB {
      * @param sql código a ser executado no banco de dados.
      * @return ResultSet com o resultado da consulta.
      */
-    public static ResultSet executarConsulta(String sql) {
-        ResultSet rs;
-
+    public ResultSet executarConsulta(String sql) {
         try {
             Class.forName(DRIVER);
             url = SERVIDOR + BASEDADOS;
             conexao = DriverManager.getConnection(url, LOGIN, SENHA);
             Statement comando = conexao.createStatement();
-            rs = comando.executeQuery(sql);
-
+            ResultSet rs = comando.executeQuery(sql);
+            
+            return rs;
         } catch (ClassNotFoundException | SQLException ex) {
-            rs = null;
-        } finally {
-            try {
-                conexao.close();
-            } catch (SQLException ex) {
-                rs = null;
-            }
+            return null;
         }
-
-        return rs;
     }
 }

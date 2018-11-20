@@ -5,7 +5,6 @@ import Model.Cliente;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import sun.java2d.pipe.SpanShapeRenderer.Simple;
 
 public class ClienteController {
 
@@ -35,7 +34,7 @@ public class ClienteController {
         for (int i = 0; i < clientes.size(); i++) {
             listaClientes.add(new String[]{String.valueOf(clientes.get(i).getId()),
                  clientes.get(i).getNome(),
-                 String.valueOf(clientes.get(i).getCPF()),
+                 clientes.get(i).getCPF(),
                  clientes.get(i).getSexo(),
                  clientes.get(i).getRg(),
                  clientes.get(i).getOrgaoEmissor(),
