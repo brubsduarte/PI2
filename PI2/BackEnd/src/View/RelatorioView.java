@@ -5,7 +5,7 @@
  */
 package View;
 
-import Controller.VendaController;
+import Controller.RelatorioController;
 import Model.Util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +25,7 @@ import javax.swing.text.MaskFormatter;
  */
 public final class RelatorioView extends javax.swing.JFrame {
 
-    private final VendaController vendaController;
+    private final RelatorioController relatorioController;
 
     /**
      * Creates new form Relatorio
@@ -33,7 +33,7 @@ public final class RelatorioView extends javax.swing.JFrame {
     public RelatorioView() {
         initComponents();
 
-        vendaController = new VendaController();
+        relatorioController = new RelatorioController();
         loadTables();
     }
     
@@ -286,7 +286,7 @@ public final class RelatorioView extends javax.swing.JFrame {
 
     public void LoadTableCliente() {
 
-        ArrayList<String[]> compradores = vendaController.getCompradores();
+        ArrayList<String[]> compradores = relatorioController.getCompradores();
 
         DefaultTableModel tmClientes = new DefaultTableModel();
         tmClientes.addColumn("Nome");
@@ -306,7 +306,7 @@ public final class RelatorioView extends javax.swing.JFrame {
     
     public void LoadTableVenda() {
         
-        ArrayList<String[]> vendasOrndenadas = vendaController.getVendasOrdenadas();
+        ArrayList<String[]> vendasOrndenadas = relatorioController.getVendasOrdenadas();
         
         DefaultTableModel tmVendas = new DefaultTableModel();
         tmVendas.addColumn("ID");
@@ -318,7 +318,7 @@ public final class RelatorioView extends javax.swing.JFrame {
             tmVendas.addRow(venda);
         }
         
-        lblValorTotal.setText(Util.formatarDinheiro(vendaController.getTotalVendas()));
+        lblValorTotal.setText(Util.formatarDinheiro(relatorioController.getTotalVendas()));
         
         tblVendas.setModel(tmVendas);
 
@@ -330,7 +330,7 @@ public final class RelatorioView extends javax.swing.JFrame {
     
     public void LoadTableProduto() {
 
-        ArrayList<String[]> produtosOrndenados = vendaController.getProdutos();
+        ArrayList<String[]> produtosOrndenados = relatorioController.getProdutos();
 
         DefaultTableModel tmProdutos = new DefaultTableModel();
         tmProdutos.addColumn("Titulo");
@@ -378,7 +378,7 @@ public final class RelatorioView extends javax.swing.JFrame {
                 throw new ExecutionException("A diferença de dias entre uma data e outra é maior que 30 dias.", null);
             }
             
-            if(!vendaController.filtraVendas(dataInicial, dataFinal)) {
+            if(!relatorioController.filtraVendas(dataInicial, dataFinal)) {
                 loadTables();
                 throw new ExecutionException("Nenhum resultado encontrado", null);
             }
@@ -395,7 +395,7 @@ public final class RelatorioView extends javax.swing.JFrame {
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         txtDataInicio.setText("");
         txtDataFinal.setText("");
-        vendaController.limparFiltros();
+        relatorioController.limparFiltros();
         loadTables();
     }//GEN-LAST:event_btnLimparActionPerformed
 
