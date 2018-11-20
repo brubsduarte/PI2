@@ -15,20 +15,17 @@ import javax.swing.table.DefaultTableModel;
 import utils.Validador;
 import static utils.Validador.limparMensagesErro;
 
-
 public class Produtos extends javax.swing.JInternalFrame {
 
     private String modoTela; //"Criar/Editar"
-    
+
     public Produtos() {
         initComponents();
-       
+        LoadTable2();
         DesabilitarFormulario2();
         spnQuantidadeProduto.setModel(new SpinnerNumberModel(0, 0, 300, 1));
     }
 
-    
-    
     public void LoadTable2() {
 
         ArrayList<String[]> linhasProdutos = ProdutoController.getProdutos();
@@ -798,7 +795,7 @@ public class Produtos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtIDprodutoActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        
+
     }//GEN-LAST:event_btnPesquisarActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -895,7 +892,7 @@ public class Produtos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTituloProduto;
     private javax.swing.JTextField txtVlrUnitario;
     // End of variables declaration//GEN-END:variables
- 
+
     private boolean ValidarFormulario2() {
 
         if (this.txtIDproduto.getText().equalsIgnoreCase("")) {
@@ -912,37 +909,34 @@ public class Produtos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Defina um valor unitario ao produto!");
             return false;
         }
-        
+
         if (this.txtAutorProduto.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Defina um autor ao produto!");
             return false;
         }
-        
+
         if (this.cboGeneroProduto.getSelectedItem().equals("Selecione")) {
             JOptionPane.showMessageDialog(this, "Defina um genero ao produto!");
             return false;
-        }        
-        
+        }
+
         if (this.cboEditoraProduto.getSelectedItem().equals("Selecione")) {
             JOptionPane.showMessageDialog(this, "Defina uma editora ao produto!");
             return false;
         }
-        
+
         if (this.cboTipoProduto.getSelectedItem().equals("Selecione")) {
             JOptionPane.showMessageDialog(this, "Defina um tipo ao produto!");
             return false;
         }
-        
+
         if (this.spnQuantidadeProduto.getValue().equals(0)) {
             JOptionPane.showMessageDialog(this, "Defina uma quantidade ao produto!");
             return false;
         }
-        
-        
 
         return true;
 
     }
-
 
 }
