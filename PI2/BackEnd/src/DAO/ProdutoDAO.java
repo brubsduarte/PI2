@@ -17,15 +17,27 @@ public class ProdutoDAO {
                 + "'"+p.getautor()+"', "
                 + "'"+p.getgenero()+"', "
                 + "'"+p.geteditora()+"', "
-                + "'"+p.getvalorUni()+"', "
+                + ""+p.getvalorUni()+", "
                 + "'"+p.gettipo()+"', "
-                + "'"+p.getquantidade()+"', "
+                + ""+p.getquantidade()+", "
                 + "'"+p.getdescricao()+"');";
         return db.executarAlteracao(sql);
     }
 
     public static boolean Atualizar(Produto p) {
-        return SimulaDB.getInstance().AtualizarProduto(p);
+        DB db = new DB();
+        String sql = 
+                "UPDATE produto SET "
+                + "Titulo = '"+p.gettitulo()+"', "
+                + "Autor = '"+p.getautor()+"', "
+                + "Genero = '"+p.getgenero()+"', "
+                + "Editora = '"+p.geteditora()+"', "
+                + "Valor = "+p.getvalorUni()+", "
+                + "Tipo = '"+p.gettipo()+"', "
+                + "Quantidade = "+p.getquantidade()+", "
+                + "Descricao = '"+p.getdescricao()+"' "
+                + "Where ID = "+p.getIdProduto()+";";
+        return db.executarAlteracao(sql);
     }
 
     public static boolean Excluir(int produtoID) {
