@@ -15,13 +15,13 @@ public class ClienteController {
         return ClienteDAO.Salvar(p);
     }
 
-    public static boolean Excluir(int indice) {
-        return ClienteDAO.Excluir(indice);
+    public static boolean Excluir(int clienteID) {
+        return ClienteDAO.Excluir(clienteID);
     }
 
     public static boolean Atualizar(int pId, String pNome, String pCPF, String sexo, String rg, String orgaoEmissor, String uf, String estadoCivil, String email, String telefone, String celular, String endereco, String numeroCasa, String complemento, String cep, String estado, String cidade, String bairro, Date dataDeNascimento) {
-        Cliente p = new Cliente(pId, pNome, pCPF, sexo, rg, orgaoEmissor, uf, estadoCivil, email, telefone, celular, endereco, numeroCasa, complemento, cep, estado, cidade, bairro, dataDeNascimento);
-        return ClienteDAO.Atualizar(p);
+        Cliente c = new Cliente(pId, pNome, pCPF, sexo, rg, orgaoEmissor, uf, estadoCivil, email, telefone, celular, endereco, numeroCasa, complemento, cep, estado, cidade, bairro, dataDeNascimento);
+        return ClienteDAO.Atualizar(c);
 
     }
 

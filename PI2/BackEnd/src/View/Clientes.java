@@ -258,7 +258,6 @@ public class Clientes extends javax.swing.JInternalFrame {
     }
 
     public void DesabilitarFormulario() {
-        txtIDCliente.setEditable(false);
         txtNome.setEditable(false);
         txtCPF.setEditable(false);
         txtRg.setEditable(false);
@@ -283,7 +282,6 @@ public class Clientes extends javax.swing.JInternalFrame {
     }
 
     public void HabilitarFormulario() {
-        txtIDCliente.setEditable(true);
         txtNome.setEditable(true);
         txtCPF.setEditable(true);
         txtRg.setEditable(true);
@@ -381,7 +379,6 @@ public class Clientes extends javax.swing.JInternalFrame {
         txtNome = new javax.swing.JTextField();
         txtCPF = new javax.swing.JFormattedTextField();
         lblNotNullNome9 = new javax.swing.JLabel();
-        lblNotNullNome10 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -413,6 +410,7 @@ public class Clientes extends javax.swing.JInternalFrame {
             }
         });
 
+        tblPesquisaCliente3.setAutoCreateRowSorter(true);
         tblPesquisaCliente3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -436,6 +434,8 @@ public class Clientes extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblPesquisaCliente3.setFocusable(false);
+        tblPesquisaCliente3.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(tblPesquisaCliente3);
 
         btnExcluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/button_cancel-32.png"))); // NOI18N
@@ -547,6 +547,8 @@ public class Clientes extends javax.swing.JInternalFrame {
         jTabbedPane1.addTab("Pesquisa", jPanel2);
 
         lblNome.setText("Nome:");
+
+        txtIDCliente.setEditable(false);
 
         lblCPF.setText("C.P.F.:");
 
@@ -697,10 +699,6 @@ public class Clientes extends javax.swing.JInternalFrame {
         lblNotNullNome9.setForeground(new java.awt.Color(255, 0, 0));
         lblNotNullNome9.setText("*");
 
-        lblNotNullNome10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lblNotNullNome10.setForeground(new java.awt.Color(255, 0, 0));
-        lblNotNullNome10.setText("*");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -797,9 +795,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtIDCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblNotNullNome10))
+                                .addComponent(txtIDCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel4Layout.createSequentialGroup()
                                     .addComponent(btnCancelar2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -837,8 +833,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtIDCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNotNullNome10))
+                    .addComponent(txtIDCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -1023,8 +1018,9 @@ public class Clientes extends javax.swing.JInternalFrame {
                             dt)) {
 
                         this.LoadTable();
-                        JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
                         LimparFormulario();
+                        DesabilitarFormulario();
+                        JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(this, "Falha ao cadastrar cliente!");
                     }
@@ -1056,21 +1052,19 @@ public class Clientes extends javax.swing.JInternalFrame {
                             txtBairro.getText(),
                             dt)) {
 
+                        LimparFormulario();
+                        DesabilitarFormulario();
                         this.LoadTable();
-                        JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                        JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!");
                     } else {
-                        JOptionPane.showMessageDialog(this, "Falha ao cadastrar cliente!");
+                        JOptionPane.showMessageDialog(this, "Falha ao atualizar cliente!");
                     }
 
                 }
 
             } catch (HeadlessException | NumberFormatException | ParseException e) {
-                JOptionPane.showMessageDialog(null, "Falha ao cadastrar cliente");
+                JOptionPane.showMessageDialog(null, "Falha ao cadastrar ou alterar cliente!");
             }
-
-            //LimparFormulario();
-            //DesabilitarFormulario();
-
         }
 
     }//GEN-LAST:event_btnSalvarClienteActionPerformed
@@ -1144,7 +1138,8 @@ public class Clientes extends javax.swing.JInternalFrame {
     private void btnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir1ActionPerformed
         try {
             if (tblPesquisaCliente3.getRowCount() > 0) {
-                if (ClienteController.Excluir(tblPesquisaCliente3.getSelectedRow())) {
+                int clienteID = Integer.parseInt(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 0).toString());
+                if (ClienteController.Excluir(clienteID)) {
                     this.LoadTable();
                     JOptionPane.showMessageDialog(this, "Cliente excluído da base de dados");
                 } else {
@@ -1265,7 +1260,6 @@ public class Clientes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblEstadoCivil;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNotNullNome1;
-    private javax.swing.JLabel lblNotNullNome10;
     private javax.swing.JLabel lblNotNullNome12;
     private javax.swing.JLabel lblNotNullNome14;
     private javax.swing.JLabel lblNotNullNome15;
@@ -1314,12 +1308,7 @@ public class Clientes extends javax.swing.JInternalFrame {
     }
 
     private boolean ValidarFormulario() {
-
-        if (this.txtIDCliente.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(this, "Defina um ID ao cliente!");
-            return false;
-        }
-
+        
         if (this.txtNome.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Defina um nome para o cliente!");
             return false;

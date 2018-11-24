@@ -16,7 +16,7 @@ public class ClienteDAO {
         String dataFormatada = df.format(c.getDataDeNascimento());
         
         String sql = 
-                "INSERT INTO Cliente "
+                "INSERT INTO cliente "
                 + "(CPF, Nome, RG, Sexo, OrgaoEmissor, UF, DataNascimento, EstadoCivil, Email, TelefoneResidencial, TelefoneCelular, Rua, Numero, CEP, Complemento, Bairro, Cidade, Estado)"
                 + "VALUES ("
                 + "'"+c.getCPF()+"', "
@@ -40,12 +40,41 @@ public class ClienteDAO {
         return db.executarAlteracao(sql);
     }
 
-    public static boolean Atualizar(Cliente p) {
-        return SimulaDB.getInstance().AtualizarCliente(p);
+    public static boolean Atualizar(Cliente c) {
+        DB db = new DB();
+        
+        SimpleDateFormat df;
+        df = new SimpleDateFormat("yyyy-MM-dd");
+        String dataFormatada = df.format(c.getDataDeNascimento());
+        
+        String sql = 
+                "UPDATE cliente SET "
+                + "CPF = '"+c.getCPF()+"', "
+                + "Nome = '"+c.getNome()+"', "
+                + "RG = '"+c.getRg()+"', "
+                + "Sexo = '"+c.getSexo()+"', "
+                + "OrgaoEmissor = '"+c.getOrgaoEmissor()+"', "
+                + "UF = '"+c.getUf()+"', "
+                + "DataNascimento = '"+dataFormatada+"', "
+                + "EstadoCivil = '"+c.getEstadoCivil()+"', "
+                + "Email = '"+c.getEmail()+"', "
+                + "TelefoneResidencial = '"+c.getTelefone()+"', "
+                + "TelefoneCelular = '"+c.getCelular()+"', "
+                + "Rua = '"+c.getEndereco()+"', "
+                + "Numero = '"+c.getNumeroCasa()+"', "
+                + "CEP = '"+c.getCPF()+"', "
+                + "Complemento = '"+c.getComplemento()+"', "
+                + "Bairro = '"+c.getBairro()+"', "
+                + "Cidade = '"+c.getCidade()+"', "
+                + "Estado = '"+c.getEstado()+"' "
+                + "Where ID = "+c.getId()+";";
+        return db.executarAlteracao(sql);
     }
 
-    public static boolean Excluir(int indice) {
-        return SimulaDB.getInstance().ExcluirCliente(indice);
+    public static boolean Excluir(int clienteID) {
+        DB db = new DB();
+        String sql = "DELETE FROM cliente Where ID = "+clienteID+";";
+        return db.executarAlteracao(sql);
     }
 
     public static ArrayList<Cliente> getClientes() {
