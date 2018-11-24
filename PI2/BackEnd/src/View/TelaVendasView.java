@@ -52,13 +52,13 @@ public class TelaVendasView extends javax.swing.JFrame {
         lblNomeCliente.setText("");
         lblCpfCliente.setText("");
 
-        clientes = ClienteController.getClientesPronto();
-        clientesFiltrados = ClienteController.getClientesPronto();
+        clientes = VendaController.getClientes();
+        clientesFiltrados = clientes;
         clienteSelecionado = null;
         LoadTableCliente();
 
-        produtos = ProdutoController.getProdutosPronto();
-        produtosFiltrados = ProdutoController.getProdutosPronto();
+        produtos = VendaController.getProdutos();
+        produtosFiltrados = produtos;
         produtoSelecionado = null;
         LoadTableProduto();
 

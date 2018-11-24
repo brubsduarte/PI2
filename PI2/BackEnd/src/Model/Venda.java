@@ -24,8 +24,17 @@ public class Venda {
     private int idVenda;
     private ArrayList<Produto> produtos;
     private Cliente cliente;
-    private float valorTotal;
+    private double valorTotal;
     private Date data;
+    private String nomeCliente;
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
 
     public Venda() {
     }
@@ -98,7 +107,7 @@ public class Venda {
         this.cliente = cliente;
     }
 
-    public void setValorTotal(float valorTotal) {
+    public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
 
@@ -106,7 +115,7 @@ public class Venda {
         this.data = data;
     }
     
-    public float getValorTotal() {
+    public double getValorTotal() {
         return valorTotal;
     }
 

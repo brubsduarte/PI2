@@ -11,6 +11,15 @@ public class Produto {
     private String descricao;
     private int quantidade;
     private double valorUni;
+    private double totalVenda;
+
+    public double getTotalVenda() {
+        return totalVenda;
+    }
+
+    public void setTotalVenda(double totalVenda) {
+        this.totalVenda = totalVenda;
+    }
 
     public Produto() {
     }

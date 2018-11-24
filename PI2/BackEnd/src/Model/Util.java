@@ -14,7 +14,7 @@ import java.util.Locale;
  */
 public class Util {
     
-    public static String formatarDinheiro(float number) {
+    public static String formatarDinheiro(double number) {
         Locale meuLocal = new Locale( "pt", "BR" );
         NumberFormat format = NumberFormat.getCurrencyInstance(meuLocal);
         return format.format(number);       

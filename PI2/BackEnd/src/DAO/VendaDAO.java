@@ -35,6 +35,8 @@ public class VendaDAO {
     }
     
     public static ArrayList<Venda> getVenda()
+            
+           
     {
         return SimulaDB.getInstance().getVenda();
     }

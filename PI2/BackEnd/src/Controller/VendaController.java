@@ -5,8 +5,11 @@
  */
 package Controller;
 
+import DAO.ClienteDAO;
+import DAO.ProdutoDAO;
 import DAO.VendaDAO;
 import Model.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,7 +32,7 @@ public class VendaController {
         Venda p = new Venda(idVenda, produtos, cliente, valorTotal, data);
         return VendaDAO.Salvar(p);
     }
-    
+
     public static boolean Salvar(ArrayList<String[]> produtos, String[] cliente, Date data) {
         //Salvo na memória
         Venda p = new Venda(produtos, cliente, data);
@@ -70,9 +73,36 @@ public class VendaController {
         return Venda.getCompradores(vendasFiltradas);
     }
 
-    public ArrayList<String[]> getProdutos() {
+    public static ArrayList<String[]> getClientes() {
+        ArrayList<Cliente> clientes = ClienteDAO.getClientes();
+        ArrayList<String[]> listaClientes = new ArrayList<>();
 
-        return Venda.getProdutosOrdenados(vendasFiltradas);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        for (int i = 0; i < clientes.size(); i++) {
+            listaClientes.add(new String[]{String.valueOf(clientes.get(i).getId()),
+                clientes.get(i).getNome(),
+                clientes.get(i).getCPF()
+            });
+
+        }
+
+        return listaClientes;
+
+    }
+
+    public static ArrayList<String[]> getProdutos() {
+        ArrayList<Produto> produtos = ProdutoDAO.getProdutos();
+        ArrayList<String[]> listaProdutos = new ArrayList<>();
+
+        for (int i = 0; i < produtos.size(); i++) {
+            listaProdutos.add(new String[]{
+                String.valueOf(produtos.get(i).getIdProduto()),
+                produtos.get(i).gettitulo(),
+                produtos.get(i).getautor(),
+                String.valueOf(produtos.get(i).getvalorUni()),});
+        }
+        return listaProdutos;
     }
 
     public ArrayList<String[]> getVendasOrdenadas() {
@@ -101,4 +131,5 @@ public class VendaController {
     public void limparFiltros() {
         vendasFiltradas = vendas;
     }
+
 }

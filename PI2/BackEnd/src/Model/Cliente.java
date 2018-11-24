@@ -23,10 +23,19 @@ public class Cliente implements Comparable {
     private String estado;
     private String cidade;
     private String bairro;
+    private int compras;
     
 
     public String getCPF() {
         return cpf;
+    }
+
+    public int getCompras() {
+        return compras;
+    }
+
+    public void setCompras(int compras) {
+        this.compras = compras;
     }
 
     public void setCPF(String pCPF) {
@@ -62,7 +71,7 @@ public class Cliente implements Comparable {
         this.id = id;
         this.nome = pNome;
         this.cpf = pCPF;
-    }
+    } 
 
     public int getId() {
         return id;
