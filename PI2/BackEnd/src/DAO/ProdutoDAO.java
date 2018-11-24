@@ -15,8 +15,10 @@ public class ProdutoDAO {
         return SimulaDB.getInstance().AtualizarProduto(p);
     }
 
-    public static boolean Excluir(int indice) {
-        return SimulaDB.getInstance().ExcluirProduto(indice);
+    public static boolean Excluir(int produtoID) {
+        DB db = new DB();
+        String sql = "DELETE FROM produto Where ID = "+produtoID+";";
+        return db.executarAlteracao(sql);
     }
 
     public static ArrayList<Produto> getProdutos() {
