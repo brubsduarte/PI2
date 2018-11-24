@@ -59,7 +59,7 @@ public class ClienteController {
 
     }
     public static ArrayList<String[]> getClientesFiltro(int id, String nome, String cpf, String rg) {
-        ArrayList<Cliente> clientes = ClienteDAO.filtroCliente(id, nome, cpf, rg);
+        ArrayList<Cliente> clientes = ClienteDAO.filtrarClientes(id, nome, cpf, rg);
         ArrayList<String[]> listaClientes = new ArrayList<>();
 
         for (int i = 0; i < clientes.size(); i++) {

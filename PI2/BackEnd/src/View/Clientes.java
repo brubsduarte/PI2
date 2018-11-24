@@ -25,15 +25,17 @@ public class Clientes extends javax.swing.JInternalFrame {
 
     public Clientes() {
         initComponents();
-        LoadTable();
+        LoadTable(null);
 
         //this.setLocationRelativeTo(null);
         DesabilitarFormulario();
     }
 
-    public void LoadTable() {
+    public void LoadTable(ArrayList<String[]> linhasClientes) {
 
-        ArrayList<String[]> linhasClientes = ClienteController.getClientes();
+        if(linhasClientes == null){
+            linhasClientes = ClienteController.getClientes();
+        }
 
         DefaultTableModel tmClientes = new DefaultTableModel();
         tmClientes.addColumn("ID");
@@ -1017,7 +1019,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                             txtBairro.getText(),
                             dt)) {
 
-                        this.LoadTable();
+                        this.LoadTable(null);
                         LimparFormulario();
                         DesabilitarFormulario();
                         JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
@@ -1054,7 +1056,7 @@ public class Clientes extends javax.swing.JInternalFrame {
 
                         LimparFormulario();
                         DesabilitarFormulario();
-                        this.LoadTable();
+                        this.LoadTable(null);
                         JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(this, "Falha ao atualizar cliente!");
@@ -1120,19 +1122,15 @@ public class Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        int id;
-        if (txtPesquisaId.getText().equals("")) {
-            id = 0;
-        } else {
+        int id = 0;
+        if(!txtPesquisaId.getText().equals("")){
             id = Integer.parseInt(txtPesquisaId.getText());
         }
-
-        if (tblPesquisaCliente3.getRowCount() > 0) {
-            LoadTableWithFilters(id, txtPesquisaNome.getText(), txtPesquisaCpf.getText(), txtPesquisaRg.getText());
-        } else {
-            JOptionPane.showMessageDialog(null, "Não é possível pesquisar com a tabela vazia!");
-        }
-
+        LoadTable(ClienteController.getClientesFiltro(
+                id, 
+                txtPesquisaNome.getText(), 
+                Util.limpaFormatacao(txtPesquisaCpf.getText()), 
+                Util.limpaFormatacao(txtPesquisaRg.getText())));
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir1ActionPerformed
@@ -1140,7 +1138,7 @@ public class Clientes extends javax.swing.JInternalFrame {
             if (tblPesquisaCliente3.getRowCount() > 0) {
                 int clienteID = Integer.parseInt(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 0).toString());
                 if (ClienteController.Excluir(clienteID)) {
-                    this.LoadTable();
+                    this.LoadTable(null);
                     JOptionPane.showMessageDialog(this, "Cliente excluído da base de dados");
                 } else {
                     JOptionPane.showMessageDialog(this, "Falha ao excluir o cliente!");
@@ -1160,7 +1158,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         txtPesquisaId.setText("");
         txtPesquisaNome.setText("");
         txtPesquisaRg.setText("");
-        LoadTable();
+        LoadTable(null);
     }//GEN-LAST:event_btnLimparActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
