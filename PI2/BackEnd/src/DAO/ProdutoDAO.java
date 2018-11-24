@@ -8,7 +8,20 @@ import java.util.ArrayList;
 public class ProdutoDAO {
 
     public static boolean Salvar(Produto p) {
-        return SimulaDB.getInstance().SalvarProduto(p);
+        DB db = new DB();
+        String sql = 
+                "INSERT INTO produto "
+                + "(Titulo, Autor, Genero, Editora, Valor, Tipo, Quantidade, Descricao)"
+                + "VALUES ("
+                + "'"+p.gettitulo()+"', "
+                + "'"+p.getautor()+"', "
+                + "'"+p.getgenero()+"', "
+                + "'"+p.geteditora()+"', "
+                + "'"+p.getvalorUni()+"', "
+                + "'"+p.gettipo()+"', "
+                + "'"+p.getquantidade()+"', "
+                + "'"+p.getdescricao()+"');";
+        return db.executarAlteracao(sql);
     }
 
     public static boolean Atualizar(Produto p) {
