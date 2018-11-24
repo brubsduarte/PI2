@@ -7,7 +7,10 @@ package View;
 
 import Controller.ClienteController;
 import Model.Cliente;
+import Model.Util;
+import java.awt.HeadlessException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,8 +26,7 @@ public class Clientes extends javax.swing.JInternalFrame {
     public Clientes() {
         initComponents();
         LoadTable();
-        
-        
+
         //this.setLocationRelativeTo(null);
         DesabilitarFormulario();
     }
@@ -40,8 +42,8 @@ public class Clientes extends javax.swing.JInternalFrame {
         tmClientes.addColumn("Sexo");
         tmClientes.addColumn("RG");
         tmClientes.addColumn("Orgão Emissor");
-        tmClientes.addColumn("UF");    
-        tmClientes.addColumn("Estado Civil");          
+        tmClientes.addColumn("UF");
+        tmClientes.addColumn("Estado Civil");
         tmClientes.addColumn("Email");
         tmClientes.addColumn("Telefone");
         tmClientes.addColumn("Celular");
@@ -59,7 +61,6 @@ public class Clientes extends javax.swing.JInternalFrame {
 
         tblPesquisaCliente3.setModel(tmClientes);
 
-
         tblPesquisaCliente3.getColumnModel().getColumn(0).setPreferredWidth(0); //ID;
         tblPesquisaCliente3.getColumnModel().getColumn(1).setPreferredWidth(250); //nome
         tblPesquisaCliente3.getColumnModel().getColumn(2).setPreferredWidth(150); //cpf
@@ -67,7 +68,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         tblPesquisaCliente3.getColumnModel().getColumn(3).setMinWidth(0);  //sexo
         tblPesquisaCliente3.getColumnModel().getColumn(3).setPreferredWidth(0); //sexo
         tblPesquisaCliente3.getColumnModel().getColumn(3).setMaxWidth(0); //sexo
-        
+
         //tblPesquisaCliente3.getColumnModel().getColumn(3).setMinWidth(0); // rg
         tblPesquisaCliente3.getColumnModel().getColumn(4).setPreferredWidth(0); // rg
         //tblPesquisaCliente3.getColumnModel().getColumn(3).setMaxWidth(0); // rg
@@ -83,8 +84,6 @@ public class Clientes extends javax.swing.JInternalFrame {
         tblPesquisaCliente3.getColumnModel().getColumn(7).setMinWidth(0); // estado civil        
         tblPesquisaCliente3.getColumnModel().getColumn(7).setPreferredWidth(0); // estado civil        
         tblPesquisaCliente3.getColumnModel().getColumn(7).setMaxWidth(0); // estado civil 
-
-        
 
         tblPesquisaCliente3.getColumnModel().getColumn(8).setMinWidth(0); //email
         tblPesquisaCliente3.getColumnModel().getColumn(8).setPreferredWidth(0); //email
@@ -132,7 +131,7 @@ public class Clientes extends javax.swing.JInternalFrame {
 
         this.pack();
     }
-    
+
     public void LoadTableWithFilters(int id, String nome, String cpf, String rg) {
 
         ArrayList<String[]> linhasClientes = ClienteController.getClientesFiltro(id, nome, cpf, rg);
@@ -145,8 +144,8 @@ public class Clientes extends javax.swing.JInternalFrame {
         tmClientes.addColumn("RG");
         tmClientes.addColumn("Orgão Emissor");
         tmClientes.addColumn("UF");
-        
-        tmClientes.addColumn("Estado Civil");          
+
+        tmClientes.addColumn("Estado Civil");
         tmClientes.addColumn("Email");
         tmClientes.addColumn("Telefone");
         tmClientes.addColumn("Celular");
@@ -158,14 +157,13 @@ public class Clientes extends javax.swing.JInternalFrame {
         tmClientes.addColumn("Cidade");
         tmClientes.addColumn("Bairro");
         tmClientes.addColumn("Data de Nascimento");
-        
+
         for (String[] c : linhasClientes) {
             tmClientes.addRow(c);
         }
 
         tblPesquisaCliente3.setModel(tmClientes);
 
-        
         tblPesquisaCliente3.getColumnModel().getColumn(0).setPreferredWidth(0); //ID;
         tblPesquisaCliente3.getColumnModel().getColumn(1).setPreferredWidth(250); //nome
         tblPesquisaCliente3.getColumnModel().getColumn(2).setPreferredWidth(150); //cpf
@@ -173,7 +171,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         tblPesquisaCliente3.getColumnModel().getColumn(3).setMinWidth(0);  //sexo
         tblPesquisaCliente3.getColumnModel().getColumn(3).setPreferredWidth(0); //sexo
         tblPesquisaCliente3.getColumnModel().getColumn(3).setMaxWidth(0); //sexo
-        
+
         //tblPesquisaCliente3.getColumnModel().getColumn(3).setMinWidth(0); // rg
         tblPesquisaCliente3.getColumnModel().getColumn(4).setPreferredWidth(0); // rg
         //tblPesquisaCliente3.getColumnModel().getColumn(3).setMaxWidth(0); // rg
@@ -189,8 +187,6 @@ public class Clientes extends javax.swing.JInternalFrame {
         tblPesquisaCliente3.getColumnModel().getColumn(7).setMinWidth(0); // estado civil        
         tblPesquisaCliente3.getColumnModel().getColumn(7).setPreferredWidth(0); // estado civil        
         tblPesquisaCliente3.getColumnModel().getColumn(7).setMaxWidth(0); // estado civil 
-
-        
 
         tblPesquisaCliente3.getColumnModel().getColumn(8).setMinWidth(0); //email
         tblPesquisaCliente3.getColumnModel().getColumn(8).setPreferredWidth(0); //email
@@ -235,7 +231,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         //tblPesquisaCliente3.getColumnModel().getColumn(18).setMinWidth(0);// data de nascimento
         tblPesquisaCliente3.getColumnModel().getColumn(18).setPreferredWidth(0);// data de nascimento
         //tblPesquisaCliente3.getColumnModel().getColumn(18).setMaxWidth(0);// data de nascimento
-        
+
         this.pack();
     }
 
@@ -1001,7 +997,6 @@ public class Clientes extends javax.swing.JInternalFrame {
             try {
 
                 if (modoTela.equals("Criar")) {
-                    //if (ValidarFormularioCPF()){}
 
                     DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
                     df.setLenient(false);
@@ -1009,19 +1004,19 @@ public class Clientes extends javax.swing.JInternalFrame {
 
                     if (ClienteController.Salvar(Integer.parseInt(txtIDCliente.getText()),
                             txtNome.getText(),
-                            txtCPF.getText(),
+                            Util.limpaFormatacao(txtCPF.getText()),
                             cboxSexo.getSelectedItem().toString(),
-                            txtRg.getText(),
+                            Util.limpaFormatacao(txtRg.getText()),
                             cboxOrgaoEmissor.getSelectedItem().toString(),
                             cboxUF.getSelectedItem().toString(),
                             cboxEstadoCivil.getSelectedItem().toString(),
                             txtEmail.getText(),
-                            txtTelefone.getText(),
-                            txtCelular.getText(),
+                            Util.limpaFormatacao(txtTelefone.getText()),
+                            Util.limpaFormatacao(txtCelular.getText()),
                             txtEndereco.getText(),
                             txtNumeroCasa.getText(),
                             txtComplemento.getText(),
-                            txtCEP.getText(),
+                            Util.limpaFormatacao(txtCEP.getText()),
                             cboxEstado.getSelectedItem().toString(),
                             txtCidade.getText(),
                             txtBairro.getText(),
@@ -1043,19 +1038,19 @@ public class Clientes extends javax.swing.JInternalFrame {
                     if (ClienteController.Atualizar(
                             Integer.parseInt(txtIDCliente.getText()),
                             txtNome.getText(),
-                            txtCPF.getText(),
+                            Util.limpaFormatacao(txtCPF.getText()),
                             cboxSexo.getSelectedItem().toString(),
-                            txtRg.getText(),
+                            Util.limpaFormatacao(txtRg.getText()),
                             cboxOrgaoEmissor.getSelectedItem().toString(),
                             cboxUF.getSelectedItem().toString(),
-                            cboxEstadoCivil.getSelectedItem().toString(),                            
+                            cboxEstadoCivil.getSelectedItem().toString(),
                             txtEmail.getText(),
-                            txtTelefone.getText(),
-                            txtCelular.getText(),
+                            Util.limpaFormatacao(txtTelefone.getText()),
+                            Util.limpaFormatacao(txtCelular.getText()),
                             txtEndereco.getText(),
                             txtNumeroCasa.getText(),
                             txtComplemento.getText(),
-                            txtCEP.getText(),
+                            Util.limpaFormatacao(txtCEP.getText()),
                             cboxEstado.getSelectedItem().toString(),
                             txtCidade.getText(),
                             txtBairro.getText(),
@@ -1069,13 +1064,12 @@ public class Clientes extends javax.swing.JInternalFrame {
 
                 }
 
-            } catch (Exception e) {
+            } catch (HeadlessException | NumberFormatException | ParseException e) {
                 JOptionPane.showMessageDialog(null, "Falha ao cadastrar cliente");
-
             }
 
-            LimparFormulario();
-            DesabilitarFormulario();
+            //LimparFormulario();
+            //DesabilitarFormulario();
 
         }
 
@@ -1103,10 +1097,10 @@ public class Clientes extends javax.swing.JInternalFrame {
                     txtNome.setText(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 1).toString());
                     txtCPF.setText(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 2).toString());
                     cboxSexo.setSelectedItem(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 3).toString());
-                    txtRg.setText(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 4).toString());                   
+                    txtRg.setText(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 4).toString());
                     cboxOrgaoEmissor.setSelectedItem(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 5).toString());
                     cboxUF.setSelectedItem(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 6).toString());
-                    cboxEstadoCivil.setSelectedItem(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 7).toString());                   
+                    cboxEstadoCivil.setSelectedItem(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 7).toString());
                     txtEmail.setText(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 8).toString());
                     txtTelefone.setText(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 9).toString());
                     txtCelular.setText(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 10).toString());
@@ -1132,18 +1126,19 @@ public class Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        int id;      
-        if(txtPesquisaId.getText().equals(""))
+        int id;
+        if (txtPesquisaId.getText().equals("")) {
             id = 0;
-        else
+        } else {
             id = Integer.parseInt(txtPesquisaId.getText());
-        
-        if(tblPesquisaCliente3.getRowCount() > 0){
-           LoadTableWithFilters(id,txtPesquisaNome.getText(), txtPesquisaCpf.getText(), txtPesquisaRg.getText());
-       } else{
-           JOptionPane.showMessageDialog(null, "Não é possível pesquisar com a tabela vazia!");
-       }
-       
+        }
+
+        if (tblPesquisaCliente3.getRowCount() > 0) {
+            LoadTableWithFilters(id, txtPesquisaNome.getText(), txtPesquisaCpf.getText(), txtPesquisaRg.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Não é possível pesquisar com a tabela vazia!");
+        }
+
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir1ActionPerformed
@@ -1308,7 +1303,6 @@ public class Clientes extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 
-    
     private boolean ValidarFormularioCPF() {
         for (Cliente c : ClienteController.getAll()) {
             if (this.txtRg.getText().equals(c.getCPF())) {
@@ -1318,7 +1312,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         }
         return true;
     }
-    
+
     private boolean ValidarFormulario() {
 
         if (this.txtIDCliente.getText().equalsIgnoreCase("")) {
@@ -1336,17 +1330,6 @@ public class Clientes extends javax.swing.JInternalFrame {
             return false;
         }
 
-//        if (!cpf.ValidarCPF(txtCPF.getText())) {
-//            JOptionPane.showMessageDialog(this, "Cpf inválido!");
-//            return false;
-//        }
-
-//        for (Cliente c : ClienteController.getAll()) {
-//            if (this.txtCPF.getText().equals(c.getCPF())) {
-//                JOptionPane.showMessageDialog(this, "Cpf já cadastrado!");
-//                return false;
-//            }
-//        }
         if (this.txtRg.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Defina um RG para o cliente!");
             return false;
@@ -1357,4 +1340,3 @@ public class Clientes extends javax.swing.JInternalFrame {
     }
 
 }
-

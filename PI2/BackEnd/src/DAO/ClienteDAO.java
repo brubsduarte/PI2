@@ -3,12 +3,41 @@ package DAO;
 import Model.Cliente;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ClienteDAO {
 
-    public static boolean Salvar(Cliente p) {
-        return SimulaDB.getInstance().SalvarCliente(p);
+    public static boolean Salvar(Cliente c) {
+        DB db = new DB();
+        
+        SimpleDateFormat df;
+        df = new SimpleDateFormat("yyyy-MM-dd");
+        String dataFormatada = df.format(c.getDataDeNascimento());
+        
+        String sql = 
+                "INSERT INTO Cliente "
+                + "(CPF, Nome, RG, Sexo, OrgaoEmissor, UF, DataNascimento, EstadoCivil, Email, TelefoneResidencial, TelefoneCelular, Rua, Numero, CEP, Complemento, Bairro, Cidade, Estado)"
+                + "VALUES ("
+                + "'"+c.getCPF()+"', "
+                + "'"+c.getNome()+"', "
+                + "'"+c.getRg()+"',"
+                + "'"+c.getSexo()+"', "
+                + "'"+c.getOrgaoEmissor()+"', "
+                + "'"+c.getUf()+"', "
+                + "'"+dataFormatada+"', "
+                + "'"+c.getEstadoCivil()+"', "
+                + "'"+c.getEmail()+"', "
+                + "'"+c.getTelefone()+"', "
+                + "'"+c.getCelular()+"', "
+                + "'"+c.getEndereco()+"' , "
+                + "'"+c.getNumeroCasa()+"', "
+                + "'"+c.getCep()+"', "
+                + "'"+c.getComplemento()+"', "
+                + "'"+c.getComplemento()+"', "
+                + "'"+c.getCidade()+"', "
+                + "'"+c.getEstado()+"');";
+        return db.executarAlteracao(sql);
     }
 
     public static boolean Atualizar(Cliente p) {

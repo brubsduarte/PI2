@@ -19,4 +19,9 @@ public class Util {
         NumberFormat format = NumberFormat.getCurrencyInstance(meuLocal);
         return format.format(number);       
     }
+    
+    public static String limpaFormatacao(String texto) {
+        texto = texto.replaceAll("[^a-zA-Z0-9]", "");
+        return texto;
+    }
 }

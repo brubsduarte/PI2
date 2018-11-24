@@ -52,12 +52,14 @@ public class TelaLogin extends javax.swing.JDialog {
 
         jLabel2.setText("Senha:");
 
+        txtLogin.setText("admin");
         txtLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLoginActionPerformed(evt);
             }
         });
 
+        txtSenha.setText("1234");
         txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtSenhaKeyPressed(evt);
