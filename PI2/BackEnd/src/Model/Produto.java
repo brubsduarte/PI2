@@ -39,6 +39,20 @@ public class Produto {
 
     }
     
+    public Produto(String titulo, String genero, String editora, String autor, String tipo,
+            String descricao, int quantidade, double valorUni) {
+        
+        this.titulo = titulo;
+        this.genero = genero;
+        this.editora = editora;
+        this.autor = autor;
+        this.tipo = tipo;
+        this.descricao = descricao;
+        this.quantidade = quantidade;
+        this.valorUni = valorUni;
+
+    }
+    
     public Produto(int idProduto, String titulo, String autor, int quantidade, double valorUni) {
 
         this.idProduto = idProduto;

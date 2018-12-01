@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class ProdutoController {
 
-    public static boolean Salvar(int idProduto, String titulo, String genero, String editora, String autor, String tipo,
+    public static boolean Salvar(String titulo, String genero, String editora, String autor, String tipo,
             String descricao, int quantidade, double valorUni) {
         //Salvo na memória
-        Produto p = new Produto(idProduto, titulo, genero, editora, autor, tipo, descricao, quantidade, valorUni);
+        Produto p = new Produto(titulo, genero, editora, autor, tipo, descricao, quantidade, valorUni);
         return ProdutoDAO.Salvar(p);
     }
 
@@ -44,6 +44,27 @@ public class ProdutoController {
 
         return listaProdutos;
 
+    }
+    
+    public static ArrayList<String[]> getProdutosFiltro(int id, String titulo, String autor, String genero, String editora) {
+        ArrayList<Produto> produtos = ProdutoDAO.filtrarProdutos(id, titulo, autor, genero, editora);
+        ArrayList<String[]> listaProdutos = new ArrayList<>();
+
+        for (int i = 0; i < produtos.size(); i++) {
+            listaProdutos.add(new String[]{
+                String.valueOf(produtos.get(i).getIdProduto()),
+                produtos.get(i).gettitulo(),
+                produtos.get(i).getgenero(),
+                produtos.get(i).geteditora(),
+                produtos.get(i).getautor(),
+                produtos.get(i).gettipo(),
+                produtos.get(i).getdescricao(),
+                String.valueOf(produtos.get(i).getquantidade()),
+                String.valueOf(produtos.get(i).getvalorUni()),});
+
+        }
+
+        return listaProdutos;
     }
 
     public static ArrayList<String[]> getProdutosPronto() {

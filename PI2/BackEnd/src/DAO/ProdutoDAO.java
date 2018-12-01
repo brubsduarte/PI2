@@ -74,4 +74,35 @@ public class ProdutoDAO {
         }
     }
 
+    public static ArrayList<Produto> filtrarProdutos(int id, String titulo, String autor, String genero, String editora) {
+        DB db = new DB();
+        try {
+            String sql = "SELECT * FROM produto WHERE ";
+            if (id != 0) {
+                sql += "ID = "+id+" AND ";
+            }
+            sql += "titulo LIKE '%"+titulo+"%' AND autor LIKE '%"+autor+"%' AND genero LIKE '%"+genero+"%' AND editora LIKE '%"+editora+"%';";
+            ResultSet rs = db.executarConsulta(sql);
+            ArrayList<Produto> produtos = new ArrayList();
+            while (rs.next()) {
+                Produto p = new Produto();
+                p.setIdProduto(rs.getInt("ID"));
+                p.settitulo(rs.getString("Titulo"));
+                p.setautor(rs.getString("Autor"));
+                p.setgenero(rs.getString("Genero"));
+                p.seteditora(rs.getString("Editora"));
+                p.setvalorUni(rs.getDouble("Valor"));
+                p.settipo(rs.getString("Tipo"));
+                p.setquantidade(rs.getInt("Quantidade"));
+                p.setdescricao(rs.getString("Descricao"));
+                produtos.add(p);
+            }
+            db.close();
+            return produtos;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            db.close();
+            return null;
+        }
+    }
 }

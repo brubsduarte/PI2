@@ -20,15 +20,17 @@ public class Produtos extends javax.swing.JInternalFrame {
 
     public Produtos() {
         initComponents();
-        LoadTable2();
+        LoadTable(null);
         DesabilitarFormulario2();
         spnQuantidadeProduto.setModel(new SpinnerNumberModel(0, 0, 300, 1));
     }
 
-    public void LoadTable2() {
+    public void LoadTable(ArrayList<String[]> linhasProdutos) {
 
-        ArrayList<String[]> linhasProdutos = ProdutoController.getProdutos();
-
+        if(linhasProdutos == null){
+            linhasProdutos = ProdutoController.getProdutos();
+        }
+        
         DefaultTableModel tmProdutos = new DefaultTableModel();
         tmProdutos.addColumn("ID");
         tmProdutos.addColumn("Titulo");
@@ -46,9 +48,7 @@ public class Produtos extends javax.swing.JInternalFrame {
 
         tblPesquisaProduto.setModel(tmProdutos);
 
-        tblPesquisaProduto.getColumnModel().getColumn(0).setMinWidth(0); //ID
-        tblPesquisaProduto.getColumnModel().getColumn(0).setPreferredWidth(0); //ID
-        tblPesquisaProduto.getColumnModel().getColumn(0).setMaxWidth(0);//ID
+        tblPesquisaProduto.getColumnModel().getColumn(0).setPreferredWidth(50); //ID
 
         tblPesquisaProduto.getColumnModel().getColumn(1).setPreferredWidth(250);//Titulo
 
@@ -130,16 +130,16 @@ public class Produtos extends javax.swing.JInternalFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        txtPesquisaProduto = new javax.swing.JTextField();
+        txtTituloPesquisa = new javax.swing.JTextField();
         lblNome = new javax.swing.JLabel();
         lblEditora1 = new javax.swing.JLabel();
         txtAutorPesquisa = new javax.swing.JTextField();
         lblAutor1 = new javax.swing.JLabel();
         lblGenero1 = new javax.swing.JLabel();
         cboGeneroPesquisa = new javax.swing.JComboBox<>();
-        txtIDPesquisa = new javax.swing.JFormattedTextField();
         lblID = new javax.swing.JLabel();
         cboEditoraPesquisa = new javax.swing.JComboBox<>();
+        txtIDPesquisa = new javax.swing.JTextField();
         jtPesqProdutos = new javax.swing.JScrollPane();
         tblPesquisaProduto = new javax.swing.JTable();
         jPanel15 = new javax.swing.JPanel();
@@ -189,7 +189,7 @@ public class Produtos extends javax.swing.JInternalFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
-        lblNome.setText("Nome:");
+        lblNome.setText("Título");
 
         lblEditora1.setText("Editora:");
 
@@ -198,12 +198,6 @@ public class Produtos extends javax.swing.JInternalFrame {
         lblGenero1.setText("Gênero:");
 
         cboGeneroPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Fantasia", "Ficção Científica", "Horror", "Autobiografia", "Biografia", "Apocalipse Zumbi", "Romance", "Infanto-Juvenil", "Suspense", "Literatura", "Aventura" }));
-
-        try {
-            txtIDPesquisa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         lblID.setText("ID:");
 
@@ -216,15 +210,6 @@ public class Produtos extends javax.swing.JInternalFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblID)
-                            .addComponent(txtIDPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNome))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblAutor1)
@@ -237,7 +222,19 @@ public class Produtos extends javax.swing.JInternalFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblEditora1)
                             .addComponent(cboEditoraPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(95, 95, 95))))
+                        .addGap(95, 95, 95))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(lblID)
+                                .addGap(70, 70, 70))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(txtIDPesquisa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTituloPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNome))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +245,7 @@ public class Produtos extends javax.swing.JInternalFrame {
                     .addComponent(lblNome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTituloPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIDPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -260,7 +257,7 @@ public class Produtos extends javax.swing.JInternalFrame {
                     .addComponent(txtAutorPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboGeneroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboEditoraPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         tblPesquisaProduto.setModel(new javax.swing.table.DefaultTableModel(
@@ -358,7 +355,7 @@ public class Produtos extends javax.swing.JInternalFrame {
                 .addComponent(jtPesqProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Pesquisar", jPanel5);
@@ -672,7 +669,7 @@ public class Produtos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cboGeneroProdutoActionPerformed
 
     private void btnSalvarProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProduto1ActionPerformed
-        
+
         Validador.ValidarDecimal(txtVlrUnitario);
 
         //Caso ocorra algum erro
@@ -689,7 +686,7 @@ public class Produtos extends javax.swing.JInternalFrame {
         limparMensagesErro();
         if (ValidarFormulario2()) {
             if (modoTela.equals("Criar")) {
-                if (ProdutoController.Salvar(Integer.parseInt(txtIDproduto.getText()),
+                if (ProdutoController.Salvar(
                         txtTituloProduto.getText(),
                         cboGeneroProduto.getSelectedItem().toString(),
                         cboEditoraProduto.getSelectedItem().toString(),
@@ -699,7 +696,7 @@ public class Produtos extends javax.swing.JInternalFrame {
                         Integer.parseInt(spnQuantidadeProduto.getValue().toString()),
                         Double.parseDouble(txtVlrUnitario.getText())
                 )) {
-                    this.LoadTable2();
+                    this.LoadTable(null);
                     JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
                     LimparFormulario2();
                 } else {
@@ -708,17 +705,17 @@ public class Produtos extends javax.swing.JInternalFrame {
 
             } else {
 
-                if (ProdutoController.Atualizar(Integer.parseInt(txtIDproduto.getText().toString()),
-                        txtTituloProduto.getText().toString(),
+                if (ProdutoController.Atualizar(Integer.parseInt(txtIDproduto.getText()),
+                        txtTituloProduto.getText(),
                         cboGeneroProduto.getSelectedItem().toString(),
                         cboEditoraProduto.getSelectedItem().toString(),
-                        txtAutorProduto.getText().toString(),
+                        txtAutorProduto.getText(),
                         cboTipoProduto.getSelectedItem().toString(),
-                        txtDescricaoProduto.getText().toString(),
+                        txtDescricaoProduto.getText(),
                         Integer.parseInt(spnQuantidadeProduto.getValue().toString()),
-                        Double.parseDouble(txtVlrUnitario.getText().toString())
+                        Double.parseDouble(txtVlrUnitario.getText())
                 )) {
-                    this.LoadTable2();
+                    this.LoadTable(null);
                     JOptionPane.showMessageDialog(this, "Produto Atualizado com sucesso!");
                 } else {
                     JOptionPane.showMessageDialog(this, "Falha ao Atualizar produto!");
@@ -740,8 +737,9 @@ public class Produtos extends javax.swing.JInternalFrame {
 
     private void btnExcluirProduto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProduto2ActionPerformed
         if (tblPesquisaProduto.getRowCount() > 0) {
-            if (ProdutoController.Excluir(tblPesquisaProduto.getSelectedRow())) {
-                this.LoadTable2();
+            int produtoID = Integer.parseInt(tblPesquisaProduto.getModel().getValueAt(tblPesquisaProduto.getSelectedRow(), 0).toString());
+            if (ProdutoController.Excluir(produtoID)) {
+                this.LoadTable(null);
                 JOptionPane.showMessageDialog(this, "Produto excluído da base de dados");
             } else {
                 JOptionPane.showMessageDialog(this, "Falha ao excluir o produto!");
@@ -780,7 +778,27 @@ public class Produtos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtIDprodutoActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-
+        int id = 0;
+        if (!txtIDPesquisa.getText().equals("")) {
+            id = Integer.parseInt(txtIDPesquisa.getText());
+        }
+        
+        String genero = "";
+        if (!cboGeneroPesquisa.getSelectedItem().toString().equals("Selecione")) {
+            genero = cboGeneroPesquisa.getSelectedItem().toString();
+        }
+        
+        String editora = "";
+        if (!cboEditoraPesquisa.getSelectedItem().toString().equals("Selecione")) {
+            editora = cboEditoraPesquisa.getSelectedItem().toString();
+        }
+        
+        LoadTable(ProdutoController.getProdutosFiltro(
+                id,
+                txtTituloPesquisa.getText(),
+                txtAutorPesquisa.getText(),
+                genero,
+                editora));
     }//GEN-LAST:event_btnPesquisarActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -870,9 +888,9 @@ public class Produtos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtAutorPesquisa;
     private javax.swing.JTextField txtAutorProduto;
     private javax.swing.JTextArea txtDescricaoProduto;
-    private javax.swing.JFormattedTextField txtIDPesquisa;
+    private javax.swing.JTextField txtIDPesquisa;
     private javax.swing.JTextField txtIDproduto;
-    private javax.swing.JTextField txtPesquisaProduto;
+    private javax.swing.JTextField txtTituloPesquisa;
     private javax.swing.JTextField txtTituloProduto;
     private javax.swing.JTextField txtVlrUnitario;
     // End of variables declaration//GEN-END:variables

@@ -106,7 +106,7 @@
                           <Component id="jtPesqProdutos" min="-2" pref="195" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="124" max="32767" attributes="0"/>
+                          <EmptySpace pref="90" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -126,22 +126,10 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblID" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtIDPesquisa" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtPesquisaProduto" min="-2" pref="430" max="-2" attributes="0"/>
-                                          <Component id="lblNome" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lblAutor1" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtAutorPesquisa" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
@@ -158,6 +146,23 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="lblID" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="txtIDPesquisa" max="32767" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtTituloPesquisa" min="-2" pref="430" max="-2" attributes="0"/>
+                                          <Component id="lblNome" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -172,7 +177,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtPesquisaProduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtTituloPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtIDPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -187,17 +192,17 @@
                                   <Component id="cboGeneroPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cboEditoraPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="48" max="32767" attributes="0"/>
+                              <EmptySpace pref="53" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="txtPesquisaProduto">
+                    <Component class="javax.swing.JTextField" name="txtTituloPesquisa">
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblNome">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Nome:"/>
+                        <Property name="text" type="java.lang.String" value="T&#xed;tulo"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblEditora1">
@@ -240,13 +245,6 @@
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="txtIDPesquisa">
-                      <Properties>
-                        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                          <Format format="####" subtype="-1" type="5"/>
-                        </Property>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="lblID">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="ID:"/>
@@ -280,6 +278,8 @@
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="txtIDPesquisa">
                     </Component>
                   </SubComponents>
                 </Container>
