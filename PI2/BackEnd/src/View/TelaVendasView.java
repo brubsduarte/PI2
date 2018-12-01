@@ -8,6 +8,7 @@ package View;
 import Controller.ProdutoController;
 import Controller.ClienteController;
 import Controller.VendaController;
+import Model.Cliente;
 import java.util.ArrayList;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 import utils.Validador;
 
 /**
@@ -26,7 +28,7 @@ public class TelaVendasView extends javax.swing.JFrame {
 
     public ArrayList<String[]> clientes;
     public ArrayList<String[]> clientesFiltrados;
-    public String[] clienteSelecionado;
+    public Cliente clienteSelecionado;
 
     public ArrayList<String[]> produtos;
     public ArrayList<String[]> produtosFiltrados;
@@ -51,6 +53,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         lblIdCliente.setText("");
         lblNomeCliente.setText("");
         lblCpfCliente.setText("");
+        clienteSelecionado = null;
 
         clientes = VendaController.getClientes();
         clientesFiltrados = clientes;
@@ -60,7 +63,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         produtos = VendaController.getProdutos();
         produtosFiltrados = produtos;
         produtoSelecionado = null;
-        LoadTableProduto();
+        LoadTableProduto(null);
 
         spnQuantidadeProduto.setValue(1);
         vendas = new ArrayList();
@@ -171,27 +174,54 @@ public class TelaVendasView extends javax.swing.JFrame {
         this.pack();
     }
 
-    public void LoadTableProduto() {
-
-        ArrayList<String[]> linhasProdutos = produtosFiltrados;
-
+    public void LoadTableProduto(ArrayList<String[]> produtos) {
+        
+        if(produtos == null){
+            produtos = ProdutoController.getProdutos();
+        }
+        
         DefaultTableModel tmProdutos = new DefaultTableModel();
         tmProdutos.addColumn("ID");
-        tmProdutos.addColumn("TITULO");
-        tmProdutos.addColumn("AUTOR");
-        tmProdutos.addColumn("PREÇO UNITARIO");
+        tmProdutos.addColumn("Titulo");
+        tmProdutos.addColumn("Genero");
+        tmProdutos.addColumn("Editora");
+        tmProdutos.addColumn("Autor");
+        tmProdutos.addColumn("Tipo");
+        tmProdutos.addColumn("Descrição");
+        tmProdutos.addColumn("Estoque");
+        tmProdutos.addColumn("Valor Unitario");
 
-        for (String[] c : linhasProdutos) {
-            tmProdutos.addRow(c);
+        for (String[] p : produtos) {
+            tmProdutos.addRow(p);
         }
 
         tblProdutoPesquisa.setModel(tmProdutos);
 
         tblProdutoPesquisa.getColumnModel().getColumn(0).setPreferredWidth(50); //ID
-        tblProdutoPesquisa.getColumnModel().getColumn(1).setPreferredWidth(250); //titulo
-        tblProdutoPesquisa.getColumnModel().getColumn(2).setPreferredWidth(150); //autor
-        tblProdutoPesquisa.getColumnModel().getColumn(3).setPreferredWidth(150); //valor unitario
 
+        tblProdutoPesquisa.getColumnModel().getColumn(1).setPreferredWidth(250);//Titulo
+
+        tblProdutoPesquisa.getColumnModel().getColumn(2).setMinWidth(0); //Genero
+        tblProdutoPesquisa.getColumnModel().getColumn(2).setPreferredWidth(0); //Genero
+        tblProdutoPesquisa.getColumnModel().getColumn(2).setMaxWidth(0); //Genero
+
+        tblProdutoPesquisa.getColumnModel().getColumn(3).setMinWidth(0); // Editora
+        tblProdutoPesquisa.getColumnModel().getColumn(3).setPreferredWidth(0); // Editora
+        tblProdutoPesquisa.getColumnModel().getColumn(3).setMaxWidth(0); // Editora
+
+        tblProdutoPesquisa.getColumnModel().getColumn(4).setPreferredWidth(100);  // Autor
+
+        tblProdutoPesquisa.getColumnModel().getColumn(5).setMinWidth(0); // Tipo
+        tblProdutoPesquisa.getColumnModel().getColumn(5).setPreferredWidth(0); // Tipo
+        tblProdutoPesquisa.getColumnModel().getColumn(5).setMaxWidth(0);  // Tipo
+
+        tblProdutoPesquisa.getColumnModel().getColumn(6).setMinWidth(0); // Descrição       
+        tblProdutoPesquisa.getColumnModel().getColumn(6).setPreferredWidth(0); // Descrição    
+        tblProdutoPesquisa.getColumnModel().getColumn(6).setMaxWidth(0); // Descrição
+
+        tblProdutoPesquisa.getColumnModel().getColumn(7).setPreferredWidth(50); //Quantidade     
+
+        tblProdutoPesquisa.getColumnModel().getColumn(8).setPreferredWidth(100); //Valor Unitario
     }
 
     public void LoadTableVendas() {
@@ -221,7 +251,6 @@ public class TelaVendasView extends javax.swing.JFrame {
         tblVenda.getColumnModel().getColumn(2).setPreferredWidth(150); //autor
         tblVenda.getColumnModel().getColumn(3).setPreferredWidth(150); //valor unitario
         tblVenda.getColumnModel().getColumn(4).setPreferredWidth(150); //valor unitario
-
     }
 
     public String formatDecimal(float number) {
@@ -744,18 +773,34 @@ public class TelaVendasView extends javax.swing.JFrame {
         if(ValidarProdutoCliente()){
 
             int quantidade = Integer.parseInt(spnQuantidadeProduto.getValue().toString());
-
+            
             int linha = tblProdutoPesquisa.getSelectedRow();
-            String[] produto = produtosFiltrados.get(linha);
+            TableModel tm = tblProdutoPesquisa.getModel();
 
-            String[] venda = {produto[0], produto[1], produto[2], produto[3], String.valueOf(quantidade)};
+            int estoque = Integer.valueOf(tm.getValueAt(linha, 7).toString());
+            
+            if (validaProdutoSelecionado(tm.getValueAt(linha, 0).toString())) {
+                showMessageDialog(null, "Este produto já foi selecionado.");
+                return;
+            }
+            
+            if (quantidade > estoque || quantidade < 0) {
+                showMessageDialog(null, "Quantidade indisponível no estoque.");
+                return;
+            }
+            
+            String[] venda = {
+                tm.getValueAt(linha, 0).toString(), 
+                tm.getValueAt(linha, 1).toString(), 
+                tm.getValueAt(linha, 4).toString(), 
+                tm.getValueAt(linha, 8).toString(), 
+                String.valueOf(quantidade)};
 
             vendas.add(venda);
 
             LoadTableVendas();
 
             showMessageDialog(null, "Produto Adicionado com Sucesso");
-
         }
     }//GEN-LAST:event_btnAdicionarCarrinhoActionPerformed
 
@@ -763,19 +808,11 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         String pesquisa = txtPesquisaProduto.getText().toLowerCase();
         if (pesquisa.isEmpty()) {
-            produtosFiltrados = produtos;
-            LoadTableProduto();
+            LoadTableProduto(null);
             return;
         }
-
-        produtosFiltrados = new ArrayList();
-        for (int i = 0; i < produtos.size(); i++) {
-            String[] produto = produtos.get(i);
-            if (produto[1].toLowerCase().contains(pesquisa)) {
-                produtosFiltrados.add(produto);
-            }
-        }
-        LoadTableProduto();
+        
+        LoadTableProduto(ProdutoController.getProdutosFiltro(0, pesquisa, "", "", ""));
     }//GEN-LAST:event_btnPesquisarProdutoActionPerformed
 
     private void txtPesquisaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaProdutoActionPerformed
@@ -783,16 +820,26 @@ public class TelaVendasView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisaProdutoActionPerformed
 
     private void btnSelecionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarClienteActionPerformed
-        int linha = tblClientePesquisa.getSelectedRow();
-        String[] cliente = clientesFiltrados.get(linha);
-
-        lblIdCliente.setText(cliente[0]);
-        lblNomeCliente.setText(cliente[1]);
-        lblCpfCliente.setText(cliente[2]);
-
-        clienteSelecionado = cliente;
-
-        showMessageDialog(null, "Cliente Adicionado Na Venda");
+        if (tblClientePesquisa.getSelectedRow() > -1) {
+            int linhaSelecionada = tblClientePesquisa.getSelectedRow();
+            
+            TableModel tm = tblClientePesquisa.getModel();
+            
+            Cliente cliente = new Cliente();
+            
+            cliente.setId(Integer.valueOf(tm.getValueAt(linhaSelecionada, 0).toString()));
+            cliente.setNome(tm.getValueAt(linhaSelecionada, 1).toString());
+            cliente.setCPF(tm.getValueAt(linhaSelecionada, 2).toString());
+            
+            lblIdCliente.setText(String.valueOf(cliente.getId()));
+            lblNomeCliente.setText(cliente.getNome());
+            lblCpfCliente.setText(cliente.getCPF());
+            
+            clienteSelecionado = cliente;
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhum cliente selecionado.");
+        }
     }//GEN-LAST:event_btnSelecionarClienteActionPerformed
 
     private void btnPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarClienteActionPerformed
@@ -808,15 +855,15 @@ public class TelaVendasView extends javax.swing.JFrame {
 
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
         try {
-            if(clienteSelecionado.length == 0) {
-                throw new Exception("Nenhum cliente selecionado.");
-            }
+//            if(clienteSelecionado.length == 0) {
+//                throw new Exception("Nenhum cliente selecionado.");
+//            }
             
             if(vendas.isEmpty()) {
                 throw new Exception("Nenhum produto selecionado.");
             }
             
-            VendaController.Salvar(vendas, clienteSelecionado, new Date());
+//            VendaController.Salvar(vendas, clienteSelecionado, new Date());
             
             showMessageDialog(null, "Venda criada com sucesso");
             
@@ -873,14 +920,27 @@ public class TelaVendasView extends javax.swing.JFrame {
             return false;
         }
         
+        if (tblProdutoPesquisa.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione um produto!");
+            return false;
+        }
+        
         if (this.spnQuantidadeProduto.getValue().equals(0)) {
-            
             JOptionPane.showMessageDialog(this, "Defina uma quantidade ao produto!");
             return false;
-            
         }
 
         return true;
+    }
+    
+    private boolean validaProdutoSelecionado(String id) {
+        for (String[] venda : vendas) {
+            if (venda[0].equals(id)) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 
 }
