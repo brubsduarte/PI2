@@ -62,6 +62,8 @@ public class ClienteController {
         ArrayList<Cliente> clientes = ClienteDAO.filtrarClientes(id, nome, cpf, rg);
         ArrayList<String[]> listaClientes = new ArrayList<>();
 
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        
         for (int i = 0; i < clientes.size(); i++) {
             listaClientes.add(new String[]{String.valueOf(clientes.get(i).getId()),
                  clientes.get(i).getNome(),
@@ -81,7 +83,7 @@ public class ClienteController {
                  clientes.get(i).getEstado(),
                  clientes.get(i).getCidade(),
                  clientes.get(i).getBairro(),
-                 String.valueOf(clientes.get(i).getDataDeNascimento())});
+                 df.format(clientes.get(i).getDataDeNascimento())});
 
         }
 
