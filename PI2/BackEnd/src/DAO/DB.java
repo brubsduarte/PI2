@@ -13,9 +13,9 @@ import java.sql.Statement;
 public class DB {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String SERVIDOR = "jdbc:mysql://localhost:3306/";
+    private static final String SERVIDOR = "jdbc:mysql://192.168.64.3:3306/";
     private static final String BASEDADOS = "la_casa_del_livro";
-    private static final String LOGIN = "root";
+    private static final String LOGIN = "admin";
     private static final String SENHA = "";
     private static String url = "";
     private static Connection conexao;
