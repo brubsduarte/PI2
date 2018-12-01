@@ -474,12 +474,10 @@
                                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="txtIDproduto" min="-2" pref="57" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="painelFoto8" pref="176" max="32767" attributes="0"/>
+                                  <Component id="painelFoto8" pref="156" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -495,7 +493,6 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtIDproduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
@@ -554,7 +551,7 @@
                               <Component id="btnSalvarProduto1" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnNovo" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="43" max="32767" attributes="0"/>
+                          <EmptySpace pref="14" max="32767" attributes="0"/>
                           <Component id="lblMensagensErro" min="-2" pref="61" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -798,7 +795,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jSeparator9" max="32767" attributes="0"/>
                           <Component id="lblFoto8" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="btoAddFoto8" alignment="0" pref="172" max="32767" attributes="0"/>
+                          <Component id="btoAddFoto8" alignment="0" pref="152" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -849,20 +846,12 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtIDproduto">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIDprodutoActionPerformed"/>
                   </Events>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel12">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="11" style="1"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="*"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblMensagensErro">
                 </Component>
