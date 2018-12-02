@@ -5,14 +5,37 @@ import Model.Produto;
 import Model.Venda;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RelatorioDAO {
 
-    public static ArrayList<Cliente> getCompradores() {
+    public static ArrayList<Cliente> getCompradores(Date dataInicial, Date dataFinal) {
         DB db = new DB(true);
         try {
-            String sql = "SELECT cliente.Nome, cliente.CPF, COUNT(*) \"Compras\" FROM cliente LEFT JOIN venda ON venda.idCliente = cliente.id GROUP BY cliente.id;";
+            String sql;
+            
+            if (dataInicial == null || dataFinal == null) {
+                sql = 
+                    "SELECT cliente.Nome, cliente.CPF, COUNT(*) 'Compras' "
+                    + "FROM cliente INNER JOIN venda ON venda.idCliente = cliente.id "
+                    + "GROUP BY venda.idCliente "
+                    + "ORDER BY COUNT(*) DESC;";
+            } else {
+                SimpleDateFormat df;
+                df = new SimpleDateFormat("yyyy-MM-dd");
+                String dataIni = df.format(dataInicial);
+                String dataFin = df.format(dataFinal);
+                
+                sql = 
+                    "SELECT cliente.Nome, cliente.CPF, COUNT(*) 'Compras' "
+                    + "FROM cliente INNER JOIN venda ON venda.idCliente = cliente.id "
+                    + "WHERE (CAST(venda.data AS DATE) BETWEEN '"+dataIni+"' AND '"+dataFin+"') "
+                    + "GROUP BY venda.idCliente "
+                    + "ORDER BY COUNT(*) DESC;";
+            }
+            
             ResultSet rs = db.executarConsulta(sql);
             ArrayList<Cliente> clientes = new ArrayList();
             while (rs.next()) {
@@ -31,10 +54,31 @@ public class RelatorioDAO {
         }
     }
 
-    public static ArrayList<Produto> getProdutos() {
+    public static ArrayList<Produto> getProdutos(Date dataInicial, Date dataFinal) {
         DB db = new DB(true);
         try {
-            String sql = "SELECT produto.Titulo, produto.Valor, COUNT(*) \"QtdeVendas\", COUNT(*) * produto.Valor \"TotalVendas\" FROM produto INNER JOIN vendaproduto ON produto.ID = vendaproduto.idProduto GROUP BY produto.id";
+            String sql;
+            
+            if (dataInicial == null || dataFinal == null) {
+                sql = 
+                    "SELECT produto.Titulo, produto.Valor, SUM(vendaproduto.QuantidadeVenda) 'QtdeVendas', (SUM(vendaproduto.QuantidadeVenda) * produto.Valor) 'TotalVendas' "
+                    + "FROM vendaproduto INNER JOIN produto ON produto.ID = vendaproduto.idProduto "
+                    + "GROUP BY idProduto "
+                    + "ORDER BY SUM(vendaproduto.QuantidadeVenda) DESC;";
+            } else {
+                SimpleDateFormat df;
+                df = new SimpleDateFormat("yyyy-MM-dd");
+                String dataIni = df.format(dataInicial);
+                String dataFin = df.format(dataFinal);
+                
+                sql = 
+                    "SELECT produto.Titulo, produto.Valor, SUM(vendaproduto.QuantidadeVenda) 'QtdeVendas', (SUM(vendaproduto.QuantidadeVenda) * produto.Valor) 'TotalVendas' "
+                    + "FROM vendaproduto INNER JOIN produto ON produto.ID = vendaproduto.idProduto INNER JOIN venda ON venda.ID = vendaproduto.idVenda "
+                    + "WHERE (CAST(venda.data AS DATE) BETWEEN '"+dataIni+"' AND '"+dataFin+"') "
+                    + "GROUP BY idProduto "
+                    + "ORDER BY SUM(vendaproduto.QuantidadeVenda) DESC;";
+            }
+            
             ResultSet rs = db.executarConsulta(sql);
             ArrayList<Produto> produtos = new ArrayList();
             while (rs.next()) {
@@ -55,10 +99,29 @@ public class RelatorioDAO {
         }
     }
     
-    public static ArrayList<Venda> getVenda() {
+    public static ArrayList<Venda> getVenda(Date dataInicial, Date dataFinal) {
         DB db = new DB(true);
         try {
-            String sql = "SELECT * FROM venda";
+            String sql;
+            
+            if (dataInicial == null || dataFinal == null) {
+                sql = 
+                    "SELECT venda.ID, venda.data, venda.ValorTotal, cliente.Nome "
+                    + "FROM venda INNER JOIN cliente ON cliente.ID = venda.idCliente "
+                    + "ORDER BY venda.ValorTotal DESC;";
+            } else {
+                SimpleDateFormat df;
+                df = new SimpleDateFormat("yyyy-MM-dd");
+                String dataIni = df.format(dataInicial);
+                String dataFin = df.format(dataFinal);
+                
+                sql = 
+                    "SELECT venda.ID, venda.data, venda.ValorTotal, cliente.Nome "
+                    + "FROM venda INNER JOIN cliente ON cliente.ID = venda.idCliente "
+                    + "WHERE (CAST(venda.data AS DATE) BETWEEN '"+dataIni+"' AND '"+dataFin+"') "
+                    + "ORDER BY venda.ValorTotal DESC;";
+            }
+            
             ResultSet rs = db.executarConsulta(sql);
             ArrayList<Venda> vendas = new ArrayList();
             while (rs.next()) {
@@ -66,7 +129,7 @@ public class RelatorioDAO {
                 v.setIdVenda(rs.getInt("ID"));
                 v.setData(rs.getDate("Data"));
                 v.setValorTotal(rs.getFloat("ValorTotal"));
-                v.setNomeCliente(rs.getString("NomeCliente"));
+                v.setNomeCliente(rs.getString("Nome"));
                 vendas.add(v);
             }
             db.close();

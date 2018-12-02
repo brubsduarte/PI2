@@ -68,11 +68,11 @@ public class Venda {
         return novosProdutos;
     }
     
-    private float getTotal(ArrayList<String[]> produtosLista) {
+    public static float getTotal(ArrayList<String[]> produtosLista) {
         float valor = 0f;
 
         for (String[] produto : produtosLista) {
-            valor += Float.valueOf(produto[3]) * Float.valueOf(produto[4]);
+            valor += Float.valueOf(produto[3]);
         }
         
         return valor;

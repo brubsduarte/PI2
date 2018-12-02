@@ -7,11 +7,11 @@ package View;
 
 import Controller.RelatorioController;
 import Model.Util;
+import Model.Venda;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JFormattedTextField;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -25,22 +25,19 @@ import javax.swing.text.MaskFormatter;
  */
 public final class RelatorioView extends javax.swing.JFrame {
 
-    private final RelatorioController relatorioController;
-
     /**
      * Creates new form Relatorio
      */
     public RelatorioView() {
         initComponents();
 
-        relatorioController = new RelatorioController();
         loadTables();
     }
     
     public void loadTables() {
-        LoadTableCliente();
-        LoadTableVenda();
-        LoadTableProduto();
+        LoadTableCliente(null);
+        LoadTableVenda(null);
+        LoadTableProduto(null);
     }
 
     /**
@@ -284,10 +281,12 @@ public final class RelatorioView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void LoadTableCliente() {
+    public void LoadTableCliente(ArrayList<String[]> compradores) {
 
-        ArrayList<String[]> compradores = relatorioController.getCompradores();
-
+        if (compradores == null) {
+            compradores = RelatorioController.getCompradores(null, null);
+        }
+        
         DefaultTableModel tmClientes = new DefaultTableModel();
         tmClientes.addColumn("Nome");
         tmClientes.addColumn("CPF");
@@ -304,9 +303,11 @@ public final class RelatorioView extends javax.swing.JFrame {
         tblCliente.getColumnModel().getColumn(2).setPreferredWidth(100); //ID
     }
     
-    public void LoadTableVenda() {
+    public void LoadTableVenda(ArrayList<String[]> vendasOrndenadas) {
         
-        ArrayList<String[]> vendasOrndenadas = relatorioController.getVendasOrdenadas();
+        if (vendasOrndenadas == null) {
+            vendasOrndenadas = RelatorioController.getVendas(null, null);
+        }
         
         DefaultTableModel tmVendas = new DefaultTableModel();
         tmVendas.addColumn("ID");
@@ -318,8 +319,6 @@ public final class RelatorioView extends javax.swing.JFrame {
             tmVendas.addRow(venda);
         }
         
-        lblValorTotal.setText(Util.formatarDinheiro(relatorioController.getTotalVendas()));
-        
         tblVendas.setModel(tmVendas);
 
         tblVendas.getColumnModel().getColumn(0).setPreferredWidth(100); 
@@ -328,9 +327,11 @@ public final class RelatorioView extends javax.swing.JFrame {
         tblVendas.getColumnModel().getColumn(3).setPreferredWidth(100); 
     }
     
-    public void LoadTableProduto() {
+    public void LoadTableProduto(ArrayList<String[]> produtosOrndenados) {
 
-        ArrayList<String[]> produtosOrndenados = relatorioController.getProdutos();
+        if (produtosOrndenados == null) {
+            produtosOrndenados = RelatorioController.getProdutos(null, null);
+        }
 
         DefaultTableModel tmProdutos = new DefaultTableModel();
         tmProdutos.addColumn("Titulo");
@@ -338,7 +339,10 @@ public final class RelatorioView extends javax.swing.JFrame {
         tmProdutos.addColumn("Qtde. vendas");
         tmProdutos.addColumn("Total vendas");
 
+        lblValorTotal.setText(Util.formatarDinheiro(Venda.getTotal(produtosOrndenados)));
+        
         for(String[] produto : produtosOrndenados) {
+            produto[3] = Util.formatarDinheiro(Double.valueOf(produto[3]));
             tmProdutos.addRow(produto);
         }
 
@@ -368,26 +372,21 @@ public final class RelatorioView extends javax.swing.JFrame {
             Date dataFinal = formatter.parse(txtDataFinal.getText().toLowerCase());
             
             if(dataInicial.compareTo(dataFinal) > 0) {
-                throw new ExecutionException("Período de pesquisa inválido", null);
+                throw new Exception("Período de pesquisa inválido", null);
             }
             
             long diff = dataFinal.getTime() - dataInicial.getTime();
             long daysDiff = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
             
             if(daysDiff > 30) {
-                throw new ExecutionException("A diferença de dias entre uma data e outra é maior que 30 dias.", null);
+                throw new Exception("A diferença de dias entre uma data e outra é maior que 30 dias.", null);
             }
             
-            if(!relatorioController.filtraVendas(dataInicial, dataFinal)) {
-                loadTables();
-                throw new ExecutionException("Nenhum resultado encontrado", null);
-            }
+            LoadTableCliente(RelatorioController.getCompradores(dataInicial, dataFinal));
+            LoadTableVenda(RelatorioController.getVendas(dataInicial, dataFinal));
+            LoadTableProduto(RelatorioController.getProdutos(dataInicial, dataFinal));
             
-            loadTables();
-            
-        } catch (ParseException e) {
-            showMessageDialog(null, "Data inválida");
-        } catch (ExecutionException e) {
+        } catch (Exception e) {
             showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
@@ -395,7 +394,6 @@ public final class RelatorioView extends javax.swing.JFrame {
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         txtDataInicio.setText("");
         txtDataFinal.setText("");
-        relatorioController.limparFiltros();
         loadTables();
     }//GEN-LAST:event_btnLimparActionPerformed
 

@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DAO.RelatorioDAO;
 import DAO.VendaDAO;
 import Model.*;
 import java.util.ArrayList;
@@ -15,91 +16,57 @@ import java.util.Date;
  * @author gusta
  */
 public class RelatorioController {
-
-    public ArrayList<Venda> vendas;
-    public ArrayList<Venda> vendasFiltradas;
-
-    public RelatorioController() {
-        vendas = RelatorioController.getVendas();
-        vendasFiltradas = vendas;
-    }
-
-    public static boolean Salvar(int idVenda, ArrayList<Produto> produtos, Cliente cliente, float valorTotal, Date data) {
-        //Salvo na memória
-        Venda p = new Venda(idVenda, produtos, cliente, valorTotal, data);
-        return VendaDAO.Salvar(p);
-    }
     
-    public static boolean Salvar(ArrayList<String[]> produtos, String[] cliente, Date data) {
-        //Salvo na memória
-//        Venda p = new Venda(produtos, cliente, data);
-        return false;//VendaDAO.Salvar(p);
+    public RelatorioController() {
     }
 
-    public static boolean Excluir(int indice) {
-        return VendaDAO.Excluir(indice);
-    }
+    public static ArrayList<String[]> getCompradores(Date dataInicial, Date dataFinal) {
 
-    public static boolean Atualizar(int idVenda, ArrayList<Produto> produtos, Cliente cliente, float valorTotal, Date data) {
-        Venda p = new Venda(idVenda, produtos, cliente, valorTotal, data);
-        return VendaDAO.Atualizar(p);
-
-    }
-
-    public static ArrayList<Venda> getVendas() {
-
-        return VendaDAO.getVenda();
-    }
-
-    public Cliente pesquisaCliente(String cpf) {
-        ArrayList<Cliente> clientes;
-        clientes = new ArrayList<>();
-
-        int len = clientes.size();
-        for (int i = 0; i < len; i++) {
-            if (clientes.get(i).getCPF().equals(cpf)) {
-                return clientes.get(i);
-            }
+        ArrayList<Cliente> clientes = RelatorioDAO.getCompradores(dataInicial, dataFinal);
+        ArrayList<String[]> listaClientes = new ArrayList<>();
+        
+        for (int i = 0; i < clientes.size(); i++) {
+            listaClientes.add(new String[]{
+                clientes.get(i).getNome(),
+                clientes.get(i).getCPF(),
+                String.valueOf(clientes.get(i).getCompras())
+            });
         }
 
-        return null;
+        return listaClientes;
     }
 
-    public ArrayList<String[]> getCompradores() {
+    public static ArrayList<String[]> getProdutos(Date dataInicial, Date dataFinal) {
 
-        return Venda.getCompradores(vendasFiltradas);
-    }
-
-    public ArrayList<String[]> getProdutos() {
-
-        return Venda.getProdutosOrdenados(vendasFiltradas);
-    }
-
-    public ArrayList<String[]> getVendasOrdenadas() {
-
-        return Venda.getVendasOrdenadas(vendasFiltradas);
-    }
-
-    public float getTotalVendas() {
-
-        return Venda.getTotalVendas(vendasFiltradas);
-    }
-
-    public boolean filtraVendas(Date dataInicial, Date dataFinal) {
-
-        vendasFiltradas = new ArrayList();
-
-        for (Venda venda : vendas) {
-            if (venda.getData().compareTo(dataInicial) >= 0 && venda.getData().compareTo(dataFinal) <= 0) {
-                vendasFiltradas.add(venda);
-            }
+        ArrayList<Produto> produtos = RelatorioDAO.getProdutos(dataInicial, dataFinal);
+        ArrayList<String[]> listaProdutos = new ArrayList<>();
+        
+        for (int i = 0; i < produtos.size(); i++) {
+            listaProdutos.add(new String[]{
+                produtos.get(i).gettitulo(),
+                String.valueOf(produtos.get(i).getvalorUni()),
+                String.valueOf(produtos.get(i).getquantidade()),
+                String.valueOf(produtos.get(i).getTotalVenda()),
+            });
         }
 
-        return !vendasFiltradas.isEmpty();
+        return listaProdutos;
     }
 
-    public void limparFiltros() {
-        vendasFiltradas = vendas;
+    public static ArrayList<String[]> getVendas(Date dataInicial, Date dataFinal) {
+
+        ArrayList<Venda> filtroVendas = RelatorioDAO.getVenda(dataInicial, dataFinal);
+        ArrayList<String[]> listaVendas = new ArrayList<>();
+        
+        for (int i = 0; i < filtroVendas.size(); i++) {
+            listaVendas.add(new String[]{
+                String.valueOf(filtroVendas.get(i).getIdVenda()),
+                filtroVendas.get(i).getNomeCliente(),
+                Util.formatarData(filtroVendas.get(i).getData()),
+                Util.formatarDinheiro(filtroVendas.get(i).getValorTotal()),
+            });
+        }
+
+        return listaVendas;
     }
-  
 }

@@ -6,6 +6,8 @@
 package Model;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -23,5 +25,10 @@ public class Util {
     public static String limpaFormatacao(String texto) {
         texto = texto.replaceAll("[^a-zA-Z0-9]", "");
         return texto;
+    }
+    
+    public static String formatarData(Date data) {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        return df.format(data);
     }
 }
