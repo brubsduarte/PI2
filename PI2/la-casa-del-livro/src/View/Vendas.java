@@ -14,8 +14,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -47,10 +49,10 @@ public class Vendas extends javax.swing.JInternalFrame {
         SimpleDateFormat df;
         df = new SimpleDateFormat("dd/MM/yyyy");
 
-        lblDataFixo.setText(df.format(hoje));
-        lblIDClienteFixo.setText("");
-        lblClenteFixo.setText("");
-        lblCPF_Fixo.setText("");
+        lblDataCliente.setText(df.format(hoje));
+        lblIdCliente.setText("");
+        lblNomeCLiente.setText("");
+        lblCpfCliente.setText("");
         clienteSelecionado = null;
 
         clientes = VendaController.getClientes();
@@ -211,15 +213,13 @@ public class Vendas extends javax.swing.JInternalFrame {
 
         paineSuperior = new javax.swing.JPanel();
         lblDataFixo = new javax.swing.JLabel();
-        txtDataFixo = new javax.swing.JFormattedTextField();
         lblIDClienteFixo = new javax.swing.JLabel();
-        txtIdClienteFixo = new javax.swing.JTextField();
         lblClenteFixo = new javax.swing.JLabel();
-        txtNomeFixo = new javax.swing.JTextField();
         lblCPF_Fixo = new javax.swing.JLabel();
-        txtCPF_Fixo = new javax.swing.JFormattedTextField();
-        lblNumVenda = new javax.swing.JLabel();
-        idVenda = new javax.swing.JLabel();
+        lblIdCliente = new javax.swing.JLabel();
+        lblNomeCLiente = new javax.swing.JLabel();
+        lblCpfCliente = new javax.swing.JLabel();
+        lblDataCliente = new javax.swing.JLabel();
         paineInferior = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -233,10 +233,8 @@ public class Vendas extends javax.swing.JInternalFrame {
         tableProdutos = new javax.swing.JTable();
         spnQtd = new javax.swing.JSpinner();
         lblQuantidade = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        AdicionarCarrinho = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableVenda = new javax.swing.JTable();
@@ -252,34 +250,19 @@ public class Vendas extends javax.swing.JInternalFrame {
 
         lblDataFixo.setText("Data:");
 
-        txtDataFixo.setEditable(false);
-        try {
-            txtDataFixo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         lblIDClienteFixo.setText("ID do Cliente:");
 
-        txtIdClienteFixo.setEditable(false);
-
-        lblClenteFixo.setText("Nome do Cliente:");
-
-        txtNomeFixo.setEditable(false);
+        lblClenteFixo.setText("Cliente:");
 
         lblCPF_Fixo.setText("CPF:");
 
-        txtCPF_Fixo.setEditable(false);
-        try {
-            txtCPF_Fixo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        lblIdCliente.setText("0000");
 
-        lblNumVenda.setText("Venda Nº");
+        lblNomeCLiente.setText("Nome do Cliente");
 
-        idVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        idVenda.setText("0025");
+        lblCpfCliente.setText("000.000.000-00");
+
+        lblDataCliente.setText("10/10/1099");
 
         javax.swing.GroupLayout paineSuperiorLayout = new javax.swing.GroupLayout(paineSuperior);
         paineSuperior.setLayout(paineSuperiorLayout);
@@ -287,30 +270,24 @@ public class Vendas extends javax.swing.JInternalFrame {
             paineSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paineSuperiorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(paineSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(paineSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(paineSuperiorLayout.createSequentialGroup()
                         .addComponent(lblDataFixo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDataFixo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
+                        .addComponent(lblDataCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
                         .addComponent(lblIDClienteFixo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIdClienteFixo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
                         .addComponent(lblCPF_Fixo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCPF_Fixo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(paineSuperiorLayout.createSequentialGroup()
                         .addComponent(lblClenteFixo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNomeFixo)))
+                        .addComponent(lblNomeCLiente, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paineSuperiorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblNumVenda)
-                .addGap(46, 46, 46)
-                .addComponent(idVenda)
-                .addGap(48, 48, 48))
         );
         paineSuperiorLayout.setVerticalGroup(
             paineSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,20 +295,16 @@ public class Vendas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(paineSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDataFixo)
-                    .addComponent(txtDataFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblIDClienteFixo)
-                    .addComponent(txtIdClienteFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCPF_Fixo)
-                    .addComponent(txtCPF_Fixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(paineSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNumVenda)
-                    .addComponent(idVenda))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lblIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCpfCliente)
+                    .addComponent(lblDataCliente))
+                .addGap(26, 26, 26)
                 .addGroup(paineSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblClenteFixo)
-                    .addComponent(txtNomeFixo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(lblNomeCLiente, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         lblProduto.setText("Produto:");
@@ -391,15 +364,15 @@ public class Vendas extends javax.swing.JInternalFrame {
 
         lblQuantidade.setText("Quantidade:");
 
-        jLabel2.setText("SubTotal:");
-
-        jTextField2.setEditable(false);
-        jTextField2.setText("R$ 00,00");
-
         jLabel3.setText("Adicionar Produto");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/Package-add-32.png"))); // NOI18N
-        jButton3.setText("Adicionar");
+        AdicionarCarrinho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/Package-add-32.png"))); // NOI18N
+        AdicionarCarrinho.setText("Adicionar");
+        AdicionarCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdicionarCarrinhoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -426,14 +399,10 @@ public class Vendas extends javax.swing.JInternalFrame {
                         .addComponent(lblQuantidade)
                         .addGap(18, 18, 18)
                         .addComponent(spnQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
+                        .addGap(288, 288, 288)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(AdicionarCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -453,11 +422,9 @@ public class Vendas extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(spnQtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblQuantidade)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                    .addComponent(AdicionarCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Produtos", jPanel1);
@@ -583,7 +550,7 @@ public class Vendas extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(RemoverCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(91, Short.MAX_VALUE))))
+                        .addContainerGap(102, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Venda", jPanel2);
@@ -632,18 +599,53 @@ public class Vendas extends javax.swing.JInternalFrame {
         showMessageDialog(null, "Produto removido com Sucesso");
     }//GEN-LAST:event_RemoverCarrinhoActionPerformed
 
+    private void AdicionarCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdicionarCarrinhoActionPerformed
+                if(ValidarProdutoCliente()){
+
+            int quantidade = Integer.parseInt(spnQtd.getValue().toString());
+            
+            int linha = tableProdutos.getSelectedRow();
+            TableModel tm = tableProdutos.getModel();
+
+            int estoque = Integer.valueOf(tm.getValueAt(linha, 7).toString());
+            
+            if (validaProdutoSelecionado(tm.getValueAt(linha, 0).toString())) {
+                showMessageDialog(null, "Este produto já foi selecionado.");
+                return;
+            }
+            
+            if (quantidade > estoque || quantidade < 0) {
+                showMessageDialog(null, "Quantidade indisponível no estoque.");
+                return;
+            }
+            
+            String[] venda = {
+                tm.getValueAt(linha, 0).toString(), 
+                tm.getValueAt(linha, 1).toString(), 
+                tm.getValueAt(linha, 4).toString(), 
+                tm.getValueAt(linha, 8).toString(), 
+                String.valueOf(quantidade),
+                tm.getValueAt(linha, 7).toString(),};
+
+            vendas.add(venda);
+
+            LoadTableVendas();
+
+            showMessageDialog(null, "Produto Adicionado com Sucesso");
+        }
+         
+    }//GEN-LAST:event_AdicionarCarrinhoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AdicionarCarrinho;
     private javax.swing.JButton RemoverCarrinho;
-    private javax.swing.JLabel idVenda;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -654,13 +656,15 @@ public class Vendas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel lblCPF_Fixo;
     private javax.swing.JLabel lblClenteFixo;
+    private javax.swing.JLabel lblCpfCliente;
+    private javax.swing.JLabel lblDataCliente;
     private javax.swing.JLabel lblDataFixo;
     private javax.swing.JLabel lblIDClienteFixo;
-    private javax.swing.JLabel lblNumVenda;
+    private javax.swing.JLabel lblIdCliente;
+    private javax.swing.JLabel lblNomeCLiente;
     private javax.swing.JLabel lblProduto;
     private javax.swing.JLabel lblQuantidade;
     private javax.swing.JLabel lblValorTotalVenda;
@@ -669,10 +673,28 @@ public class Vendas extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner spnQtd;
     private javax.swing.JTable tableProdutos;
     private javax.swing.JTable tableVenda;
-    private javax.swing.JFormattedTextField txtCPF_Fixo;
-    private javax.swing.JFormattedTextField txtDataFixo;
-    private javax.swing.JTextField txtIdClienteFixo;
-    private javax.swing.JTextField txtNomeFixo;
     private javax.swing.JTextField txtProduto;
     // End of variables declaration//GEN-END:variables
+
+public boolean ValidarProdutoCliente() {
+
+        if (lblIDClienteFixo.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Defina um cliente para adicionar o produto ao carrinho!");
+            return false;
+        }
+        
+        if (tblProdutoPesquisa.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione um produto!");
+            return false;
+        }
+        
+        if (this.spnQuantidadeProduto.getValue().equals(0)) {
+            JOptionPane.showMessageDialog(this, "Defina uma quantidade ao produto!");
+            return false;
+        }
+
+        return true;
+    }
+
+
 }
