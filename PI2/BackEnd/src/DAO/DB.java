@@ -19,8 +19,44 @@ public class DB {
     private static final String SENHA = "";
     private static String url = "";
     private static Connection conexao;
+    private static Statement comando;
+    private final boolean autoCommit;
 
-    public DB() {
+    
+    public DB(boolean autoCommit) {
+        this.autoCommit = autoCommit;
+        
+        try {
+            Class.forName(DRIVER);
+            url = SERVIDOR + BASEDADOS;
+            conexao = DriverManager.getConnection(url, LOGIN, SENHA);
+            conexao.setAutoCommit(autoCommit);
+            comando = conexao.createStatement();
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    /**
+     * Finaliza a altarção do banco de dados.
+     */
+    public void commit() {
+        try {
+            conexao.commit();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    /**
+     * Desfaz a altarção do banco de dados.
+     */
+    public void rollback() {
+        try {
+            conexao.rollback();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     
     /**
@@ -44,19 +80,17 @@ public class DB {
         boolean retorno = false;
 
         try {
-            Class.forName(DRIVER);
-            url = SERVIDOR + BASEDADOS;
-            conexao = DriverManager.getConnection(url, LOGIN, SENHA);
-            Statement comando = conexao.createStatement();
             int linhasAfetadas = comando.executeUpdate(sql);
 
             retorno = linhasAfetadas > 0;
 
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             retorno = false;
         } finally {
             try {
-                conexao.close();
+                if (autoCommit) {
+                    conexao.close();
+                }
             } catch (SQLException ex) {
                 retorno = false;
             }
@@ -73,14 +107,10 @@ public class DB {
      */
     public ResultSet executarConsulta(String sql) {
         try {
-            Class.forName(DRIVER);
-            url = SERVIDOR + BASEDADOS;
-            conexao = DriverManager.getConnection(url, LOGIN, SENHA);
-            Statement comando = conexao.createStatement();
             ResultSet rs = comando.executeQuery(sql);
             
             return rs;
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             return null;
         }
     }

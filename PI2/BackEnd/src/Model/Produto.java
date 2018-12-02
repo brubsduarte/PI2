@@ -10,6 +10,7 @@ public class Produto {
     private String tipo;
     private String descricao;
     private int quantidade;
+    private int estoque;
     private double valorUni;
     private double totalVenda;
 
@@ -53,12 +54,14 @@ public class Produto {
 
     }
     
-    public Produto(int idProduto, String titulo, String autor, int quantidade, double valorUni) {
+    public Produto(int idProduto, String titulo, String autor, int quantidade, double valorUni, int estoque) {
 
         this.idProduto = idProduto;
         this.titulo = titulo;
         this.autor = autor;
+        this.quantidade = quantidade;
         this.valorUni = valorUni;
+        this.estoque = estoque;
     }
 
     public int getIdProduto() {
@@ -67,6 +70,14 @@ public class Produto {
 
     public void setIdProduto(int idProduto) {
         this.idProduto = idProduto;
+    }
+    
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
     }
 
     /**

@@ -794,7 +794,8 @@ public class TelaVendasView extends javax.swing.JFrame {
                 tm.getValueAt(linha, 1).toString(), 
                 tm.getValueAt(linha, 4).toString(), 
                 tm.getValueAt(linha, 8).toString(), 
-                String.valueOf(quantidade)};
+                String.valueOf(quantidade),
+                tm.getValueAt(linha, 7).toString(),};
 
             vendas.add(venda);
 
@@ -855,15 +856,17 @@ public class TelaVendasView extends javax.swing.JFrame {
 
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
         try {
-//            if(clienteSelecionado.length == 0) {
-//                throw new Exception("Nenhum cliente selecionado.");
-//            }
+            if(clienteSelecionado == null) {
+                throw new Exception("Nenhum cliente selecionado.");
+            }
             
             if(vendas.isEmpty()) {
                 throw new Exception("Nenhum produto selecionado.");
             }
             
-//            VendaController.Salvar(vendas, clienteSelecionado, new Date());
+            if(!VendaController.Salvar(vendas, clienteSelecionado, new Date())){
+                throw new Exception("Ocorreu um erro durante a venda.");
+            }
             
             showMessageDialog(null, "Venda criada com sucesso");
             

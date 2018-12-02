@@ -32,8 +32,8 @@ public class RelatorioController {
     
     public static boolean Salvar(ArrayList<String[]> produtos, String[] cliente, Date data) {
         //Salvo na memória
-        Venda p = new Venda(produtos, cliente, data);
-        return VendaDAO.Salvar(p);
+//        Venda p = new Venda(produtos, cliente, data);
+        return false;//VendaDAO.Salvar(p);
     }
 
     public static boolean Excluir(int indice) {

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class RelatorioDAO {
 
     public static ArrayList<Cliente> getCompradores() {
-        DB db = new DB();
+        DB db = new DB(true);
         try {
             String sql = "SELECT cliente.Nome, cliente.CPF, COUNT(*) \"Compras\" FROM cliente LEFT JOIN venda ON venda.idCliente = cliente.id GROUP BY cliente.id;";
             ResultSet rs = db.executarConsulta(sql);
@@ -32,7 +32,7 @@ public class RelatorioDAO {
     }
 
     public static ArrayList<Produto> getProdutos() {
-        DB db = new DB();
+        DB db = new DB(true);
         try {
             String sql = "SELECT produto.Titulo, produto.Valor, COUNT(*) \"QtdeVendas\", COUNT(*) * produto.Valor \"TotalVendas\" FROM produto INNER JOIN vendaproduto ON produto.ID = vendaproduto.idProduto GROUP BY produto.id";
             ResultSet rs = db.executarConsulta(sql);
@@ -56,7 +56,7 @@ public class RelatorioDAO {
     }
     
     public static ArrayList<Venda> getVenda() {
-        DB db = new DB();
+        DB db = new DB(true);
         try {
             String sql = "SELECT * FROM venda";
             ResultSet rs = db.executarConsulta(sql);
@@ -65,7 +65,7 @@ public class RelatorioDAO {
                 Venda v = new Venda();
                 v.setIdVenda(rs.getInt("ID"));
                 v.setData(rs.getDate("Data"));
-                v.setValorTotal(rs.getDouble("ValorTotal"));
+                v.setValorTotal(rs.getFloat("ValorTotal"));
                 v.setNomeCliente(rs.getString("NomeCliente"));
                 vendas.add(v);
             }

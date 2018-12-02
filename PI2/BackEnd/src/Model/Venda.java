@@ -24,7 +24,7 @@ public class Venda {
     private int idVenda;
     private ArrayList<Produto> produtos;
     private Cliente cliente;
-    private double valorTotal;
+    private float valorTotal;
     private Date data;
     private String nomeCliente;
 
@@ -47,10 +47,9 @@ public class Venda {
         this.data = data;
     }
     
-    public Venda(ArrayList<String[]> produtos, String[] cliente, Date data) {
-        this.idVenda = 0;
+    public Venda(ArrayList<String[]> produtos, Cliente cliente, Date data) {
         this.produtos = converteProdutos(produtos);
-        this.cliente = converteCliente(cliente);
+        this.cliente = cliente;
         this.valorTotal = getTotal(produtos);
         this.data = data;
     }
@@ -63,24 +62,20 @@ public class Venda {
                                           strings[1], 
                                           strings[2], 
                                           Integer.valueOf(strings[4]), 
-                                          Double.valueOf(strings[3])
-                                          ));
+                                          Double.valueOf(strings[3]),
+                                          Integer.valueOf(strings[5])));
         }
         return novosProdutos;
     }
     
-    private Cliente converteCliente(String[] cliente) {
-        return new Cliente(Integer.valueOf(cliente[0]), cliente[1], cliente[2]);
-    }
-    
     private float getTotal(ArrayList<String[]> produtosLista) {
-        float valorTotal = 0f;
+        float valor = 0f;
 
         for (String[] produto : produtosLista) {
-            valorTotal += Float.valueOf(produto[3]) * Float.valueOf(produto[4]);
+            valor += Float.valueOf(produto[3]) * Float.valueOf(produto[4]);
         }
         
-        return valorTotal;
+        return valor;
     }
     
     public int getIdVenda() {
@@ -107,7 +102,7 @@ public class Venda {
         this.cliente = cliente;
     }
 
-    public void setValorTotal(double valorTotal) {
+    public void setValorTotal(float valorTotal) {
         this.valorTotal = valorTotal;
     }
 

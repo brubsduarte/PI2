@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class ProdutoDAO {
 
     public static boolean Salvar(Produto p) {
-        DB db = new DB();
+        DB db = new DB(true);
         String sql = 
                 "INSERT INTO produto "
                 + "(Titulo, Autor, Genero, Editora, Valor, Tipo, Quantidade, Descricao)"
@@ -25,7 +25,7 @@ public class ProdutoDAO {
     }
 
     public static boolean Atualizar(Produto p) {
-        DB db = new DB();
+        DB db = new DB(true);
         String sql = 
                 "UPDATE produto SET "
                 + "Titulo = '"+p.gettitulo()+"', "
@@ -41,13 +41,13 @@ public class ProdutoDAO {
     }
 
     public static boolean Excluir(int produtoID) {
-        DB db = new DB();
+        DB db = new DB(true);
         String sql = "DELETE FROM produto Where ID = "+produtoID+";";
         return db.executarAlteracao(sql);
     }
 
     public static ArrayList<Produto> getProdutos() {
-        DB db = new DB();
+        DB db = new DB(true);
         try {
             String sql = "SELECT * FROM produto;";
             ResultSet rs = db.executarConsulta(sql);
@@ -75,7 +75,7 @@ public class ProdutoDAO {
     }
 
     public static ArrayList<Produto> filtrarProdutos(int id, String titulo, String autor, String genero, String editora) {
-        DB db = new DB();
+        DB db = new DB(true);
         try {
             String sql = "SELECT * FROM produto WHERE ";
             if (id != 0) {

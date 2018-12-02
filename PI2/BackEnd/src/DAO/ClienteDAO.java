@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class ClienteDAO {
 
     public static boolean Salvar(Cliente c) {
-        DB db = new DB();
+        DB db = new DB(true);
         
         SimpleDateFormat df;
         df = new SimpleDateFormat("yyyy-MM-dd");
@@ -41,7 +41,7 @@ public class ClienteDAO {
     }
 
     public static boolean Atualizar(Cliente c) {
-        DB db = new DB();
+        DB db = new DB(true);
         
         SimpleDateFormat df;
         df = new SimpleDateFormat("yyyy-MM-dd");
@@ -72,13 +72,13 @@ public class ClienteDAO {
     }
 
     public static boolean Excluir(int clienteID) {
-        DB db = new DB();
+        DB db = new DB(true);
         String sql = "DELETE FROM cliente Where ID = "+clienteID+";";
         return db.executarAlteracao(sql);
     }
 
     public static ArrayList<Cliente> getClientes() {
-        DB db = new DB();
+        DB db = new DB(true);
         try {
             String sql = "SELECT * FROM cliente;";
             ResultSet rs = db.executarConsulta(sql);
@@ -116,7 +116,7 @@ public class ClienteDAO {
     }
 
     public static ArrayList<Cliente> filtrarClientes(int id, String nome, String cpf, String rg) {
-        DB db = new DB();
+        DB db = new DB(true);
         try {
             String sql = "SELECT * FROM cliente WHERE ";
             if (id != 0) {

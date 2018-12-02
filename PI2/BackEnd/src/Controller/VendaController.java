@@ -33,10 +33,10 @@ public class VendaController {
         return VendaDAO.Salvar(p);
     }
 
-    public static boolean Salvar(ArrayList<String[]> produtos, String[] cliente, Date data) {
+    public static boolean Salvar(ArrayList<String[]> produtos, Cliente cliente, Date data) {
         //Salvo na memória
-        Venda p = new Venda(produtos, cliente, data);
-        return VendaDAO.Salvar(p);
+        Venda v = new Venda(produtos, cliente, data);
+        return VendaDAO.Salvar(v);
     }
 
     public static boolean Excluir(int indice) {
