@@ -8,9 +8,9 @@ import java.util.Date;
 
 public class ClienteController {
 
-    public static boolean Salvar(int pId, String pNome, String pCPF, String sexo, String rg, String orgaoEmissor, String uf, String estadoCivil, String email, String telefone, String celular, String endereco, String numeroCasa, String complemento, String cep, String estado, String cidade, String bairro, Date dataDeNascimento) {
+    public static boolean Salvar(String pNome, String pCPF, String sexo, String rg, String orgaoEmissor, String uf, String estadoCivil, String email, String telefone, String celular, String endereco, String numeroCasa, String complemento, String cep, String estado, String cidade, String bairro, Date dataDeNascimento) {
         //Salvo na memória
-        Cliente p = new Cliente(pId, pNome, pCPF, sexo, rg, orgaoEmissor, uf, estadoCivil, email, telefone, celular, endereco, numeroCasa, complemento, cep, estado, cidade, bairro, dataDeNascimento);
+        Cliente p = new Cliente(pNome, pCPF, sexo, rg, orgaoEmissor, uf, estadoCivil, email, telefone, celular, endereco, numeroCasa, complemento, cep, estado, cidade, bairro, dataDeNascimento);
 
         return ClienteDAO.Salvar(p);
     }

@@ -67,6 +67,27 @@ public class Cliente implements Comparable {
         this.bairro = bairro;
     }
     
+    public Cliente(String pNome, String pCPF, String sexo, String rg, String orgaoEmissor, String uf, String estadoCivil, String email, String telefone, String celular, String endereco, String numeroCasa, String complemento, String cep, String estado, String cidade, String bairro, Date dataDeNascimento) {
+        this.nome = pNome;
+        this.cpf = pCPF;
+        this.sexo = sexo;
+        this.rg = rg;
+        this.orgaoEmissor = orgaoEmissor;
+        this.uf = uf;
+        this.estadoCivil = estadoCivil;
+        this.dataDeNascimento = dataDeNascimento;
+        this.email = email;
+        this.telefone = telefone;
+        this.celular = celular;
+        this.endereco = endereco;
+        this.numeroCasa = numeroCasa;
+        this.complemento = complemento;
+        this.cep = cep;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.bairro = bairro;
+    }
+    
     public Cliente(int id, String pNome, String pCPF) {
         this.id = id;
         this.nome = pNome;

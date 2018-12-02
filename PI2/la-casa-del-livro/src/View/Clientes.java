@@ -999,7 +999,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                     df.setLenient(false);
                     Date dt = df.parse(txtDataNascimento.getText());
 
-                    if (ClienteController.Salvar(Integer.parseInt(txtIDCliente.getText()),
+                    if (ClienteController.Salvar(
                             txtNome.getText(),
                             Util.limpaFormatacao(txtCPF.getText()),
                             cboxSexo.getSelectedItem().toString(),
