@@ -269,8 +269,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemCadProdActionPerformed
 
     private void btoVendasMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btoVendasMenuActionPerformed
-        TelaVendasView telVendas = new TelaVendasView();
-        //paineMenu.add(telVendas);
+        Vendas telVendas = new Vendas();
+        paineMenu.add(telVendas);
         telVendas.setVisible(true);
     }//GEN-LAST:event_btoVendasMenuActionPerformed
 
