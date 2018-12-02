@@ -25,7 +25,6 @@ import javax.swing.table.TableModel;
  */
 public class Vendas extends javax.swing.JInternalFrame {
 
-    
     public ArrayList<String[]> clientes;
     public ArrayList<String[]> clientesFiltrados;
     public Cliente clienteSelecionado;
@@ -35,7 +34,7 @@ public class Vendas extends javax.swing.JInternalFrame {
     public String[] produtoSelecionado;
 
     public ArrayList<String[]> vendas;
-    
+
     /**
      * Creates new form Vendas
      */
@@ -43,21 +42,21 @@ public class Vendas extends javax.swing.JInternalFrame {
         initComponents();
         inicia();
     }
-    
+
     public void inicia() {
         Date hoje = new Date();
         SimpleDateFormat df;
         df = new SimpleDateFormat("dd/MM/yyyy");
 
-        lblDataCliente.setText(df.format(hoje));
+        lblDate.setText(df.format(hoje));
         lblIdCliente.setText("");
-        lblNomeCLiente.setText("");
+        lblNomeCliente.setText("");
         lblCpfCliente.setText("");
         clienteSelecionado = null;
 
         clientes = VendaController.getClientes();
         clientesFiltrados = clientes;
-        clienteSelecionado = null;       
+        clienteSelecionado = null;
 
         produtos = VendaController.getProdutos();
         produtosFiltrados = produtos;
@@ -68,15 +67,117 @@ public class Vendas extends javax.swing.JInternalFrame {
         vendas = new ArrayList();
         LoadTableVendas();
     }
-    
-    
-    
+
+    public void LoadTableCliente(ArrayList<String[]> clientes) {
+
+        if (clientes == null) {
+            clientes = ClienteController.getClientes();
+        }
+
+        DefaultTableModel tmClientes = new DefaultTableModel();
+        tmClientes.addColumn("ID");
+        tmClientes.addColumn("Nome");
+        tmClientes.addColumn("CPF");
+        tmClientes.addColumn("Sexo");
+        tmClientes.addColumn("RG");
+        tmClientes.addColumn("Orgão Emissor");
+        tmClientes.addColumn("UF");
+        tmClientes.addColumn("Estado Civil");
+        tmClientes.addColumn("Email");
+        tmClientes.addColumn("Telefone");
+        tmClientes.addColumn("Celular");
+        tmClientes.addColumn("Endereço");
+        tmClientes.addColumn("N°");
+        tmClientes.addColumn("Complemento");
+        tmClientes.addColumn("CEP");
+        tmClientes.addColumn("Estado");
+        tmClientes.addColumn("Cidade");
+        tmClientes.addColumn("Bairro");
+        tmClientes.addColumn("Data de Nascimento");
+
+        for (String[] c : clientes) {
+            tmClientes.addRow(c);
+        }
+
+        tblClientePesquisa.setModel(tmClientes);
+
+        tblClientePesquisa.getColumnModel().getColumn(0).setPreferredWidth(0); //ID;
+        tblClientePesquisa.getColumnModel().getColumn(1).setPreferredWidth(250); //nome
+        tblClientePesquisa.getColumnModel().getColumn(2).setPreferredWidth(150); //cpf
+
+        tblClientePesquisa.getColumnModel().getColumn(3).setMinWidth(0);  //sexo
+        tblClientePesquisa.getColumnModel().getColumn(3).setPreferredWidth(0); //sexo
+        tblClientePesquisa.getColumnModel().getColumn(3).setMaxWidth(0); //sexo
+
+        //tblClientePesquisa.getColumnModel().getColumn(3).setMinWidth(0); // rg
+        tblClientePesquisa.getColumnModel().getColumn(4).setPreferredWidth(0); // rg
+        //tblClientePesquisa.getColumnModel().getColumn(3).setMaxWidth(0); // rg
+
+        tblClientePesquisa.getColumnModel().getColumn(5).setMinWidth(0);   // orgao
+        tblClientePesquisa.getColumnModel().getColumn(5).setPreferredWidth(0);  // orgao
+        tblClientePesquisa.getColumnModel().getColumn(5).setMaxWidth(0);   // orgao
+
+        tblClientePesquisa.getColumnModel().getColumn(6).setMinWidth(0); // uf
+        tblClientePesquisa.getColumnModel().getColumn(6).setPreferredWidth(0); // uf
+        tblClientePesquisa.getColumnModel().getColumn(6).setMaxWidth(0);  // uf
+
+        tblClientePesquisa.getColumnModel().getColumn(7).setMinWidth(0); // estado civil        
+        tblClientePesquisa.getColumnModel().getColumn(7).setPreferredWidth(0); // estado civil        
+        tblClientePesquisa.getColumnModel().getColumn(7).setMaxWidth(0); // estado civil 
+
+        tblClientePesquisa.getColumnModel().getColumn(8).setMinWidth(0); //email
+        tblClientePesquisa.getColumnModel().getColumn(8).setPreferredWidth(0); //email
+        tblClientePesquisa.getColumnModel().getColumn(8).setMaxWidth(0); //email
+
+        tblClientePesquisa.getColumnModel().getColumn(9).setMinWidth(0); //telefone
+        tblClientePesquisa.getColumnModel().getColumn(9).setPreferredWidth(0); //telefone
+        tblClientePesquisa.getColumnModel().getColumn(9).setMaxWidth(0); //telefone
+
+        tblClientePesquisa.getColumnModel().getColumn(10).setMinWidth(0); //celular
+        tblClientePesquisa.getColumnModel().getColumn(10).setPreferredWidth(0); //celular
+        tblClientePesquisa.getColumnModel().getColumn(10).setMaxWidth(0);  //celular
+
+        tblClientePesquisa.getColumnModel().getColumn(11).setMinWidth(0); // endereço
+        tblClientePesquisa.getColumnModel().getColumn(11).setPreferredWidth(0);// endereço
+        tblClientePesquisa.getColumnModel().getColumn(11).setMaxWidth(0);// endereço
+
+        tblClientePesquisa.getColumnModel().getColumn(12).setMinWidth(0);  //numero
+        tblClientePesquisa.getColumnModel().getColumn(12).setPreferredWidth(0); //numero
+        tblClientePesquisa.getColumnModel().getColumn(12).setMaxWidth(0); //numero
+
+        tblClientePesquisa.getColumnModel().getColumn(13).setMinWidth(0);  //complemento
+        tblClientePesquisa.getColumnModel().getColumn(13).setPreferredWidth(0); //complemento
+        tblClientePesquisa.getColumnModel().getColumn(13).setMaxWidth(0); //complemento
+
+        tblClientePesquisa.getColumnModel().getColumn(14).setMinWidth(0); // cep
+        tblClientePesquisa.getColumnModel().getColumn(14).setPreferredWidth(0); // cep
+        tblClientePesquisa.getColumnModel().getColumn(14).setMaxWidth(0); // cep
+
+        tblClientePesquisa.getColumnModel().getColumn(15).setMinWidth(0); //estado
+        tblClientePesquisa.getColumnModel().getColumn(15).setPreferredWidth(0); //estado
+        tblClientePesquisa.getColumnModel().getColumn(15).setMaxWidth(0); //estado
+
+        tblClientePesquisa.getColumnModel().getColumn(16).setMinWidth(0); //cidade
+        tblClientePesquisa.getColumnModel().getColumn(16).setPreferredWidth(0); //cidade
+        tblClientePesquisa.getColumnModel().getColumn(16).setMaxWidth(0); //cidade
+
+        tblClientePesquisa.getColumnModel().getColumn(17).setMinWidth(0); // bairro
+        tblClientePesquisa.getColumnModel().getColumn(17).setPreferredWidth(0); // bairro
+        tblClientePesquisa.getColumnModel().getColumn(17).setMaxWidth(0); // bairro
+
+        //tblClientePesquisa.getColumnModel().getColumn(18).setMinWidth(0);// data de nascimento
+        tblClientePesquisa.getColumnModel().getColumn(18).setPreferredWidth(0);// data de nascimento
+        //tblClientePesquisa.getColumnModel().getColumn(18).setMaxWidth(0);// data de nascimento
+
+        this.pack();
+    }
+
     public void LoadTableProduto(ArrayList<String[]> produtos) {
-        
-        if(produtos == null){
+
+        if (produtos == null) {
             produtos = ProdutoController.getProdutos();
         }
-        
+
         DefaultTableModel tmProdutos = new DefaultTableModel();
         tmProdutos.addColumn("ID");
         tmProdutos.addColumn("Titulo");
@@ -120,8 +221,8 @@ public class Vendas extends javax.swing.JInternalFrame {
 
         tableProdutos.getColumnModel().getColumn(8).setPreferredWidth(100); //Valor Unitario
     }
-    
-      public void LoadTableVendas() {
+
+    public void LoadTableVendas() {
 
         ArrayList<String[]> linhasProdutos = vendas;
 
@@ -149,13 +250,13 @@ public class Vendas extends javax.swing.JInternalFrame {
         tableVenda.getColumnModel().getColumn(3).setPreferredWidth(150); //valor unitario
         tableVenda.getColumnModel().getColumn(4).setPreferredWidth(150); //valor unitario
     }
-      
+
     public String formatDecimal(float number) {
         Locale meuLocal = new Locale("pt", "BR");
         NumberFormat format = NumberFormat.getCurrencyInstance(meuLocal);
         return format.format(number);
     }
-    
+
     public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -201,7 +302,7 @@ public class Vendas extends javax.swing.JInternalFrame {
             }
         });
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -233,7 +334,7 @@ public class Vendas extends javax.swing.JInternalFrame {
         btnSelecionarCliente = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblProduto = new javax.swing.JLabel();
-        txtProduto = new javax.swing.JTextField();
+        txtPesquisaProduto = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProdutos = new javax.swing.JTable();
@@ -247,8 +348,8 @@ public class Vendas extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         RemoverCarrinho = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnCancelarVenda = new javax.swing.JButton();
+        btnFinalizarVenda = new javax.swing.JButton();
         lblValorTotalVenda = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
@@ -393,7 +494,7 @@ public class Vendas extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(tblClientePesquisa);
 
-        btnSelecionarCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSelecionarCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSelecionarCliente.setText("Selecionar Cliente");
         btnSelecionarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,17 +508,18 @@ public class Vendas extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPesquisaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnPesquisarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPesquisaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPesquisarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(233, 233, 233)
+                        .addComponent(btnSelecionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSelecionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(209, 209, 209))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,19 +530,19 @@ public class Vendas extends javax.swing.JInternalFrame {
                     .addComponent(btnPesquisarCliente)
                     .addComponent(txtPesquisaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSelecionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSelecionarCliente)
+                .addGap(56, 56, 56))
         );
 
         jTabbedPane1.addTab("Cliente", jPanel4);
 
         lblProduto.setText("Produto:");
 
-        txtProduto.addActionListener(new java.awt.event.ActionListener() {
+        txtPesquisaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProdutoActionPerformed(evt);
+                txtPesquisaProdutoActionPerformed(evt);
             }
         });
 
@@ -515,7 +617,7 @@ public class Vendas extends javax.swing.JInternalFrame {
                         .addGap(36, 36, 36)
                         .addComponent(lblProduto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(222, Short.MAX_VALUE))
@@ -533,7 +635,7 @@ public class Vendas extends javax.swing.JInternalFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProduto)
-                    .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -593,7 +695,7 @@ public class Vendas extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Forma de Pagamento:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dinheiro", "Cartão de Crédito", "Cartão de Débito" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Dinheiro", "Cartão de Crédito", "Cartão de Débito" }));
 
         RemoverCarrinho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/basket_delete.png"))); // NOI18N
         RemoverCarrinho.setText("Excluir Item");
@@ -603,11 +705,21 @@ public class Vendas extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/button_cancel-32.png"))); // NOI18N
-        jButton5.setText("Cancelar Venda");
+        btnCancelarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/button_cancel-32.png"))); // NOI18N
+        btnCancelarVenda.setText("Cancelar Venda");
+        btnCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarVendaActionPerformed(evt);
+            }
+        });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/Money-32.png"))); // NOI18N
-        jButton6.setText("Concluir Venda");
+        btnFinalizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/Money-32.png"))); // NOI18N
+        btnFinalizarVenda.setText("Concluir Venda");
+        btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarVendaActionPerformed(evt);
+            }
+        });
 
         lblValorTotalVenda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblValorTotalVenda.setText("00,00");
@@ -629,11 +741,11 @@ public class Vendas extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)
                         .addComponent(RemoverCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(42, 42, 42))
         );
         jPanel2Layout.setVerticalGroup(
@@ -648,9 +760,9 @@ public class Vendas extends javax.swing.JInternalFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RemoverCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6))
+                    .addComponent(btnFinalizarVenda))
                 .addGap(69, 69, 69))
         );
 
@@ -690,7 +802,13 @@ public class Vendas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String pesquisa = txtPesquisaProduto.getText().toLowerCase();
+        if (pesquisa.isEmpty()) {
+            LoadTableProduto(null);
+            return;
+        }
+
+        LoadTableProduto(ProdutoController.getProdutosFiltro(0, pesquisa, "", "", ""));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void RemoverCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoverCarrinhoActionPerformed
@@ -705,30 +823,30 @@ public class Vendas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_RemoverCarrinhoActionPerformed
 
     private void AdicionarCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdicionarCarrinhoActionPerformed
-                if(ValidarProdutoCliente()){
+        if (ValidarProdutoCliente()) {
 
             int quantidade = Integer.parseInt(spnQtd.getValue().toString());
-            
+
             int linha = tableProdutos.getSelectedRow();
             TableModel tm = tableProdutos.getModel();
 
             int estoque = Integer.valueOf(tm.getValueAt(linha, 7).toString());
-            
+
             if (validaProdutoSelecionado(tm.getValueAt(linha, 0).toString())) {
                 showMessageDialog(null, "Este produto já foi selecionado.");
                 return;
             }
-            
+
             if (quantidade > estoque || quantidade < 0) {
                 showMessageDialog(null, "Quantidade indisponível no estoque.");
                 return;
             }
-            
+
             String[] venda = {
-                tm.getValueAt(linha, 0).toString(), 
-                tm.getValueAt(linha, 1).toString(), 
-                tm.getValueAt(linha, 4).toString(), 
-                tm.getValueAt(linha, 8).toString(), 
+                tm.getValueAt(linha, 0).toString(),
+                tm.getValueAt(linha, 1).toString(),
+                tm.getValueAt(linha, 4).toString(),
+                tm.getValueAt(linha, 8).toString(),
                 String.valueOf(quantidade),
                 tm.getValueAt(linha, 7).toString(),};
 
@@ -738,7 +856,7 @@ public class Vendas extends javax.swing.JInternalFrame {
 
             showMessageDialog(null, "Produto Adicionado com Sucesso");
         }
-         
+
     }//GEN-LAST:event_AdicionarCarrinhoActionPerformed
 
     private void btnPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarClienteActionPerformed
@@ -775,19 +893,47 @@ public class Vendas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnSelecionarClienteActionPerformed
 
-    private void txtProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProdutoActionPerformed
+    private void txtPesquisaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtProdutoActionPerformed
+    }//GEN-LAST:event_txtPesquisaProdutoActionPerformed
+
+    private void btnCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVendaActionPerformed
+        inicia();
+    }//GEN-LAST:event_btnCancelarVendaActionPerformed
+
+    private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
+        try {
+            if (clienteSelecionado == null) {
+                throw new Exception("Nenhum cliente selecionado.");
+            }
+
+            if (vendas.isEmpty()) {
+                throw new Exception("Nenhum produto selecionado.");
+            }
+
+            if (!VendaController.Salvar(vendas, clienteSelecionado, new Date())) {
+                throw new Exception("Ocorreu um erro durante a venda.");
+            }
+
+            showMessageDialog(null, "Venda criada com sucesso");
+
+            inicia();
+
+        } catch (Exception e) {
+            showMessageDialog(null, e.getMessage());
+        }
+    
+    }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdicionarCarrinho;
     private javax.swing.JButton RemoverCarrinho;
+    private javax.swing.JButton btnCancelarVenda;
+    private javax.swing.JButton btnFinalizarVenda;
     private javax.swing.JButton btnPesquisarCliente;
     private javax.swing.JButton btnSelecionarCliente;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -819,7 +965,7 @@ public class Vendas extends javax.swing.JInternalFrame {
     private javax.swing.JTable tableVenda;
     private javax.swing.JTable tblClientePesquisa;
     private javax.swing.JTextField txtPesquisaCliente;
-    private javax.swing.JTextField txtProduto;
+    private javax.swing.JTextField txtPesquisaProduto;
     // End of variables declaration//GEN-END:variables
 
 public boolean ValidarProdutoCliente() {
@@ -829,12 +975,12 @@ public boolean ValidarProdutoCliente() {
             return false;
         }
         
-        if (tblProdutoPesquisa.getSelectedRow() < 0) {
+        if (tableProdutos.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Selecione um produto!");
             return false;
         }
         
-        if (this.spnQuantidadeProduto.getValue().equals(0)) {
+        if (this.spnQtd.getValue().equals(0)) {
             JOptionPane.showMessageDialog(this, "Defina uma quantidade ao produto!");
             return false;
         }
@@ -842,5 +988,13 @@ public boolean ValidarProdutoCliente() {
         return true;
     }
 
-
+    private boolean validaProdutoSelecionado(String id) {
+        for (String[] venda : vendas) {
+            if (venda[0].equals(id)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }
