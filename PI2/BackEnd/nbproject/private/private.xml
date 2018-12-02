@@ -3,20 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/DAO/ProdutoDAO.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/Controller/ClienteController.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/View/Menu.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/Model/Venda.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/Model/Util.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/Model/Cliente.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/DAO/RelatorioDAO.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/Controller/VendaController.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/Controller/ProdutoController.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/DAO/VendaDAO.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/View/TelaVendasView.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/DAO/DB.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/Model/Produto.java</file>
-            <file>file:/C:/Users/brubs/OneDrive/Documentos/GitHub/PI2/PI2/BackEnd/src/View/Produtos.java</file>
+            <file>file:/Users/brunopereira/Documents/GitHub/PI2/PI2/BackEnd/src/Controller/RelatorioController.java</file>
+            <file>file:/Users/brunopereira/Documents/GitHub/PI2/PI2/BackEnd/src/Model/Venda.java</file>
+            <file>file:/Users/brunopereira/Documents/GitHub/PI2/PI2/BackEnd/src/DAO/RelatorioDAO.java</file>
+            <file>file:/Users/brunopereira/Documents/GitHub/PI2/PI2/BackEnd/src/Controller/ClienteController.java</file>
+            <file>file:/Users/brunopereira/Documents/GitHub/PI2/PI2/BackEnd/src/DAO/ClienteDAO.java</file>
+            <file>file:/Users/brunopereira/Documents/GitHub/PI2/PI2/BackEnd/src/View/RelatorioView.java</file>
+            <file>file:/Users/brunopereira/Documents/GitHub/PI2/PI2/BackEnd/src/Model/Util.java</file>
         </group>
     </open-files>
 </project-private>
