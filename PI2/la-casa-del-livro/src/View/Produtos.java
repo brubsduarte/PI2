@@ -52,17 +52,17 @@ public class Produtos extends javax.swing.JInternalFrame {
 
         tblPesquisaProduto.getColumnModel().getColumn(1).setPreferredWidth(250);//Titulo
 
-        tblPesquisaProduto.getColumnModel().getColumn(2).setMinWidth(0); //Genero
+        //tblPesquisaProduto.getColumnModel().getColumn(2).setMinWidth(0); //Genero
         tblPesquisaProduto.getColumnModel().getColumn(2).setPreferredWidth(0); //Genero
-        tblPesquisaProduto.getColumnModel().getColumn(2).setMaxWidth(0); //Genero
+        //tblPesquisaProduto.getColumnModel().getColumn(2).setMaxWidth(0); //Genero
 
-        tblPesquisaProduto.getColumnModel().getColumn(3).setMinWidth(0); // Editora
+        //tblPesquisaProduto.getColumnModel().getColumn(3).setMinWidth(0); // Editora
         tblPesquisaProduto.getColumnModel().getColumn(3).setPreferredWidth(0); // Editora
-        tblPesquisaProduto.getColumnModel().getColumn(3).setMaxWidth(0); // Editora
+        //tblPesquisaProduto.getColumnModel().getColumn(3).setMaxWidth(0); // Editora
 
-        tblPesquisaProduto.getColumnModel().getColumn(4).setMinWidth(0);   // Autor
+        //tblPesquisaProduto.getColumnModel().getColumn(4).setMinWidth(0);   // Autor
         tblPesquisaProduto.getColumnModel().getColumn(4).setPreferredWidth(0);  // Autor
-        tblPesquisaProduto.getColumnModel().getColumn(4).setMaxWidth(0);   // Autor
+        //tblPesquisaProduto.getColumnModel().getColumn(4).setMaxWidth(0);   // Autor
 
         tblPesquisaProduto.getColumnModel().getColumn(5).setMinWidth(0); // Tipo
         tblPesquisaProduto.getColumnModel().getColumn(5).setPreferredWidth(0); // Tipo
@@ -71,10 +71,14 @@ public class Produtos extends javax.swing.JInternalFrame {
         tblPesquisaProduto.getColumnModel().getColumn(6).setMinWidth(0); // Descrição       
         tblPesquisaProduto.getColumnModel().getColumn(6).setPreferredWidth(0); // Descrição    
         tblPesquisaProduto.getColumnModel().getColumn(6).setMaxWidth(0); // Descrição
+        
+        tblPesquisaProduto.getColumnModel().getColumn(7).setMinWidth(0);//Quantidade
+        tblPesquisaProduto.getColumnModel().getColumn(7).setPreferredWidth(150); //Quantidade
+        tblPesquisaProduto.getColumnModel().getColumn(7).setMaxWidth(0);//Quantidade
 
-        tblPesquisaProduto.getColumnModel().getColumn(7).setPreferredWidth(150); //Quantidade     
-
+        tblPesquisaProduto.getColumnModel().getColumn(8).setMinWidth(0);//Valor Unitario
         tblPesquisaProduto.getColumnModel().getColumn(8).setPreferredWidth(150); //Valor Unitario
+        tblPesquisaProduto.getColumnModel().getColumn(8).setMaxWidth(0);//Valor Unitario
     }
 
     public void LimparFormulario2() {
@@ -121,6 +125,11 @@ public class Produtos extends javax.swing.JInternalFrame {
         btnSalvarProduto1.setEnabled(true);
         btnCancelar1.setEnabled(true);
     }
+    
+    public void setTelaCadastroAtiva(boolean ativar)
+    {
+        this.jTabbedPane2.setSelectedIndex(1);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -140,6 +149,7 @@ public class Produtos extends javax.swing.JInternalFrame {
         lblID = new javax.swing.JLabel();
         cboEditoraPesquisa = new javax.swing.JComboBox<>();
         txtIDPesquisa = new javax.swing.JTextField();
+        btnLimpar = new javax.swing.JButton();
         jtPesqProdutos = new javax.swing.JScrollPane();
         tblPesquisaProduto = new javax.swing.JTable();
         jPanel15 = new javax.swing.JPanel();
@@ -203,6 +213,13 @@ public class Produtos extends javax.swing.JInternalFrame {
 
         cboEditoraPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Arqueiro", "Globo", "Rocco", "Ética", "Abril", "Intrínseca", "Sextante", "Senac", "Saraiva", "Record", "Conrad", "Newpop", "JBC", "Panini", "Draco", "LeYa", "Gutenberg" }));
 
+        btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -235,6 +252,10 @@ public class Produtos extends javax.swing.JInternalFrame {
                             .addComponent(txtTituloPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNome))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +278,9 @@ public class Produtos extends javax.swing.JInternalFrame {
                     .addComponent(txtAutorPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboGeneroPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboEditoraPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         tblPesquisaProduto.setModel(new javax.swing.table.DefaultTableModel(
@@ -351,11 +374,11 @@ public class Produtos extends javax.swing.JInternalFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtPesqProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtPesqProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Pesquisar", jPanel5);
@@ -554,7 +577,7 @@ public class Produtos extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIDproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(painelFoto8, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))
+                        .addComponent(painelFoto8, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -736,14 +759,20 @@ public class Produtos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnExcluirProduto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProduto2ActionPerformed
-        if (tblPesquisaProduto.getRowCount() > 0) {
-            int produtoID = Integer.parseInt(tblPesquisaProduto.getModel().getValueAt(tblPesquisaProduto.getSelectedRow(), 0).toString());
-            if (ProdutoController.Excluir(produtoID)) {
+        if (tblPesquisaProduto.getRowCount() >= 0 && tblPesquisaProduto.getSelectedRow() > 0) {
+                int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?", "Excluir", JOptionPane.YES_NO_OPTION);
+                if(resposta == JOptionPane.YES_OPTION){
+                 int prodoutoId = Integer.parseInt(tblPesquisaProduto.getModel().getValueAt(tblPesquisaProduto.getSelectedRow(), 0).toString());
+                 
+            if (ProdutoController.Excluir(prodoutoId)) {
                 this.LoadTable(null);
                 JOptionPane.showMessageDialog(this, "Produto excluído da base de dados");
+                LimparFormulario2();
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Falha ao excluir o produto!");
             }
+        }
         } else {
             JOptionPane.showMessageDialog(this, "Não há produtos para excluir!");
         }
@@ -800,6 +829,15 @@ public class Produtos extends javax.swing.JInternalFrame {
                 genero,
                 editora));
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        txtTituloPesquisa.setText("");
+        txtAutorPesquisa.setText("");
+        txtIDPesquisa.setText("");
+        cboGeneroPesquisa.setSelectedItem(0);
+        cboEditoraPesquisa.setSelectedItem(0);
+        LoadTable(null);
+    }//GEN-LAST:event_btnLimparActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -842,6 +880,7 @@ public class Produtos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCancelar1;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluirProduto2;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvarProduto1;

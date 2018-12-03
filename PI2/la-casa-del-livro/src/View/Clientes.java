@@ -306,6 +306,10 @@ public class Clientes extends javax.swing.JInternalFrame {
         btnSalvarCliente.setEnabled(true);
         btnCancelar2.setEnabled(true);
     }
+     public void setTelaCadastroAtiva(boolean ativar)
+    {
+        this.jTabbedPane1.setSelectedIndex(1);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -497,13 +501,13 @@ public class Clientes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainePrincipal3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PainePrincipal3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
                     .addGroup(PainePrincipal3Layout.createSequentialGroup()
                         .addComponent(btnExcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         PainePrincipal3Layout.setVerticalGroup(
@@ -527,7 +531,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                     .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(PainePrincipal3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1135,19 +1139,23 @@ public class Clientes extends javax.swing.JInternalFrame {
 
     private void btnExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir1ActionPerformed
         try {
-            if (tblPesquisaCliente3.getRowCount() > 0) {
-                int clienteID = Integer.parseInt(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 0).toString());
-                if (ClienteController.Excluir(clienteID)) {
-                    this.LoadTable(null);
-                    JOptionPane.showMessageDialog(this, "Cliente excluído da base de dados");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Falha ao excluir o cliente!");
+            if (tblPesquisaCliente3.getRowCount() >= 0 && tblPesquisaCliente3.getSelectedRow() >= 0) {
+                int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?", "Excluir", JOptionPane.YES_NO_OPTION);
+                if(resposta == JOptionPane.YES_OPTION){
+                    int clienteID = Integer.parseInt(tblPesquisaCliente3.getModel().getValueAt(tblPesquisaCliente3.getSelectedRow(), 0).toString());
+                    if (ClienteController.Excluir(clienteID)) {
+                        this.LoadTable(null);
+                        JOptionPane.showMessageDialog(this, "Cliente excluído da base de dados");
+                        LimparFormulario();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Falha ao excluir o cliente!");
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Não há clientes para excluir!");
             }
 
-        } catch (Exception e) {
+        } catch (HeadlessException | NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Falha ao excluir o cliente!");
 
         }

@@ -65,7 +65,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btnCadClienteMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/add_user-32.png"))); // NOI18N
-        btnCadClienteMenu.setText("Cadastrar Cliente");
+        btnCadClienteMenu.setText("Pesquisar Cliente");
         btnCadClienteMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadClienteMenuActionPerformed(evt);
@@ -129,7 +129,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(paineMenuLayout.createSequentialGroup()
                 .addGap(130, 130, 130)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         paineMenuLayout.setVerticalGroup(
             paineMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,6 +247,7 @@ public class Menu extends javax.swing.JFrame {
     private void menuItemCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadCliActionPerformed
         Clientes cadCliente = new Clientes();
         paineMenu.add(cadCliente);
+        cadCliente.setTelaCadastroAtiva(true);
         cadCliente.setVisible(true);
     }//GEN-LAST:event_menuItemCadCliActionPerformed
 
@@ -265,6 +266,7 @@ public class Menu extends javax.swing.JFrame {
     private void menuItemCadProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadProdActionPerformed
         Produtos cadProduto = new Produtos();
         paineMenu.add(cadProduto);
+        cadProduto.setTelaCadastroAtiva(true);
         cadProduto.setVisible(true);
     }//GEN-LAST:event_menuItemCadProdActionPerformed
 

@@ -67,6 +67,8 @@ public class Relatorio extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
+        setClosable(true);
+
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa"));
 
         jButton1.setText("Pesquisar");

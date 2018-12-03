@@ -355,6 +355,8 @@ public class Vendas extends javax.swing.JInternalFrame {
 
         jLabel2.setText("jLabel2");
 
+        setClosable(true);
+
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Data da Venda"));
 
         lblDate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

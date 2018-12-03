@@ -13,10 +13,10 @@ import java.sql.Statement;
 public class DB {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String SERVIDOR = "jdbc:mysql://localhost:3306/"; //Mudar apenas isso
+    private static final String SERVIDOR = "jdbc:mysql://127.0.0.1:3306/"; //Mudar apenas isso
     private static final String BASEDADOS = "la_casa_del_livro";
     private static final String LOGIN = "root"; //Mudar apenas isso
-    private static final String SENHA = ""; //Mudar apenas isso
+    private static final String SENHA = "mysqlcmm"; //Mudar apenas isso
     private static String url = "";
     private static Connection conexao;
     private static Statement comando;
