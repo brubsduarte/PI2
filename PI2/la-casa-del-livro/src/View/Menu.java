@@ -54,7 +54,6 @@ public class Menu extends javax.swing.JFrame {
         menuItemCadProd = new javax.swing.JMenuItem();
         menuBtoVendas = new javax.swing.JMenu();
         menuItemVenda = new javax.swing.JMenuItem();
-        menuItemCancVendas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Inicial");
@@ -216,11 +215,6 @@ public class Menu extends javax.swing.JFrame {
         });
         menuBtoVendas.add(menuItemVenda);
 
-        menuItemCancVendas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK));
-        menuItemCancVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/cart_delete.png"))); // NOI18N
-        menuItemCancVendas.setText("Cancelar Venda");
-        menuBtoVendas.add(menuItemCancVendas);
-
         menu.add(menuBtoVendas);
 
         setJMenuBar(menu);
@@ -277,18 +271,20 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btoVendasMenuActionPerformed
 
     private void menuItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVendaActionPerformed
-        TelaVendasView telVendas = new TelaVendasView();
-        //paineMenu.add(telVendas);
+        Vendas telVendas = new Vendas();
+        paineMenu.add(telVendas);
         telVendas.setVisible(true);
     }//GEN-LAST:event_menuItemVendaActionPerformed
 
     private void menuItemRelatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatActionPerformed
-        RelatorioView relatorio = new RelatorioView();
+        Relatorio relatorio = new Relatorio();
+        paineMenu.add(relatorio);
         relatorio.setVisible(true);
     }//GEN-LAST:event_menuItemRelatActionPerformed
 
     private void btoGerarRelatorioMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btoGerarRelatorioMenuActionPerformed
-        RelatorioView relatorio = new RelatorioView();
+        Relatorio relatorio = new Relatorio();
+        paineMenu.add(relatorio);
         relatorio.setVisible(true);
     }//GEN-LAST:event_btoGerarRelatorioMenuActionPerformed
 
@@ -343,7 +339,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemAjuda;
     private javax.swing.JMenuItem menuItemCadCli;
     private javax.swing.JMenuItem menuItemCadProd;
-    private javax.swing.JMenuItem menuItemCancVendas;
     private javax.swing.JMenuItem menuItemRelat;
     private javax.swing.JMenuItem menuItemSair;
     private javax.swing.JMenuItem menuItemVenda;

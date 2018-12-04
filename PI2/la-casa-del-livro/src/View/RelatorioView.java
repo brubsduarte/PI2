@@ -93,6 +93,11 @@ public final class RelatorioView extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtDataFinal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtDataFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDataFinalActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("até");
@@ -396,6 +401,10 @@ public final class RelatorioView extends javax.swing.JFrame {
         txtDataFinal.setText("");
         loadTables();
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void txtDataFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataFinalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDataFinalActionPerformed
 
     /**
      * @param args the command line arguments

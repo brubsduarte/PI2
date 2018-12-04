@@ -249,7 +249,7 @@ public class Vendas extends javax.swing.JInternalFrame {
         tableVenda.getColumnModel().getColumn(1).setPreferredWidth(250); //titulo
         tableVenda.getColumnModel().getColumn(2).setPreferredWidth(150); //autor
         tableVenda.getColumnModel().getColumn(3).setPreferredWidth(150); //valor unitario
-        tableVenda.getColumnModel().getColumn(4).setPreferredWidth(150); //valor unitario
+        tableVenda.getColumnModel().getColumn(4).setPreferredWidth(150); //QUANTIDADE
     }
 
     public String formatDecimal(float number) {
