@@ -3,6 +3,7 @@ package DAO;
 import Model.Cliente;
 import Model.Produto;
 import Model.Venda;
+import Model.VendaDetalhada;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -138,6 +139,48 @@ public class RelatorioDAO {
             System.out.println(ex.getMessage());
             db.close();
             return null;
+        }
+    }
+    
+    public static ArrayList<VendaDetalhada> getVendaDetalhada(int idVenda){
+        DB db = new DB(true);
+        try{
+            String sql  = "SELECT \n" +
+                        "    V.ID, \n" +
+                        "    P.TITULO,\n" +
+                        "    VP.QUANTIDADEVENDA,\n" +
+                        "    P.VALOR,\n" +
+                        "    C.NOME,\n" +
+                        "    (VP.QUANTIDADEVENDA * P.VALOR) AS VALORTOTAL\n" +
+                        "FROM \n" +
+                        "	VENDA V\n" +
+                        "INNER JOIN VENDAPRODUTO AS VP\n" +
+                        "	ON VP.IDVENDA = V.ID\n" +
+                        "INNER JOIN CLIENTE C\n" +
+                        "	ON C.ID = V.IDCLIENTE\n" +
+                        "INNER JOIN PRODUTO P\n" +
+                        "	ON P.ID = VP.IDPRODUTO\n" +
+                        "WHERE\n" +
+                        "	V.ID = " + idVenda;
+            
+            ResultSet rs = db.executarConsulta(sql);
+            ArrayList<VendaDetalhada> vendaDetalhada = new ArrayList<>();
+            while(rs.next()){
+                VendaDetalhada v = new VendaDetalhada();
+                v.setIdVenda(rs.getInt("ID"));
+                v.setNomeCliente(rs.getString("NOME"));
+                v.setTituloProduto(rs.getString("TITULO"));
+                v.setValorUnitario(rs.getDouble("VALOR"));
+                v.setQuantidade(rs.getInt("QUANTIDADEVENDA"));
+                v.setValorTotal(rs.getDouble("VALORTOTAL"));
+                vendaDetalhada.add(v);
+            }
+            db.close();
+            return vendaDetalhada;
+        } catch(SQLException e){
+            db.close();
+            throw new RuntimeException(e);
+            
         }
     }
 }

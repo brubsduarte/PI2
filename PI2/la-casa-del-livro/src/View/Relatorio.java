@@ -10,12 +10,14 @@ import Controller.RelatorioController;
 import Controller.VendaController;
 import Model.Util;
 import Model.Venda;
+import Model.VendaDetalhada;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatterFactory;
@@ -304,10 +306,7 @@ public class Relatorio extends javax.swing.JInternalFrame {
 
         tblVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Data", "Cliente", "Valor Total"
@@ -379,8 +378,7 @@ public class Relatorio extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1))
-                .addGap(0, 0, 0))
+                    .addComponent(jTabbedPane1)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -860,8 +858,17 @@ public class Relatorio extends javax.swing.JInternalFrame {
 
     private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
         
-        jTabbedPane1.setSelectedIndex(1);
-       LoadTableVendaDetalhes(VendaController.getVendas());
+       if(tblVendas.getRowCount() > 0){
+           if(tblVendas.getSelectedRow() >= 0){
+               int idVenda = Integer.parseInt(tblVendas.getModel().getValueAt(tblVendas.getSelectedRow(), 0).toString());
+               LoadTableVendaDetalhes(RelatorioController.vendasDetalhadas(idVenda));
+               jTabbedPane1.setSelectedIndex(1);
+           } else{
+               JOptionPane.showMessageDialog(null, "Selecione um item para visualizar os detalhes!");
+           }
+       } else{
+           JOptionPane.showMessageDialog(null, "Não é possível visualizar os detalhes com a tabela vazia!");
+       }
     }//GEN-LAST:event_btnGoActionPerformed
 
 
@@ -874,16 +881,12 @@ public class Relatorio extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnPesquisaProduto;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
@@ -899,8 +902,6 @@ public class Relatorio extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JScrollPane jtPesqProdutos;
-    private javax.swing.JLabel lblValorTotal;
-    private javax.swing.JLabel lblValorTotal1;
     private javax.swing.JLabel lblValorTotal3;
     private javax.swing.JTable tblCliente;
     private javax.swing.JTable tblDetalhesVendas;
@@ -914,29 +915,20 @@ public class Relatorio extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField txtDataInicioProduto;
     // End of variables declaration//GEN-END:variables
 
-    private void LoadTableVendaDetalhes(ArrayList<Venda> vendas) {
+    private void LoadTableVendaDetalhes(ArrayList<VendaDetalhada> vendas) {
+        DefaultTableModel modelo = (DefaultTableModel) tblDetalhesVendas.getModel();
+        modelo.setNumRows(0);
         
-        
-        DefaultTableModel tmDetalhesVenda = new DefaultTableModel();
-        tmDetalhesVenda.addColumn("Titulo");
-        tmDetalhesVenda.addColumn("Valor unitário");
-        tmDetalhesVenda.addColumn("Qtde. vendas");
-        tmDetalhesVenda.addColumn("Cliente");
-        tmDetalhesVenda.addColumn("Total vendas");
-
-         
-        for(Venda venda : vendas) {
-          String titulo = venda.getProdutos().get(0).gettitulo();
-           String id = String.valueOf(venda.getIdVenda());
-          String quantidadeDeProdutos = String.valueOf(venda.getProdutos().size());
-          String valorUnitario = String.valueOf(venda.getProdutos().get(0).getvalorUni());
-          String cliente = String.valueOf(venda.getCliente().getNome());
-          String valorTptal = String.valueOf(venda.getValorTotal());
-            tmDetalhesVenda.addColumn(titulo);
-        }
-
-        
-        tblProduto.setModel(tmDetalhesVenda);
-        
+         for(VendaDetalhada v : vendas) {
+            modelo.addRow(new Object[]{
+                v.getIdVenda(),
+                v.getTituloProduto(),
+                v.getQuantidade(),
+                v.getValorUnitario(),
+                v.getNomeCliente(),             
+                v.getValorTotal(),
+                
+            });
+        }       
      }
 }

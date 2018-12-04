@@ -6,7 +6,6 @@
 package Controller;
 
 import DAO.RelatorioDAO;
-import DAO.VendaDAO;
 import Model.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,5 +67,9 @@ public class RelatorioController {
         }
 
         return listaVendas;
+    }
+    
+    public static ArrayList<VendaDetalhada> vendasDetalhadas(int idVenda){
+        return RelatorioDAO.getVendaDetalhada(idVenda);
     }
 }

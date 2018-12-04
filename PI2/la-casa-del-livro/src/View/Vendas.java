@@ -9,6 +9,7 @@ import Controller.ClienteController;
 import Controller.ProdutoController;
 import Controller.VendaController;
 import Model.Cliente;
+import Model.Venda;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -852,6 +853,7 @@ public class Vendas extends javax.swing.JInternalFrame {
                 tm.getValueAt(linha, 8).toString(),
                 String.valueOf(quantidade),
                 tm.getValueAt(linha, 7).toString(),};
+            
 
             vendas.add(venda);
 
@@ -862,6 +864,7 @@ public class Vendas extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_AdicionarCarrinhoActionPerformed
 
+    
     private void btnPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarClienteActionPerformed
         String pesquisa = txtPesquisaCliente.getText().toLowerCase();
 

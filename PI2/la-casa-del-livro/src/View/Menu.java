@@ -46,7 +46,6 @@ public class Menu extends javax.swing.JFrame {
         menuBtoLogin = new javax.swing.JMenu();
         menuItemSair = new javax.swing.JMenuItem();
         menuBtoArquivos = new javax.swing.JMenu();
-        menuItemAjuda = new javax.swing.JMenuItem();
         menuItemRelat = new javax.swing.JMenuItem();
         menuBtoClientes = new javax.swing.JMenu();
         menuItemCadCli = new javax.swing.JMenuItem();
@@ -154,11 +153,6 @@ public class Menu extends javax.swing.JFrame {
 
         menuBtoArquivos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/page.png"))); // NOI18N
         menuBtoArquivos.setText("Arquivos");
-
-        menuItemAjuda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
-        menuItemAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/help.png"))); // NOI18N
-        menuItemAjuda.setText("Ajuda");
-        menuBtoArquivos.add(menuItemAjuda);
 
         menuItemRelat.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         menuItemRelat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/chart_bar.png"))); // NOI18N
@@ -336,7 +330,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu menuBtoLogin;
     private javax.swing.JMenu menuBtoProdutos;
     private javax.swing.JMenu menuBtoVendas;
-    private javax.swing.JMenuItem menuItemAjuda;
     private javax.swing.JMenuItem menuItemCadCli;
     private javax.swing.JMenuItem menuItemCadProd;
     private javax.swing.JMenuItem menuItemRelat;

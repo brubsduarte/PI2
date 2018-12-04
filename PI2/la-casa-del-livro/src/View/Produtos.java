@@ -738,7 +738,7 @@ public class Produtos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnExcluirProduto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProduto2ActionPerformed
-        if (tblPesquisaProduto.getRowCount() >= 0 && tblPesquisaProduto.getSelectedRow() > 0) {
+        if (tblPesquisaProduto.getRowCount() >= 0 && tblPesquisaProduto.getSelectedRow() >= 0) {
                 int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?", "Excluir", JOptionPane.YES_NO_OPTION);
                 if(resposta == JOptionPane.YES_OPTION){
                  int prodoutoId = Integer.parseInt(tblPesquisaProduto.getModel().getValueAt(tblPesquisaProduto.getSelectedRow(), 0).toString());
