@@ -145,23 +145,7 @@ public class RelatorioDAO {
     public static ArrayList<VendaDetalhada> getVendaDetalhada(int idVenda){
         DB db = new DB(true);
         try{
-            String sql  = "SELECT \n" +
-                        "    V.ID, \n" +
-                        "    P.TITULO,\n" +
-                        "    VP.QUANTIDADEVENDA,\n" +
-                        "    P.VALOR,\n" +
-                        "    C.NOME,\n" +
-                        "    (VP.QUANTIDADEVENDA * P.VALOR) AS VALORTOTAL\n" +
-                        "FROM \n" +
-                        "	VENDA V\n" +
-                        "INNER JOIN VENDAPRODUTO AS VP\n" +
-                        "	ON VP.IDVENDA = V.ID\n" +
-                        "INNER JOIN CLIENTE C\n" +
-                        "	ON C.ID = V.IDCLIENTE\n" +
-                        "INNER JOIN PRODUTO P\n" +
-                        "	ON P.ID = VP.IDPRODUTO\n" +
-                        "WHERE\n" +
-                        "	V.ID = " + idVenda;
+            String sql = "select v.id, p.titulo, vp.quantidadevenda, p.valor, c.nome, (vp.quantidadevenda * p.valor) as valortotal from venda v inner join vendaproduto as vp on vp.idvenda = v.id inner join cliente c on c.id = v.idcliente inner join produto p on p.id = vp.idproduto where v.id = " + idVenda;
             
             ResultSet rs = db.executarConsulta(sql);
             ArrayList<VendaDetalhada> vendaDetalhada = new ArrayList<>();
