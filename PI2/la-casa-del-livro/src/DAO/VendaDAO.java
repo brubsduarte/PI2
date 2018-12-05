@@ -3,14 +3,13 @@ package DAO;
 import Model.Produto;
 import Model.Venda;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 /**
  *
- * @author gusta
+ * @author bruna.duarte
  */
 public class VendaDAO {
 

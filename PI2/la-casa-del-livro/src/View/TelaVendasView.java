@@ -22,7 +22,7 @@ import utils.Validador;
 
 /**
  *
- * @author Teste
+ * @author Gustavo
  */
 public class TelaVendasView extends javax.swing.JFrame {
 

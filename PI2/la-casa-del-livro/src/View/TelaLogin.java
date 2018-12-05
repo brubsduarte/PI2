@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Teste
+ * @author Marcel
  */
 public class TelaLogin extends javax.swing.JDialog {
 

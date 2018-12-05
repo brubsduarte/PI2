@@ -15,7 +15,7 @@ import java.util.Date;
 
 /**
  *
- * @author gusta
+ * @author Caio Celso
  */
 public class VendaController {
 

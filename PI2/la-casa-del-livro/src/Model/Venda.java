@@ -17,7 +17,7 @@ import java.util.Set;
 
 /**
  *
- * @author gusta
+ * @author Caio
  */
 public class Venda {
     

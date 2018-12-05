@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  *
- * @author gusta
+ * @author Bruna Duarte
  */
 public class RelatorioController {
     

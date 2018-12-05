@@ -24,7 +24,7 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 /**
  *
- * @author Marcel
+ * @author bruna.duarte
  */
 public class Relatorio extends javax.swing.JInternalFrame {
 
