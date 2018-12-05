@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Gi%20Silva/Documents/NetBeansProjects/PI2/PI2/la-casa-del-livro/src/View/Menu.java</file>
+            <file>file:/Users/brunopereira/Documents/GitHub/PI2/PI2/la-casa-del-livro/src/Controller/Main.java</file>
+            <file>file:/Users/brunopereira/Documents/GitHub/PI2/PI2/la-casa-del-livro/src/View/Menu.java</file>
+            <file>file:/Users/brunopereira/Documents/GitHub/PI2/PI2/la-casa-del-livro/src/DAO/DB.java</file>
+            <file>file:/Users/brunopereira/Documents/GitHub/PI2/PI2/la-casa-del-livro/src/DAO/RelatorioDAO.java</file>
         </group>
     </open-files>
 </project-private>

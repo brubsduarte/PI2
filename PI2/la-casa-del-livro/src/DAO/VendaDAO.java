@@ -62,17 +62,17 @@ public class VendaDAO {
                     throw new Exception("Não foi possível atualizar o produto.");
                 }
                 
-                String atualizarValorTotal = "update venda set venda.valortotal = (SELECT  sum((VP.QUANTIDADEVENDA * P.VALOR)) \n" +
+                String atualizarValorTotal = "update venda set venda.ValorTotal = (SELECT  sum((VP.QuantidadeVenda * P.Valor)) \n" +
                                             "FROM  (select * from venda) as V\n" +
-                                            "INNER JOIN VENDAPRODUTO AS VP \n" +
-                                            "	ON VP.IDVENDA = V.ID \n" +
-                                            "INNER JOIN CLIENTE C \n" +
-                                            "	ON C.ID = V.IDCLIENTE \n" +
-                                            "INNER JOIN PRODUTO P \n" +
-                                            "	ON P.ID = VP.IDPRODUTO \n" +
+                                            "INNER JOIN vendaproduto AS VP \n" +
+                                            "	ON VP.idVenda = V.ID \n" +
+                                            "INNER JOIN cliente C \n" +
+                                            "	ON C.ID = V.idCliente \n" +
+                                            "INNER JOIN produto P \n" +
+                                            "	ON P.ID = VP.idProduto \n" +
                                             "where \n" +
-                                            "	v.id = " + vendaID + ")"+
-                                            "where id = " + vendaID;
+                                            "	V.ID = " + vendaID + ")"+
+                                            "where ID = " + vendaID;
                 
                 if(!db.executarAlteracao(atualizarValorTotal))
                     throw new Exception("Erro ao atualizar valor total.");

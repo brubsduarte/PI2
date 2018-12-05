@@ -63,7 +63,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btnCadClienteMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/add_user-32.png"))); // NOI18N
-        btnCadClienteMenu.setText("Pesquisar Cliente");
+        btnCadClienteMenu.setText("Pesquisa de Clientes");
         btnCadClienteMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadClienteMenuActionPerformed(evt);
@@ -71,7 +71,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnPesqProdutoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/search-32.png"))); // NOI18N
-        btnPesqProdutoMenu.setText("Pesquisar Produto");
+        btnPesqProdutoMenu.setText("Pesquisa de Produtos");
         btnPesqProdutoMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesqProdutoMenuActionPerformed(evt);
@@ -79,7 +79,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btoVendasMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/Shopping-Cart-payment-32.png"))); // NOI18N
-        btoVendasMenu.setText("Realizar Venda");
+        btoVendasMenu.setText("Vender");
         btoVendasMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btoVendasMenuActionPerformed(evt);
@@ -87,7 +87,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btoGerarRelatorioMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconsBotoes/Bar-chart-32.png"))); // NOI18N
-        btoGerarRelatorioMenu.setText("Consultar Vendas");
+        btoGerarRelatorioMenu.setText("Relatórios");
         btoGerarRelatorioMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btoGerarRelatorioMenuActionPerformed(evt);
@@ -99,15 +99,15 @@ public class Menu extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(18, 18, 18)
                 .addComponent(btnCadClienteMenu)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
                 .addComponent(btnPesqProdutoMenu)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(btoVendasMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(btoGerarRelatorioMenu)
-                .addGap(50, 50, 50))
+                .addGap(18, 18, 18)
+                .addComponent(btoVendasMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(btoGerarRelatorioMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,10 +124,10 @@ public class Menu extends javax.swing.JFrame {
         paineMenu.setLayout(paineMenuLayout);
         paineMenuLayout.setHorizontalGroup(
             paineMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paineMenuLayout.createSequentialGroup()
-                .addGap(130, 130, 130)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paineMenuLayout.createSequentialGroup()
+                .addContainerGap(206, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addGap(197, 197, 197))
         );
         paineMenuLayout.setVerticalGroup(
             paineMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
